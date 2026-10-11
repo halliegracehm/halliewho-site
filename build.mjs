@@ -270,7 +270,7 @@ for (const p of PATTERNS) {
   const prompts = p.prompts.map((x) => `<li>${esc(x)}</li>`).join("");
   write(page, layout({
     page,
-    title: `${p.title}: What This ${kind.replace(/^\w/, (c) => c.toUpperCase())} Means for You | Hallie Who`,
+    title: `${p.title}: What This ${kind.replace(/\b\w/g, (c) => c.toUpperCase()).replace(/ Eq /, " EQ ")} Means for You | Hallie Who`,
     description: clip(p.body),
     jsonld: [
       crumbs([["Home", ""], ["Patterns", "patterns/"], [p.title, page]]),
