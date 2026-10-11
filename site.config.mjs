@@ -20,6 +20,30 @@ export default {
   // Where "Work with me" inquiries go.
   contactEmail: "halliegracehm@gmail.com",
 
+  // Etsy printables (Innershelfstudio). Each quiz result recommends one of these.
+  etsyShop: "https://www.etsy.com/shop/Innershelfstudio",
+  products: {
+    emotion: { name: "21 Day Emotion Journal", price: "$5.50", url: "https://www.etsy.com/listing/4481325241/21-day-emotion-journal-wellness-workbook", why: "21 days of prompts to name what you feel and where it comes from." },
+    braindump: { name: "Evening Brain Dump Journal Page", price: "$4.00", url: "https://www.etsy.com/listing/4484959233/evening-brain-dump-journal-page-mental", why: "A nightly page to get the swirl out of your head and onto paper." },
+    affirm: { name: "I Am Affirmations Print", price: "$4.00", url: "https://www.etsy.com/listing/4484968883/i-am-affirmations-print-positive-self", why: "Words to put where you'll see them every day, until you believe them." },
+    sunday: { name: "Sunday Setup Weekly Reflection", price: "$3.00", url: "https://www.etsy.com/listing/4488257562/sunday-setup-weekly-reflection-journal", why: "Plan your week around what you need, not just what's due." },
+    grat10: { name: "10-Day Gratitude Journal", price: "$3.75", url: "https://www.etsy.com/listing/4481340072/10-day-gratitude-journal-daily", why: "Ten days of noticing what's already good." },
+    gratitude: { name: "Gratitude Journal, Volume 1", price: "$6.00", url: "https://www.etsy.com/listing/4481090029/gratitude-journal-volume-1", why: "A gentle daily practice for a fuller heart." },
+    // TODO: replace url with the direct listing link once it shows up on Etsy.
+    yearReview: { name: "2026 Year in Review + 2027 Intentions", price: "$7.00", url: "https://www.etsy.com/shop/Innershelfstudio", why: "A 15-page workbook to look back honestly and walk into 2027 on purpose." }
+  },
+  // Which printable each result recommends: "quizNumber:resultKey": product
+  picks: {
+    "0:O": "affirm", "0:C": "braindump", "0:P": "affirm", "0:I": "emotion",
+    "1:F": "emotion", "1:C": "braindump", "1:A": "affirm", "1:D": "emotion",
+    "2:S": "gratitude", "2:A": "affirm", "2:U": "braindump", "2:P": "affirm",
+    "3:A": "grat10", "3:G": "emotion", "3:U": "emotion", "3:O": "sunday",
+    "4:L": "sunday", "4:D": "emotion", "4:H": "braindump", "4:S": "affirm",
+    "5:E": "braindump", "5:R": "sunday", "5:S": "emotion", "5:U": "emotion", "5:C": "gratitude"
+  },
+  // Shown to everyone alongside their pick (seasonal). Set to "" to turn off.
+  seasonalPick: "yearReview",
+
   // Books (shown on /books). Add a buyUrl when a book is for sale and the
   // button switches from "Get notified" to "Buy the book".
   bookLaunchSignup: "https://mailchi.mp/460a5b0c7915/book-launch-signup",

@@ -41,7 +41,7 @@ function rel(from, to) {
 const NAV = [
   ["find-your-pattern/", "Quizzes"],
   ["patterns/", "Patterns"],
-  ["journal/", "Journal"],
+  ["shop/", "Shop"],
   ["books/", "Books"],
   ["talk-with-hallie/", "Talk with me"],
   ["work-with-me/", "Work with me"],
@@ -121,6 +121,22 @@ const journalOffer = (r, heading, text, ref, secondary = "") => `
     ${secondary}
   </div>
 </div>`;
+
+// Etsy picks for a result: its matched printable, plus the seasonal one.
+function picksFor(qid, key) {
+  const out = [];
+  const main = cfg.products[cfg.picks[`${qid}:${key}`]];
+  if (main) out.push(main);
+  const season = cfg.seasonalPick && cfg.products[cfg.seasonalPick];
+  if (season && season !== main) out.push(season);
+  return out;
+}
+const pickCards = (list) => `<div class="picks">${list.map((x) => `
+  <a class="pick" href="${x.url}">
+    <span class="pick-name">${esc(x.name)}</span>
+    <span class="pick-why">${esc(x.why)}</span>
+    <span class="pick-foot"><span class="pick-price">${esc(x.price)}</span><span class="pick-go">See it on Etsy</span></span>
+  </a>`).join("")}</div>`;
 
 // ---------- pages ----------
 fs.rmSync(OUT, { recursive: true, force: true });
@@ -202,7 +218,7 @@ for (const q of QUIZ) {
   const page = q.page;
   const types = {};
   for (const [k, t] of Object.entries(q.types)) {
-    types[k] = { badge: t.badge, title: t.title, body: t.body, l1: t.l1, t1: t.t1, l2: t.l2, t2: t.t2, slug: t.slug, url: rel(page, t.page) };
+    types[k] = { badge: t.badge, title: t.title, body: t.body, l1: t.l1, t1: t.t1, l2: t.l2, t2: t.t2, slug: t.slug, url: rel(page, t.page), picks: picksFor(q.id, k) };
   }
   const data = {
     qs: q.qs, types, mailchimp: cfg.mailchimp, journalUrl: cfg.journalUrl, journalPrice: cfg.journalPrice,
@@ -288,12 +304,53 @@ for (const p of PATTERNS) {
     ${prompts ? `<div class="depth"><h2 style="font-size:28px">Three journal prompts for ${esc(p.title)}</h2><ul class="prompts">${prompts}</ul></div>` : ""}
     ${journalOffer(p, "Want thirty more?", "Pages for You is a 30-day journal written only for you, around what you're carrying right now. One page a day, at your own pace.", p.slug,
       `<a class="btn ghost" href="${rel(page, q.page)}">Take the quiz</a>`)}
+    <div class="depth">
+      <h2 style="font-size:28px">Or start small</h2>
+      <p>Printables from my Etsy shop, Innershelfstudio, picked for ${esc(p.title)}. Instant download.</p>
+      ${pickCards(picksFor(q.id, p.key))}
+    </div>
   </div>
 </article></section>
 <section>
   <div class="measure">
     <h2>The other results in this quiz</h2>
     <ul class="related">${siblings}</ul>
+  </div>
+</section>`,
+  }));
+}
+
+// Shop
+{
+  const page = "shop/";
+  const all = Object.values(cfg.products);
+  write(page, layout({
+    page,
+    title: "Shop: Printable Journals, Workbooks, and a Personalized Journal | Hallie Who",
+    description: "Printable journals, gratitude pages, affirmations, and a year in review workbook from Innershelfstudio, plus Pages for You, a 30-day journal written for you.",
+    jsonld: [crumbs([["Home", ""], ["Shop", page]])],
+    body: `
+<section class="first">
+  <div class="measure">
+    <h1>Shop</h1>
+    <p class="lede">Small, honest tools for the patterns you're working on. Everything is a digital download you can print at home.</p>
+    ${journalOffer(null, "Pages for You", `A 30-day journal written only for you, around what you're carrying right now. ${cfg.journalPrice}.`, "shop",
+      `<a class="btn ghost" href="${rel(page, "journal/")}">How it works</a>`)}
+  </div>
+</section>
+<section>
+  <div class="measure">
+    <h2>Printables from Innershelfstudio</h2>
+    <p>Sold through my Etsy shop. Instant download after checkout.</p>
+    ${pickCards(all)}
+    <p style="margin-top:22px">Looking for art prints? <a href="${cfg.etsyShop}">See the whole shop on Etsy</a>.</p>
+  </div>
+</section>
+<section>
+  <div class="measure">
+    <h2>Not sure what you need?</h2>
+    <p>Take a free quiz. Your result comes with a printable picked for your pattern.</p>
+    <div class="actions"><a class="btn ghost" href="${rel(page, "find-your-pattern/")}">Find your pattern</a></div>
   </div>
 </section>`,
   }));
@@ -466,7 +523,7 @@ write("404.html", layout({ canonicalPage: "404.html",
 }));
 
 // Sitemap and robots
-const pages = ["", "find-your-pattern/", "patterns/", "journal/", "books/", "talk-with-hallie/", "work-with-me/", ...QUIZ.map((q) => q.page), ...PATTERNS.map((p) => p.page)];
+const pages = ["", "find-your-pattern/", "patterns/", "shop/", "journal/", "books/", "talk-with-hallie/", "work-with-me/", ...QUIZ.map((q) => q.page), ...PATTERNS.map((p) => p.page)];
 write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${pages.map((p) => `  <url><loc>${cfg.siteUrl}/${p}</loc><lastmod>${today}</lastmod></url>`).join("\n")}

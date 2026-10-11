@@ -134,6 +134,24 @@
     acts.appendChild(el("a", { class: "btn ghost", href: r.url }, "Read the full pattern"));
     offer.appendChild(acts);
     root.appendChild(offer);
+    if (r.picks && r.picks.length) {
+      var pk = el("div", { class: "depth" });
+      pk.appendChild(el("h3", null, "Or start small"));
+      pk.appendChild(el("p", null, "Printables from my Etsy shop, picked for " + r.title + ". Instant download."));
+      var grid = el("div", { class: "picks" });
+      r.picks.forEach(function (x) {
+        var a = el("a", { class: "pick", href: x.url });
+        a.appendChild(el("span", { class: "pick-name" }, x.name));
+        a.appendChild(el("span", { class: "pick-why" }, x.why));
+        var foot = el("span", { class: "pick-foot" });
+        foot.appendChild(el("span", { class: "pick-price" }, x.price));
+        foot.appendChild(el("span", { class: "pick-go" }, "See it on Etsy"));
+        a.appendChild(foot);
+        grid.appendChild(a);
+      });
+      pk.appendChild(grid);
+      root.appendChild(pk);
+    }
     var again = el("div", { class: "actions" });
     var retake = el("button", { type: "button", class: "linkbtn" }, "Retake this quiz");
     retake.addEventListener("click", function () { cur = 0; answers = []; renderQuestion(); });

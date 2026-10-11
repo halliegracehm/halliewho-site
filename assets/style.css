@@ -164,6 +164,20 @@ section.first { border-top: 0; padding-top: 40px; }
 .related a { font-family: var(--serif); font-size: 22px; text-decoration: none; }
 .related span { font-size: 14px; color: var(--ink-soft); margin-left: 8px; }
 
+/* Etsy picks */
+.picks { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; margin-top: 18px; }
+.pick {
+  display: flex; flex-direction: column; gap: 8px; padding: 18px 18px 16px;
+  border: 1.5px solid var(--rule); border-radius: 14px; background: #fff;
+  text-decoration: none; color: var(--ink);
+}
+.pick:hover { border-color: var(--rose); }
+.pick-name { font-family: var(--serif); font-size: 22px; line-height: 1.2; }
+.pick-why { font-size: 14.5px; color: var(--ink-soft); flex: 1; }
+.pick-foot { display: flex; justify-content: space-between; align-items: baseline; margin-top: 4px; font-size: 14px; }
+.pick-price { color: var(--violet); font-weight: 500; }
+.pick-go { color: var(--violet); text-decoration: underline; text-underline-offset: 3px; }
+
 /* Pattern index */
 .pattern-group { margin-top: 30px; }
 .pattern-group h3 { font-size: 22px; }
