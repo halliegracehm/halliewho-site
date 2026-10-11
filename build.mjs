@@ -343,6 +343,7 @@ for (const p of PATTERNS) {
   const page = "books/";
   const books = cfg.books.map((bk) => `
   <div class="service">
+    ${bk.cover ? `<img src="${rel(page, bk.cover)}" alt="Cover of ${esc(bk.title)}" width="900" height="900" style="width:min(320px,100%);height:auto;border-radius:6px;margin-bottom:18px;box-shadow:0 2px 14px rgba(42,23,54,.15)">` : ""}
     <div class="service-head"><h3>${esc(bk.title)}</h3><span class="price">${esc(bk.buyUrl ? bk.kind : bk.status)}</span></div>
     <p class="small">${esc(bk.kind)}</p>
     <p style="margin-top:8px">${esc(bk.blurb)}</p>

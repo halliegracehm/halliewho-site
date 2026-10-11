@@ -27,6 +27,7 @@ export default {
     {
       title: "Underneath a Large Leafy Tree",
       kind: "Children's picture book",
+      cover: "assets/leafy-tree-cover.jpg",
       blurb: "Meet Flamie the owl. A picture book for little ones about finding your place under a big, leafy tree, illustrated by Crystal.",
       status: "Coming soon",
       buyUrl: ""
