@@ -4,7 +4,7 @@
 export default {
   siteUrl: "https://halliewho.com",
   siteName: "Hallie Who",
-  tagline: "The sister you never had but always wanted.",
+  tagline: "Honest questions for the patterns we carry.",
 
   // Products and links
   journalUrl: "https://pages-for-you-hallie.vercel.app",

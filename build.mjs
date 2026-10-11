@@ -148,7 +148,7 @@ fs.cpSync("assets", path.join(OUT, "assets"), { recursive: true });
   <div class="measure">
     <h2>Hi, I'm Hallie.</h2>
     <p class="body-serif">I built this space because I spent a long time looking for someone who understood, and I couldn't find her, so I decided to become her for someone else.</p>
-    <p style="margin-top:16px">I'm an adopted kid from a big Alabama family and the sister you never had but always wanted. No therapy-speak. No "cut everyone off" energy. Just honest questions and a place to sit with the answers.</p>
+    <p style="margin-top:16px">I'm an adopted kid from a big Alabama family, and I learned the hard way that understanding your patterns changes everything. No therapy-speak. No "cut everyone off" energy. Just honest questions and a place to sit with the answers.</p>
     <div class="actions"><a class="btn ghost" href="${r("talk-with-hallie/")}">Talk with me</a></div>
   </div>
 </section>
@@ -388,7 +388,7 @@ for (const p of PATTERNS) {
   write(page, layout({
     page,
     title: "Talk with Hallie: Phone Conversations, Walk and Talks, and Accountability | Hallie Who",
-    description: "Book a conversation with Hallie: a 10 minute talk, a deep conversation, a walk and talk, or monthly accountability. Honest, sisterly support near Birmingham, Alabama, and by phone.",
+    description: "Book a conversation with Hallie: a 10 minute talk, a deep conversation, a walk and talk, or monthly accountability. Honest, down-to-earth support near Birmingham, Alabama, and by phone.",
     jsonld: [crumbs([["Home", ""], ["Talk with Hallie", page]])],
     body: `
 <section class="first">
