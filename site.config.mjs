@@ -20,6 +20,26 @@ export default {
   // Where "Work with me" inquiries go.
   contactEmail: "halliegracehm@gmail.com",
 
+  // Books (shown on /books). Add a buyUrl when a book is for sale and the
+  // button switches from "Get notified" to "Buy the book".
+  bookLaunchSignup: "https://mailchi.mp/460a5b0c7915/book-launch-signup",
+  books: [
+    {
+      title: "Underneath a Large Leafy Tree",
+      kind: "Children's picture book",
+      blurb: "Meet Flamie the owl. A picture book for little ones about finding your place under a big, leafy tree, illustrated by Crystal.",
+      status: "Coming soon",
+      buyUrl: ""
+    },
+    {
+      title: "What Are You",
+      kind: "Memoir",
+      blurb: "My story of growing up adopted in a big Alabama family, the question people kept asking me, and what it took to finally answer it for myself.",
+      status: "In progress",
+      buyUrl: ""
+    }
+  ],
+
   // Conversations (shown on /talk-with-hallie). Booking links come from Cal.com.
   // Leave bookings empty ([]) and the button opens an email to you instead.
   talkHours: "Monday through Wednesday evenings, and weekends",

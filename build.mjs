@@ -42,6 +42,7 @@ const NAV = [
   ["find-your-pattern/", "Quizzes"],
   ["patterns/", "Patterns"],
   ["journal/", "Journal"],
+  ["books/", "Books"],
   ["talk-with-hallie/", "Talk with me"],
   ["work-with-me/", "Work with me"],
 ];
@@ -337,6 +338,39 @@ for (const p of PATTERNS) {
   }));
 }
 
+// Books
+{
+  const page = "books/";
+  const books = cfg.books.map((bk) => `
+  <div class="service">
+    <div class="service-head"><h3>${esc(bk.title)}</h3><span class="price">${esc(bk.buyUrl ? bk.kind : bk.status)}</span></div>
+    <p class="small">${esc(bk.kind)}</p>
+    <p style="margin-top:8px">${esc(bk.blurb)}</p>
+    <div class="actions" style="margin-top:16px">${bk.buyUrl
+      ? `<a class="btn" href="${bk.buyUrl}">Buy the book</a>`
+      : `<a class="btn ghost" href="${cfg.bookLaunchSignup}">Get notified when it's out</a>`}</div>
+  </div>`).join("");
+  write(page, layout({
+    page,
+    title: "Books by Hallie Who: Underneath a Large Leafy Tree and What Are You",
+    description: "Books by Hallie Who, including the children's picture book Underneath a Large Leafy Tree and the memoir What Are You.",
+    jsonld: [crumbs([["Home", ""], ["Books", page]]),
+      ...cfg.books.map((bk) => ({ "@context": "https://schema.org", "@type": "Book", name: bk.title, author: { "@type": "Person", name: "Hallie Who" }, description: bk.blurb }))],
+    body: `
+<section class="first">
+  <div class="measure">
+    <h1>Books</h1>
+    <p class="lede">Stories for the little ones, and the one I needed to write for myself.</p>
+  </div>
+</section>
+<section>
+  <div class="measure">
+    ${books}
+  </div>
+</section>`,
+  }));
+}
+
 // Talk with Hallie
 {
   const page = "talk-with-hallie/";
@@ -431,7 +465,7 @@ write("404.html", layout({ canonicalPage: "404.html",
 }));
 
 // Sitemap and robots
-const pages = ["", "find-your-pattern/", "patterns/", "journal/", "talk-with-hallie/", "work-with-me/", ...QUIZ.map((q) => q.page), ...PATTERNS.map((p) => p.page)];
+const pages = ["", "find-your-pattern/", "patterns/", "journal/", "books/", "talk-with-hallie/", "work-with-me/", ...QUIZ.map((q) => q.page), ...PATTERNS.map((p) => p.page)];
 write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${pages.map((p) => `  <url><loc>${cfg.siteUrl}/${p}</loc><lastmod>${today}</lastmod></url>`).join("\n")}
