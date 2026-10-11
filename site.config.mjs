@@ -29,8 +29,7 @@ export default {
     sunday: { name: "Sunday Setup Weekly Reflection", price: "$3.00", url: "https://www.etsy.com/listing/4488257562/sunday-setup-weekly-reflection-journal", why: "Plan your week around what you need, not just what's due." },
     grat10: { name: "10-Day Gratitude Journal", price: "$3.75", url: "https://www.etsy.com/listing/4481340072/10-day-gratitude-journal-daily", why: "Ten days of noticing what's already good." },
     gratitude: { name: "Gratitude Journal, Volume 1", price: "$6.00", url: "https://www.etsy.com/listing/4481090029/gratitude-journal-volume-1", why: "A gentle daily practice for a fuller heart." },
-    // TODO: replace url with the direct listing link once it shows up on Etsy.
-    yearReview: { name: "2026 Year in Review + 2027 Intentions", price: "$7.00", url: "https://www.etsy.com/shop/Innershelfstudio", why: "A 15-page workbook to look back honestly and walk into 2027 on purpose." }
+    yearReview: { name: "2026 Year in Review + 2027 Intentions", price: "$7.00", url: "https://www.etsy.com/listing/4593392405/2026-reflection-journal-2027-intentions", why: "A 15-page workbook to look back honestly and walk into 2027 on purpose." }
   },
   // Which printable each result recommends: "quizNumber:resultKey": product
   picks: {
