@@ -1,0 +1,1541 @@
+[
+ {
+  "id": 0,
+  "title": "What's Your Connection Style?",
+  "sub": "How you show up in relationships",
+  "qs": [
+   {
+    "t": "A friend cancels last minute. What happens inside you first?",
+    "os": [
+     {
+      "t": "A quiet sting, then you immediately wonder if they're okay.",
+      "k": "O"
+     },
+     {
+      "t": "Relief mixed with guilt for feeling relieved.",
+      "k": "C"
+     },
+     {
+      "t": "Frustration you'll probably never mention.",
+      "k": "P"
+     },
+     {
+      "t": "You note it, but you weren't counting on them anyway.",
+      "k": "I"
+     }
+    ]
+   },
+   {
+    "t": "Someone you love is going through something hard. How do you show up?",
+    "os": [
+     {
+      "t": "You rearrange your whole week to be there.",
+      "k": "O"
+     },
+     {
+      "t": "You listen deeply but feel drained for days after.",
+      "k": "P"
+     },
+     {
+      "t": "You research solutions and send a list of resources.",
+      "k": "C"
+     },
+     {
+      "t": "You check in once then give space, unsure how much is too much.",
+      "k": "I"
+     }
+    ]
+   },
+   {
+    "t": "There's unresolved tension between you and someone close. Days pass. You most likely...",
+    "os": [
+     {
+      "t": "Replay it obsessively until you figure out what you did wrong.",
+      "k": "P"
+     },
+     {
+      "t": "Wait for them to bring it up. You don't want to make it worse.",
+      "k": "C"
+     },
+     {
+      "t": "Keep showing up warmly and hope it dissolves on its own.",
+      "k": "O"
+     },
+     {
+      "t": "Decide you're fine and move forward without addressing it.",
+      "k": "I"
+     }
+    ]
+   },
+   {
+    "t": "How do you usually know when you need something emotionally?",
+    "os": [
+     {
+      "t": "When my body shuts down or gets sick.",
+      "k": "O"
+     },
+     {
+      "t": "When I start withdrawing from everyone without knowing why.",
+      "k": "I"
+     },
+     {
+      "t": "When I realize I've been holding everything together for everyone else.",
+      "k": "C"
+     },
+     {
+      "t": "Usually someone else notices before I do.",
+      "k": "P"
+     }
+    ]
+   },
+   {
+    "t": "A relationship feels one-sided. You've given more than you've received. What do you do?",
+    "os": [
+     {
+      "t": "Keep giving and tell yourself they'd do the same for you.",
+      "k": "O"
+     },
+     {
+      "t": "Quietly pull back and wait to see if they notice.",
+      "k": "I"
+     },
+     {
+      "t": "Feel resentful but struggle to bring it up directly.",
+      "k": "P"
+     },
+     {
+      "t": "Try to fix the dynamic without naming it.",
+      "k": "C"
+     }
+    ]
+   },
+   {
+    "t": "How was conflict handled where you grew up?",
+    "os": [
+     {
+      "t": "Things were swept under the rug. You learned to keep the peace.",
+      "k": "P"
+     },
+     {
+      "t": "Emotions were big. You learned to manage everyone's feelings.",
+      "k": "O"
+     },
+     {
+      "t": "People went cold. Silence meant something was wrong.",
+      "k": "I"
+     },
+     {
+      "t": "Problems were treated like puzzles to solve, not feelings to sit with.",
+      "k": "C"
+     }
+    ]
+   },
+   {
+    "t": "Someone sets a boundary that surprises you. Your first instinct?",
+    "os": [
+     {
+      "t": "Apologize immediately and over-explain yourself.",
+      "k": "P"
+     },
+     {
+      "t": "Respect it outwardly but feel quietly rejected.",
+      "k": "I"
+     },
+     {
+      "t": "Try to understand their perspective right away, even if it stings.",
+      "k": "O"
+     },
+     {
+      "t": "Analyze whether the boundary is actually reasonable.",
+      "k": "C"
+     }
+    ]
+   },
+   {
+    "t": "When you imagine a truly safe relationship, what feels most unfamiliar?",
+    "os": [
+     {
+      "t": "Someone staying even when I have nothing to offer.",
+      "k": "O"
+     },
+     {
+      "t": "Being fully seen without managing how I'm perceived.",
+      "k": "P"
+     },
+     {
+      "t": "Needing someone and them actually showing up.",
+      "k": "I"
+     },
+     {
+      "t": "Letting go of control over how things unfold.",
+      "k": "C"
+     }
+    ]
+   },
+   {
+    "t": "After a hard conversation, how do you feel?",
+    "os": [
+     {
+      "t": "Exhausted and unsure if I said the right things.",
+      "k": "O"
+     },
+     {
+      "t": "Relieved it happened but replaying every word.",
+      "k": "P"
+     },
+     {
+      "t": "Glad it's over. Ready to move on.",
+      "k": "I"
+     },
+     {
+      "t": "Still turning it over, wondering if anything will actually change.",
+      "k": "C"
+     }
+    ]
+   },
+   {
+    "t": "If a close friend described what it's like to love you, they'd say...",
+    "os": [
+     {
+      "t": "She gives so much. I just wish she'd let me give back.",
+      "k": "O"
+     },
+     {
+      "t": "She's always there but I'm never sure how she's really doing.",
+      "k": "P"
+     },
+     {
+      "t": "She's loyal but it takes a long time to really let you in.",
+      "k": "I"
+     },
+     {
+      "t": "She's warm but always trying to fix things for you.",
+      "k": "C"
+     }
+    ]
+   }
+  ],
+  "types": {
+   "O": {
+    "badge": "Your connection style",
+    "title": "The Overgiver",
+    "body": "You love with your whole chest. You show up early, stay late, and give in ways people don't always think to ask for. Somewhere along the way you learned that your worth in a relationship was tied to how much you contributed to it. Giving became how you earned your place.",
+    "l1": "What hides underneath",
+    "t1": "You struggle to receive. Compliments feel awkward. Help feels like a burden. Letting someone care for you requires a kind of vulnerability that doesn't come easily, because deep down you're not sure the love would stay if you had nothing left to give.",
+    "l2": "Your real strength",
+    "t2": "You are the kind of person who makes others feel genuinely seen and chosen. When you learn to give from fullness instead of fear, your love becomes one of the most healing things someone can experience."
+   },
+   "C": {
+    "badge": "Your connection style",
+    "title": "The Fixer",
+    "body": "You are most comfortable when someone needs you. Not because you're controlling, but because solving problems is how you show love, and also how you stay safe. If you're focused on someone else's situation, you don't have to sit with your own.",
+    "l1": "What hides underneath",
+    "t1": "Stillness is uncomfortable. When someone you love is struggling and there's nothing to fix, that feeling becomes unbearable. You sometimes step in before you're asked because waiting feels like failing.",
+    "l2": "Your real strength",
+    "t2": "You are resourceful, loyal, and genuinely motivated by care, not control. When you let relationships be messy and unresolved without rushing to repair them, something more honest has room to grow."
+   },
+   "P": {
+    "badge": "Your connection style",
+    "title": "The People Pleaser",
+    "body": "You have become very good at reading the room and adjusting yourself to fit it. Somewhere early on, being agreeable felt safer than being authentic, and that lesson stayed with you longer than it should have.",
+    "l1": "What hides underneath",
+    "t1": "You have said yes when you meant no so many times that you've lost track of what you actually want. The resentment that builds when your needs go unmet is real, but hard to express when you never felt safe claiming those needs.",
+    "l2": "Your real strength",
+    "t2": "Your emotional attunement is a genuine gift. You make people feel comfortable and understood. When you let your own feelings take up space too, your relationships become something real instead of something managed."
+   },
+   "I": {
+    "badge": "Your connection style",
+    "title": "The Independent Protector",
+    "body": "You have built a life that doesn't require a lot from other people. Not because you're cold, but because needing someone and being let down is a specific kind of pain you learned early not to repeat. Your self-sufficiency is real. So is the wall.",
+    "l1": "What hides underneath",
+    "t1": "Vulnerability doesn't come naturally. Asking for help feels almost physically uncomfortable. You would rather figure it out alone than risk the exposure of not having it together.",
+    "l2": "Your real strength",
+    "t2": "You are steady, grounded, and deeply trustworthy. When you do let someone in, you are one of the most loyal people they will ever have. Learning to need people, just a little, doesn't make you weak. It makes you whole."
+   }
+  }
+ },
+ {
+  "id": 1,
+  "title": "What's Your Conflict Style?",
+  "sub": "How you handle tension and repair",
+  "qs": [
+   {
+    "t": "Someone says something that genuinely hurts you in conversation. In the moment, you...",
+    "os": [
+     {
+      "t": "Go quiet. Something closes inside you even as you stay in the room.",
+      "k": "F"
+     },
+     {
+      "t": "Feel the sting but keep your voice steady and composed.",
+      "k": "C"
+     },
+     {
+      "t": "Immediately soften your position to ease the tension.",
+      "k": "A"
+     },
+     {
+      "t": "Feel a flash of heat and want to name what just happened.",
+      "k": "D"
+     }
+    ]
+   },
+   {
+    "t": "An argument ends without real resolution. How do you carry it?",
+    "os": [
+     {
+      "t": "You replay it for days, trying to find where it went wrong.",
+      "k": "C"
+     },
+     {
+      "t": "Physically. Chest tight. Can't sleep. Your body holds it.",
+      "k": "F"
+     },
+     {
+      "t": "You're fine. Or you tell yourself that.",
+      "k": "D"
+     },
+     {
+      "t": "You keep checking in to make sure things are actually okay.",
+      "k": "A"
+     }
+    ]
+   },
+   {
+    "t": "Someone you love is upset with you but won't say why. You...",
+    "os": [
+     {
+      "t": "Ask once, then back off. You won't chase someone who won't talk.",
+      "k": "D"
+     },
+     {
+      "t": "Keep gently asking because the uncertainty is unbearable.",
+      "k": "A"
+     },
+     {
+      "t": "Shut down and wait for them to come to you.",
+      "k": "F"
+     },
+     {
+      "t": "Run through everything you might have done wrong.",
+      "k": "C"
+     }
+    ]
+   },
+   {
+    "t": "What does apologizing feel like for you?",
+    "os": [
+     {
+      "t": "Natural, sometimes too natural. You apologize even when unsure you were wrong.",
+      "k": "A"
+     },
+     {
+      "t": "Hard. Admitting something went wrong doesn't come easily.",
+      "k": "D"
+     },
+     {
+      "t": "Complicated. You want to but the words get stuck.",
+      "k": "F"
+     },
+     {
+      "t": "Careful. You want to make sure you're apologizing for the right thing.",
+      "k": "C"
+     }
+    ]
+   },
+   {
+    "t": "When someone raises their voice in an argument, your body...",
+    "os": [
+     {
+      "t": "Freezes. Everything goes still and quiet inside.",
+      "k": "F"
+     },
+     {
+      "t": "Matches it internally, even if you stay outwardly calm.",
+      "k": "D"
+     },
+     {
+      "t": "Immediately tries to de-escalate, before you've processed what you feel.",
+      "k": "A"
+     },
+     {
+      "t": "Starts analyzing the situation instead of feeling it.",
+      "k": "C"
+     }
+    ]
+   },
+   {
+    "t": "A friend says something you did hurt them. Your first internal response?",
+    "os": [
+     {
+      "t": "Defensiveness, followed quickly by guilt about being defensive.",
+      "k": "D"
+     },
+     {
+      "t": "Immediate distress. You hate the idea of hurting someone.",
+      "k": "A"
+     },
+     {
+      "t": "Shutdown. Something in you goes somewhere else.",
+      "k": "F"
+     },
+     {
+      "t": "A need to fully understand what happened before you can respond.",
+      "k": "C"
+     }
+    ]
+   },
+   {
+    "t": "What does a conflict you actually healed from look like?",
+    "os": [
+     {
+      "t": "Rare. You mostly distance yourself until it doesn't hurt anymore.",
+      "k": "F"
+     },
+     {
+      "t": "Someone was patient enough to stay in the conversation with you.",
+      "k": "D"
+     },
+     {
+      "t": "One of you apologized and things went back to normal quickly.",
+      "k": "A"
+     },
+     {
+      "t": "A real conversation where both people said the hard thing.",
+      "k": "C"
+     }
+    ]
+   },
+   {
+    "t": "What do you wish people understood about how you handle conflict?",
+    "os": [
+     {
+      "t": "That going quiet isn't giving up. It's self-protection.",
+      "k": "F"
+     },
+     {
+      "t": "That I'm thinking more than I'm feeling, even when it looks opposite.",
+      "k": "C"
+     },
+     {
+      "t": "That I actually care a lot. I just sometimes care too loudly.",
+      "k": "D"
+     },
+     {
+      "t": "That keeping the peace isn't the same as not having feelings.",
+      "k": "A"
+     }
+    ]
+   },
+   {
+    "t": "After a difficult exchange, what does repair look like for you?",
+    "os": [
+     {
+      "t": "Slowly re-emerging. Testing the water before I'm fully back.",
+      "k": "F"
+     },
+     {
+      "t": "Needing to know things are actually okay, not just declared okay.",
+      "k": "A"
+     },
+     {
+      "t": "Moving on relatively quickly once something is addressed.",
+      "k": "D"
+     },
+     {
+      "t": "A conversation where I can understand what actually happened.",
+      "k": "C"
+     }
+    ]
+   },
+   {
+    "t": "Honestly, what is your relationship with conflict itself?",
+    "os": [
+     {
+      "t": "I avoid it until it's unavoidable, then I'm overwhelmed by it.",
+      "k": "F"
+     },
+     {
+      "t": "I can handle it but I'm watching for who blinks first.",
+      "k": "D"
+     },
+     {
+      "t": "I want everyone to be okay so badly I lose track of whether I am.",
+      "k": "A"
+     },
+     {
+      "t": "I can engage with it but I need to process it slowly.",
+      "k": "C"
+     }
+    ]
+   }
+  ],
+  "types": {
+   "F": {
+    "badge": "Your conflict style",
+    "title": "The Freezer",
+    "body": "When conflict arrives, something in you goes still. Not because you don't care, but because shutting down was the safest response you had when you were younger. Stillness protected you. Now it sometimes keeps you from saying things that need to be said.",
+    "l1": "The cost of this pattern",
+    "t1": "People sometimes read your silence as indifference. They don't know there's an entire conversation happening inside you that never makes it out. The unspoken things accumulate until the distance feels impossible to cross.",
+    "l2": "What's true about you",
+    "t2": "You are someone who processes deeply and doesn't speak carelessly. When you do find the words and the safety to say them, what comes out is honest and considered. The goal isn't to fight loudly. It's to find one person safe enough to stay open with."
+   },
+   "C": {
+    "badge": "Your conflict style",
+    "title": "The Analyzer",
+    "body": "You approach conflict the way some people approach a problem to solve. You need to understand what happened before you can respond to it. This makes you thoughtful and often fair, but it can also mean you stay in your head long after the other person has moved on.",
+    "l1": "The cost of this pattern",
+    "t1": "Your need to understand can read as coldness in heated moments. While you're processing, the other person may feel like you don't care. And sometimes the analyzing is a way of not having to feel the thing directly.",
+    "l2": "What's true about you",
+    "t2": "You bring real clarity to conflicts that others would make messier. You don't say things you don't mean and you rarely escalate unnecessarily. The growth edge is learning to be in the feeling while you're also in the thinking."
+   },
+   "A": {
+    "badge": "Your conflict style",
+    "title": "The Accommodator",
+    "body": "You feel other people's discomfort almost as acutely as your own. Keeping the peace isn't just a preference, it's something close to a compulsion, and it came from somewhere real. You learned early that harmony was your job.",
+    "l1": "The cost of this pattern",
+    "t1": "The conflicts you avoid don't disappear. They go quiet and then surface sideways, as resentment, as distance, as a slow erosion of closeness. And because you've never named what hurt, the other person often has no idea anything is wrong.",
+    "l2": "What's true about you",
+    "t2": "You make people feel safe in conflict because you genuinely are trying to protect the relationship. The shift comes when you realize that saying the true thing is also protecting the relationship. Maybe more than the silence ever did."
+   },
+   "D": {
+    "badge": "Your conflict style",
+    "title": "The Direct One",
+    "body": "You move toward conflict instead of away from it. You'd rather name the thing and deal with it than let it sit. This can be a real gift. It can also land harder than you intend, especially with people who need more time to get there.",
+    "l1": "The cost of this pattern",
+    "t1": "Your directness can close down the very conversation you're trying to open. If the other person shuts down or gets defensive, it's sometimes because the pace of your honesty didn't leave room for them to feel safe enough to meet you there.",
+    "l2": "What's true about you",
+    "t2": "You respect people enough to be honest with them and you want the relationship to be real, not managed. That matters. The refinement is in learning to pace your honesty to the other person's capacity without compromising the truth of what you're saying."
+   }
+  }
+ },
+ {
+  "id": 2,
+  "title": "What Did You Learn About Love Growing Up?",
+  "sub": "The patterns that started before you knew they were patterns",
+  "qs": [
+   {
+    "t": "Growing up, affection in your home was mostly...",
+    "os": [
+     {
+      "t": "Expressed through actions. Doing things for each other was how love showed up.",
+      "k": "A"
+     },
+     {
+      "t": "Verbal and present. People said I love you and meant it.",
+      "k": "S"
+     },
+     {
+      "t": "Inconsistent. Sometimes warm, sometimes completely absent.",
+      "k": "U"
+     },
+     {
+      "t": "Expected to flow toward the adults. You gave it more than you received it.",
+      "k": "P"
+     }
+    ]
+   },
+   {
+    "t": "When you were upset as a child, what typically happened?",
+    "os": [
+     {
+      "t": "Someone came. Not always immediately, but someone showed up.",
+      "k": "S"
+     },
+     {
+      "t": "You were told to calm down or given reasons you shouldn't feel that way.",
+      "k": "A"
+     },
+     {
+      "t": "You learned to handle it yourself. There wasn't really another option.",
+      "k": "U"
+     },
+     {
+      "t": "You hid it because expressing it made things more complicated.",
+      "k": "P"
+     }
+    ]
+   },
+   {
+    "t": "What was the unspoken rule about needs in your household?",
+    "os": [
+     {
+      "t": "Needs were okay but you didn't want to be too much.",
+      "k": "A"
+     },
+     {
+      "t": "Needs were generally met without a lot of drama.",
+      "k": "S"
+     },
+     {
+      "t": "Needs made you vulnerable in ways that didn't feel safe.",
+      "k": "P"
+     },
+     {
+      "t": "You learned that your needs came second, or didn't register at all.",
+      "k": "U"
+     }
+    ]
+   },
+   {
+    "t": "When adults in your life were stressed, what was your role?",
+    "os": [
+     {
+      "t": "To stay small and not add to it.",
+      "k": "P"
+     },
+     {
+      "t": "To be the easy one. The one who didn't cause problems.",
+      "k": "A"
+     },
+     {
+      "t": "To help manage their emotions, even without being asked.",
+      "k": "U"
+     },
+     {
+      "t": "You were mostly protected from it. It wasn't your weight to carry.",
+      "k": "S"
+     }
+    ]
+   },
+   {
+    "t": "What did you believe as a child about whether you were lovable?",
+    "os": [
+     {
+      "t": "Pretty secure in it, mostly.",
+      "k": "S"
+     },
+     {
+      "t": "Lovable if you were good, helpful, easy, or successful.",
+      "k": "A"
+     },
+     {
+      "t": "Uncertain. It depended on the day or the person.",
+      "k": "U"
+     },
+     {
+      "t": "Something you tried to earn rather than something you just had.",
+      "k": "P"
+     }
+    ]
+   },
+   {
+    "t": "What did conflict look like in your family?",
+    "os": [
+     {
+      "t": "It happened and then it got repaired. Not perfectly but it got addressed.",
+      "k": "S"
+     },
+     {
+      "t": "It was avoided. Tension lived under the surface.",
+      "k": "A"
+     },
+     {
+      "t": "It was loud, unpredictable, or scary.",
+      "k": "U"
+     },
+     {
+      "t": "You were somehow responsible for managing or resolving it.",
+      "k": "P"
+     }
+    ]
+   },
+   {
+    "t": "How did the adults in your life handle their own emotions?",
+    "os": [
+     {
+      "t": "Pretty openly. Feelings were named and processed out loud.",
+      "k": "S"
+     },
+     {
+      "t": "Quietly. You knew something was wrong but it was never discussed.",
+      "k": "A"
+     },
+     {
+      "t": "Intensely. Their emotions took up a lot of room.",
+      "k": "U"
+     },
+     {
+      "t": "You're not sure. Their inner life was something you had to guess at.",
+      "k": "P"
+     }
+    ]
+   },
+   {
+    "t": "What's the belief about love you've had to work hardest to unlearn?",
+    "os": [
+     {
+      "t": "That I have to earn it by being useful or low-maintenance.",
+      "k": "A"
+     },
+     {
+      "t": "That it's always about to be taken away.",
+      "k": "U"
+     },
+     {
+      "t": "That asking for it is the same as demanding too much.",
+      "k": "P"
+     },
+     {
+      "t": "I'm still figuring out what I absorbed.",
+      "k": "S"
+     }
+    ]
+   },
+   {
+    "t": "When you picture a child feeling truly loved and secure, what feels most foreign to your own experience?",
+    "os": [
+     {
+      "t": "The consistency. Someone being reliably, predictably there.",
+      "k": "U"
+     },
+     {
+      "t": "The ease. Not having to manage how you were perceived.",
+      "k": "A"
+     },
+     {
+      "t": "The permission to need things without apology.",
+      "k": "P"
+     },
+     {
+      "t": "It doesn't feel that foreign, actually.",
+      "k": "S"
+     }
+    ]
+   },
+   {
+    "t": "What pattern from childhood shows up most in your adult relationships?",
+    "os": [
+     {
+      "t": "I attract people who need me or become the one doing the emotional work.",
+      "k": "U"
+     },
+     {
+      "t": "I keep waiting for the other shoe to drop even when things are good.",
+      "k": "P"
+     },
+     {
+      "t": "I minimize my needs to keep the relationship comfortable.",
+      "k": "A"
+     },
+     {
+      "t": "I'm still figuring out where my patterns came from.",
+      "k": "S"
+     }
+    ]
+   }
+  ],
+  "types": {
+   "S": {
+    "badge": "What you learned",
+    "title": "Love Felt Mostly Safe",
+    "body": "Your early experiences of love were, on the whole, more consistent than not. Someone showed up. Not perfectly, but enough that you developed a baseline sense that you were worth showing up for. That foundation lives in your body and shapes how you attach.",
+    "l1": "What to stay curious about",
+    "t1": "Even secure early experiences carry imprints. The moments of rupture that weren't fully repaired, the things that were never said. There's always more to understand about ourselves, and security isn't the same as having nothing to work through.",
+    "l2": "What this gives you",
+    "t2": "You likely find it easier than most to trust, to repair, and to believe a relationship can survive difficulty. That's not nothing. It's actually quite rare, and it's worth recognizing as a genuine resource you carry into every connection."
+   },
+   "A": {
+    "badge": "What you learned",
+    "title": "Love Was Conditional on Being Easy",
+    "body": "The love you experienced early was real, but it came with fine print. Be good. Be helpful. Don't be too much. Don't need too much. You learned to earn your place in relationships by being the version of yourself that caused the least disruption.",
+    "l1": "What this costs you now",
+    "t1": "You are still, in some rooms, performing the version of yourself that feels safest. Still shrinking before anyone asks you to. The exhausting part is that you do it automatically now, before you even realize you're doing it.",
+    "l2": "What wants to change",
+    "t2": "Your needs are not a burden. The people worth keeping will not leave because you take up space. The work is learning to test that belief slowly, in safe relationships, until your nervous system actually believes it."
+   },
+   "U": {
+    "badge": "What you learned",
+    "title": "Love Felt Unpredictable",
+    "body": "What you experienced wasn't the absence of love, it was the inconsistency of it. And inconsistency is its own kind of hard because you couldn't predict it. You learned to be vigilant, to read the room, to brace for the shift. That hyperawareness followed you into adulthood.",
+    "l1": "What this costs you now",
+    "t1": "You may find yourself waiting for good things to end. Bracing inside relationships that are actually going well. Pushing people away right when they get close, because close has historically been where things got complicated.",
+    "l2": "What wants to change",
+    "t2": "Consistency in adult relationships can feel almost suspicious when inconsistency is what you know. Learning to let something stable just be stable, without waiting for it to fall apart, is some of the most important work there is."
+   },
+   "P": {
+    "badge": "What you learned",
+    "title": "Love Meant Making Yourself Smaller",
+    "body": "You learned early that your role was to support, to smooth things over, to hold things together. The adults in your life may not have intended this, but you absorbed it anyway. Love became synonymous with being needed rather than being seen.",
+    "l1": "What this costs you now",
+    "t1": "You may have a hard time imagining a relationship where you are not doing more of the emotional labor. Where someone just loves you without you having to manage their experience of you.",
+    "l2": "What wants to change",
+    "t2": "You did not choose the role that was handed to you. But you are allowed to put it down. The version of love you deserve is one where you show up as a whole person, with needs and limits and hard days, and still be chosen."
+   }
+  }
+ },
+ {
+  "id": 3,
+  "title": "Are You Emotionally Available?",
+  "sub": "An honest look at how present you really are",
+  "qs": [
+   {
+    "t": "When someone close shares something vulnerable, your instinct is to...",
+    "os": [
+     {
+      "t": "Be fully present with them in the feeling before anything else.",
+      "k": "A"
+     },
+     {
+      "t": "Offer perspective or a reframe pretty quickly.",
+      "k": "U"
+     },
+     {
+      "t": "Feel it alongside them, sometimes more intensely than is comfortable.",
+      "k": "O"
+     },
+     {
+      "t": "Listen well but stay slightly at a remove, just outside the feeling.",
+      "k": "G"
+     }
+    ]
+   },
+   {
+    "t": "How often do you let people see you when you're not okay?",
+    "os": [
+     {
+      "t": "More than I used to. I'm working on it.",
+      "k": "G"
+     },
+     {
+      "t": "Rarely. I process privately and show up once I've figured it out.",
+      "k": "U"
+     },
+     {
+      "t": "With a few people, yes. Most get a curated version.",
+      "k": "A"
+     },
+     {
+      "t": "I'm not always sure when I'm not okay until later.",
+      "k": "O"
+     }
+    ]
+   },
+   {
+    "t": "In a close relationship, what's hardest for you?",
+    "os": [
+     {
+      "t": "Being needed without having enough left to give.",
+      "k": "O"
+     },
+     {
+      "t": "Staying emotionally present when things get heavy.",
+      "k": "G"
+     },
+     {
+      "t": "Letting someone see the parts I haven't fully made sense of yet.",
+      "k": "U"
+     },
+     {
+      "t": "Asking for what I need without softening it into something smaller.",
+      "k": "A"
+     }
+    ]
+   },
+   {
+    "t": "When you're going through something hard, what do people in your life typically know?",
+    "os": [
+     {
+      "t": "The version I've already processed. Not the raw version.",
+      "k": "U"
+     },
+     {
+      "t": "Mostly nothing until it's resolved.",
+      "k": "G"
+     },
+     {
+      "t": "Probably more than I realize. I'm not great at hiding it.",
+      "k": "O"
+     },
+     {
+      "t": "The people closest know. Others don't.",
+      "k": "A"
+     }
+    ]
+   },
+   {
+    "t": "What does intimacy feel like in your body?",
+    "os": [
+     {
+      "t": "Warm and sought after but also slightly destabilizing.",
+      "k": "O"
+     },
+     {
+      "t": "Safe in small doses. Too much feels like exposure.",
+      "k": "G"
+     },
+     {
+      "t": "Something I move toward and then sometimes quietly retreat from.",
+      "k": "U"
+     },
+     {
+      "t": "Comfortable when it's built slowly over time.",
+      "k": "A"
+     }
+    ]
+   },
+   {
+    "t": "When a relationship asks more of you emotionally than you expected, you...",
+    "os": [
+     {
+      "t": "Lean in, even when it's hard. Depth is what you're after.",
+      "k": "A"
+     },
+     {
+      "t": "Feel the pull to withdraw without always understanding why.",
+      "k": "G"
+     },
+     {
+      "t": "Try to show up but sometimes hit a wall you can't explain.",
+      "k": "U"
+     },
+     {
+      "t": "Give more than is sustainable and don't know how to stop.",
+      "k": "O"
+     }
+    ]
+   },
+   {
+    "t": "How comfortable are you sitting with someone else's pain without trying to fix it?",
+    "os": [
+     {
+      "t": "Very. Sometimes I absorb it more than is healthy.",
+      "k": "O"
+     },
+     {
+      "t": "I can do it but I'm more comfortable when there's something I can offer.",
+      "k": "A"
+     },
+     {
+      "t": "I can be present but I need to decompress after.",
+      "k": "U"
+     },
+     {
+      "t": "Hard. Helplessness is uncomfortable. I want to do something.",
+      "k": "G"
+     }
+    ]
+   },
+   {
+    "t": "What's your relationship with emotional conversations that don't have a clear resolution?",
+    "os": [
+     {
+      "t": "I can hold them but they stay with me longer than I'd like.",
+      "k": "O"
+     },
+     {
+      "t": "Uncomfortable. I'd rather reach a conclusion.",
+      "k": "G"
+     },
+     {
+      "t": "I've learned to tolerate them. They used to feel unbearable.",
+      "k": "U"
+     },
+     {
+      "t": "Fine. Not everything needs resolution to be meaningful.",
+      "k": "A"
+     }
+    ]
+   },
+   {
+    "t": "Do the people who love you feel like they know the real you?",
+    "os": [
+     {
+      "t": "Some. The rest know a version I feel safe showing.",
+      "k": "U"
+     },
+     {
+      "t": "I think so, but I'm not always sure I know the real me either.",
+      "k": "O"
+     },
+     {
+      "t": "The closest ones, yes. It took time.",
+      "k": "A"
+     },
+     {
+      "t": "Probably not as fully as I'd like.",
+      "k": "G"
+     }
+    ]
+   },
+   {
+    "t": "What does emotional availability mean to you, in your own definition?",
+    "os": [
+     {
+      "t": "Being present in the feeling with someone, not just nearby.",
+      "k": "A"
+     },
+     {
+      "t": "Showing up consistently even when it costs you something.",
+      "k": "O"
+     },
+     {
+      "t": "Being reachable, not just physically but actually reachable inside.",
+      "k": "G"
+     },
+     {
+      "t": "Being honest about where you actually are, not just where you want to be.",
+      "k": "U"
+     }
+    ]
+   }
+  ],
+  "types": {
+   "A": {
+    "badge": "Your availability",
+    "title": "Genuinely Present",
+    "body": "Emotional availability comes relatively naturally to you. You move toward depth instead of away from it, and you make people feel genuinely met when they're with you. This doesn't mean you don't have limits, it means you've developed a real capacity to stay in the feeling with someone.",
+    "l1": "What to watch for",
+    "t1": "Your availability can become a place others take refuge while they work on their own openness. Make sure the intimacy in your relationships is moving in both directions. Being present for everyone is only sustainable if someone is present for you too.",
+    "l2": "What this gives you",
+    "t2": "People feel safe around you in a way that's hard to manufacture. You create the conditions for real connection almost without trying. The relationships in your life are probably deeper than average because you don't flinch when things get real."
+   },
+   "G": {
+    "badge": "Your availability",
+    "title": "Available in Pieces",
+    "body": "You want to be present and you often are, but there's a part of you that stays slightly back. Not checked out, but not fully in either. This isn't a character flaw. It's a protective habit that developed for a reason and has probably kept you from getting hurt in ways you don't fully know.",
+    "l1": "What to watch for",
+    "t1": "The people who love you may sense the part you're holding back even if they never name it. You may feel lonely inside relationships that look close from the outside. The gap between what you project and what you feel can be its own kind of isolation.",
+    "l2": "What this gives you",
+    "t2": "You are not someone who overwhelms people or loses yourself in relationships. When you do let someone in, it's a real and considered choice. The growth is in letting that door open a little more, a little more often."
+   },
+   "U": {
+    "badge": "Your availability",
+    "title": "Present but Guarded",
+    "body": "You've done enough work on yourself to know that openness matters. And you can access it, in moments, with certain people. But there's still a layer you protect. Something you process privately before letting anyone else near it.",
+    "l1": "What to watch for",
+    "t1": "The version of yourself you share is real, just not complete. The parts you keep private are often the parts that need connection the most. The thing you most need to say is usually the thing that feels most impossible to say out loud.",
+    "l2": "What this gives you",
+    "t2": "Your guardedness comes with real self-awareness. You know yourself better than you let on. The shift is in trusting that someone else knowing the harder parts of you won't cost you the relationship. It might actually deepen it."
+   },
+   "O": {
+    "badge": "Your availability",
+    "title": "Open, Sometimes Too Open",
+    "body": "Emotional availability is not your problem. The boundary between your feelings and other people's feelings, that's the thing to look at. You absorb the emotional state of a room. You feel people deeply, sometimes before they've even said a word.",
+    "l1": "What to watch for",
+    "t1": "When you're in pain, you may not always know if it's yours or someone else's. Because you give so readily, you may attract people who haven't yet learned to give back. Your openness is only sustainable when it's protected by something equally strong underneath it.",
+    "l2": "What this gives you",
+    "t2": "You are rare. The depth of feeling you bring to relationships creates experiences of being truly known that most people spend their whole lives searching for. The work is learning to stay open without losing the thread back to yourself."
+   }
+  }
+ },
+ {
+  "id": 4,
+  "title": "What's Your Friendship Pattern?",
+  "sub": "How you show up for the people you call sisters",
+  "qs": [
+   {
+    "t": "When a friendship starts to feel one-sided, your first move is usually...",
+    "os": [
+     {
+      "t": "Give it more time. Maybe they're just going through something.",
+      "k": "L"
+     },
+     {
+      "t": "Pull back quietly and see if they reach out.",
+      "k": "D"
+     },
+     {
+      "t": "Bring it up, even though that conversation terrifies you.",
+      "k": "H"
+     },
+     {
+      "t": "Start to grieve it before you've even confirmed it's over.",
+      "k": "S"
+     }
+    ]
+   },
+   {
+    "t": "What does a friendship have to have for you to feel truly safe in it?",
+    "os": [
+     {
+      "t": "Consistency. Showing up the same way across time.",
+      "k": "H"
+     },
+     {
+      "t": "Depth. Someone who wants to know more than the surface version of me.",
+      "k": "S"
+     },
+     {
+      "t": "Reciprocity. I need to feel like I matter as much as I give.",
+      "k": "L"
+     },
+     {
+      "t": "Space. Room to disappear and come back without explanation.",
+      "k": "D"
+     }
+    ]
+   },
+   {
+    "t": "How do you handle a friend going through something that brings up your own unresolved stuff?",
+    "os": [
+     {
+      "t": "I show up for them and process my own stuff later, privately.",
+      "k": "D"
+     },
+     {
+      "t": "I show up but I'm a little less effective than I want to be.",
+      "k": "H"
+     },
+     {
+      "t": "I can be fully present. My stuff doesn't usually get in the way.",
+      "k": "L"
+     },
+     {
+      "t": "I sometimes disappear a little when things hit too close.",
+      "k": "S"
+     }
+    ]
+   },
+   {
+    "t": "What do your closest friendships have in common?",
+    "os": [
+     {
+      "t": "We've been through something hard together and came out closer.",
+      "k": "H"
+     },
+     {
+      "t": "There's a long history. Trust built over years.",
+      "k": "L"
+     },
+     {
+      "t": "We can go long stretches without talking and pick up where we left off.",
+      "k": "D"
+     },
+     {
+      "t": "They know the version of me I don't show most people.",
+      "k": "S"
+     }
+    ]
+   },
+   {
+    "t": "What friendship dynamic are you most likely to fall into without realizing it?",
+    "os": [
+     {
+      "t": "Being the one everyone comes to, but rarely going to anyone.",
+      "k": "L"
+     },
+     {
+      "t": "Keeping things light even with people I care about deeply.",
+      "k": "D"
+     },
+     {
+      "t": "Getting very close very fast and then feeling exposed.",
+      "k": "S"
+     },
+     {
+      "t": "Staying in a friendship longer than it's good for me because I hate endings.",
+      "k": "H"
+     }
+    ]
+   },
+   {
+    "t": "When a friendship ends or drifts, how do you process it?",
+    "os": [
+     {
+      "t": "Slowly. I hold onto people for a long time.",
+      "k": "H"
+     },
+     {
+      "t": "I grieve it like a real loss. Sometimes harder than expected.",
+      "k": "S"
+     },
+     {
+      "t": "I understand it intellectually before I feel it emotionally.",
+      "k": "D"
+     },
+     {
+      "t": "I keep giving it chances past the point where I probably should.",
+      "k": "L"
+     }
+    ]
+   },
+   {
+    "t": "How do you know when you've found a real one?",
+    "os": [
+     {
+      "t": "When I can say the thing I've never said and they don't leave.",
+      "k": "S"
+     },
+     {
+      "t": "When I don't have to manage how I come across.",
+      "k": "D"
+     },
+     {
+      "t": "When the care goes both ways without it needing to be said.",
+      "k": "L"
+     },
+     {
+      "t": "When we've repaired something and it made us closer.",
+      "k": "H"
+     }
+    ]
+   },
+   {
+    "t": "What do your friends probably not realize about you?",
+    "os": [
+     {
+      "t": "How much I need to be checked on, not just be available when they need me.",
+      "k": "L"
+     },
+     {
+      "t": "How much I think about them even when I go quiet.",
+      "k": "D"
+     },
+     {
+      "t": "How deeply I feel the friendships I hold, even the ones I don't talk about.",
+      "k": "S"
+     },
+     {
+      "t": "How long I've been sitting with something I haven't figured out how to say.",
+      "k": "H"
+     }
+    ]
+   },
+   {
+    "t": "What makes you pull back from a friendship?",
+    "os": [
+     {
+      "t": "When I feel like I've given more than I have and no one noticed.",
+      "k": "L"
+     },
+     {
+      "t": "When something happened that I don't know how to bring up.",
+      "k": "H"
+     },
+     {
+      "t": "When I need to go inward and don't have language for it yet.",
+      "k": "D"
+     },
+     {
+      "t": "When the closeness starts to feel like too much exposure.",
+      "k": "S"
+     }
+    ]
+   },
+   {
+    "t": "If your most honest friend described your friendship pattern, they'd say...",
+    "os": [
+     {
+      "t": "She loves hard but she needs you to show up for her too, not just assume she's okay.",
+      "k": "L"
+     },
+     {
+      "t": "She's the most loyal person I know but she holds things in for too long.",
+      "k": "H"
+     },
+     {
+      "t": "She goes deep fast and sometimes disappears just as fast.",
+      "k": "S"
+     },
+     {
+      "t": "She'll be there for you completely but she needs space to be her own person too.",
+      "k": "D"
+     }
+    ]
+   }
+  ],
+  "types": {
+   "L": {
+    "badge": "Your friendship pattern",
+    "title": "The Loyal Giver",
+    "body": "You love your people with a consistency that most of them probably don't fully appreciate. You're the one who remembers, who checks in, who shows up without being asked. What's worth looking at is whether that giving has ever cost you something you didn't notice until later.",
+    "l1": "The pattern to watch",
+    "t1": "You may be holding friendships together single-handedly without naming it, even to yourself. The loneliness of being the one who cares more is real, and it tends to build quietly until you're further from someone than you realized.",
+    "l2": "What makes you rare",
+    "t2": "The kind of loyalty you offer is genuinely hard to find. The shift is in finding the ones who love you back with the same consistency, and letting yourself receive it when they do."
+   },
+   "D": {
+    "badge": "Your friendship pattern",
+    "title": "The Steady Spaceholder",
+    "body": "You are someone people feel safe with. You don't overwhelm, you don't cling, and you don't need constant contact to maintain closeness. But there's also a part of you that stays slightly at arm's length, even with people you actually love.",
+    "l1": "The pattern to watch",
+    "t1": "Your independence can read as indifference to people who need more reassurance. The friends who need frequent connection might interpret your distance as a message about how much you care. It's not. But that gap is worth knowing about.",
+    "l2": "What makes you rare",
+    "t2": "You give people room to be themselves without making it mean something about you. In a culture of over-contact, that spaciousness is a gift. The growth is in occasionally letting people know you're thinking about them even when you don't need anything from them."
+   },
+   "H": {
+    "badge": "Your friendship pattern",
+    "title": "The Deep Keeper",
+    "body": "You don't have a lot of friendships but the ones you have are real. You invest fully, you stay through the hard parts, and you take friendship endings harder than most people would understand. Depth is the only kind of connection that satisfies you.",
+    "l1": "The pattern to watch",
+    "t1": "You sometimes stay in friendships past their season because endings feel like failure. And there are probably things you've been holding inside a friendship for longer than you should because the conversation felt too risky.",
+    "l2": "What makes you rare",
+    "t2": "The friends who get to go deep with you are in something real. You are not a casual friendship person and you don't pretend to be. That honesty creates the conditions for the kind of closeness most people are quietly searching for."
+   },
+   "S": {
+    "badge": "Your friendship pattern",
+    "title": "The Soulmate Seeker",
+    "body": "You are looking for the kind of friendship that feels like recognition. Where someone knows the version of you that you barely know yourself. You get close fast, love intensely, and feel losses in this area more acutely than most around you would expect.",
+    "l1": "The pattern to watch",
+    "t1": "The depth you seek can sometimes arrive faster than the trust has been built to hold it. When a friendship doesn't match your intensity, the disappointment can feel disproportionate to the outside observer, but it makes complete sense from the inside.",
+    "l2": "What makes you rare",
+    "t2": "You create spaces in friendship where other people finally feel seen. The friends who find you feel found. The work is in building trust slowly enough that the closeness has somewhere solid to land."
+   }
+  }
+ },
+ {
+  "id": 5,
+  "title": "What's Your Emotional Intelligence Type?",
+  "sub": "Where your EQ is strong and where it's still growing",
+  "qs": [
+   {
+    "t": "Someone near you is visibly upset but hasn't said a word. What happens inside you?",
+    "os": [
+     {
+      "t": "I feel it before I can name it. Something shifts in the room and I pick it up immediately.",
+      "k": "E"
+     },
+     {
+      "t": "I notice it and file it. I'll check in when the moment feels right.",
+      "k": "R"
+     },
+     {
+      "t": "I'm aware something is off but I stay focused on what we're doing.",
+      "k": "S"
+     },
+     {
+      "t": "I notice and immediately start thinking about what might have caused it.",
+      "k": "U"
+     }
+    ]
+   },
+   {
+    "t": "You're in the middle of a hard emotion, like frustration or hurt. What do you do with it?",
+    "os": [
+     {
+      "t": "I feel it fully, sometimes too fully. It takes over until it passes.",
+      "k": "E"
+     },
+     {
+      "t": "I name it to myself, give it space, then decide how to respond.",
+      "k": "R"
+     },
+     {
+      "t": "I push through it and deal with it later when I'm alone.",
+      "k": "S"
+     },
+     {
+      "t": "I analyze where it came from before I let myself feel it.",
+      "k": "U"
+     }
+    ]
+   },
+   {
+    "t": "A conversation ends and something felt off but nobody said anything. You...",
+    "os": [
+     {
+      "t": "Replay it looking for what went unspoken. You could feel the gap.",
+      "k": "E"
+     },
+     {
+      "t": "Let it sit. If it matters it'll surface. If not, it probably resolved itself.",
+      "k": "C"
+     },
+     {
+      "t": "Bring it up. Leaving things unaddressed doesn't sit well with you.",
+      "k": "R"
+     },
+     {
+      "t": "Try to understand the dynamic before deciding if it needs to be addressed.",
+      "k": "U"
+     }
+    ]
+   },
+   {
+    "t": "When you're overwhelmed, what does that look like from the outside?",
+    "os": [
+     {
+      "t": "People can usually tell. I'm not great at masking it.",
+      "k": "E"
+     },
+     {
+      "t": "I go quieter than usual but most people don't notice.",
+      "k": "S"
+     },
+     {
+      "t": "I stay functional but I'm not fully present.",
+      "k": "C"
+     },
+     {
+      "t": "I manage it visibly well but internally I'm working hard to hold it together.",
+      "k": "R"
+     }
+    ]
+   },
+   {
+    "t": "How well do you understand why you feel the way you feel?",
+    "os": [
+     {
+      "t": "Very well. Self-reflection is something I do naturally and often.",
+      "k": "S"
+     },
+     {
+      "t": "Better than most would guess. I just don't always share what I figure out.",
+      "k": "R"
+     },
+     {
+      "t": "I understand my emotions intellectually but feeling them is a different thing.",
+      "k": "U"
+     },
+     {
+      "t": "I feel first and understand later, sometimes much later.",
+      "k": "E"
+     }
+    ]
+   },
+   {
+    "t": "Someone gives you critical feedback. Your internal response?",
+    "os": [
+     {
+      "t": "A flash of defensiveness, then genuine curiosity if I trust them.",
+      "k": "R"
+     },
+     {
+      "t": "I absorb it deeply, sometimes more deeply than they intended.",
+      "k": "E"
+     },
+     {
+      "t": "I evaluate it objectively. Is it accurate? Is it useful?",
+      "k": "U"
+     },
+     {
+      "t": "I take note and process it quietly. I don't react in the moment.",
+      "k": "S"
+     }
+    ]
+   },
+   {
+    "t": "In a group setting, you're most naturally aware of...",
+    "os": [
+     {
+      "t": "The emotional undercurrent. Who's comfortable, who's not, what's unspoken.",
+      "k": "E"
+     },
+     {
+      "t": "Your own presence and how you're coming across.",
+      "k": "S"
+     },
+     {
+      "t": "The relational dynamics between people and what they might need.",
+      "k": "R"
+     },
+     {
+      "t": "What's being said and whether it makes sense logically and emotionally.",
+      "k": "U"
+     }
+    ]
+   },
+   {
+    "t": "What does managing your emotions actually look like for you?",
+    "os": [
+     {
+      "t": "I'm still working on it. They move through me faster than I can catch them.",
+      "k": "E"
+     },
+     {
+      "t": "I've built routines and practices that help me stay regulated.",
+      "k": "R"
+     },
+     {
+      "t": "I manage them by understanding them. Clarity helps me stay calm.",
+      "k": "U"
+     },
+     {
+      "t": "I tend to contain them internally and release privately.",
+      "k": "S"
+     }
+    ]
+   },
+   {
+    "t": "When someone you care about is making a decision you think will hurt them, you...",
+    "os": [
+     {
+      "t": "Feel the weight of it for them and find it hard not to say something.",
+      "k": "E"
+     },
+     {
+      "t": "Share your perspective once, clearly, then respect their autonomy.",
+      "k": "R"
+     },
+     {
+      "t": "Stay quiet unless they ask. It's their life and you trust them.",
+      "k": "S"
+     },
+     {
+      "t": "Try to understand their reasoning before offering anything.",
+      "k": "U"
+     }
+    ]
+   },
+   {
+    "t": "What do you think is the truest thing about how you show up emotionally?",
+    "os": [
+     {
+      "t": "I feel things deeply and it shows. I'm not always sure if that's a strength or a liability.",
+      "k": "E"
+     },
+     {
+      "t": "I understand people well but I'm still learning to understand myself at the same depth.",
+      "k": "C"
+     },
+     {
+      "t": "I'm more self-aware than I am skilled at translating that into my relationships.",
+      "k": "S"
+     },
+     {
+      "t": "I can regulate and respond well. What I'm still building is the deeper empathy.",
+      "k": "R"
+     }
+    ]
+   }
+  ],
+  "types": {
+   "E": {
+    "badge": "Your EQ type",
+    "title": "The Deep Feeler",
+    "body": "Your emotional intelligence lives in your body before it reaches your mind. You perceive the emotional state of a room, a conversation, or a person with an accuracy that others find almost uncanny. Salovey and Mayer called this the first and most foundational branch of emotional intelligence: the ability to perceive emotions. You have it in abundance.",
+    "l1": "Your growth edge",
+    "t1": "Where your EQ is still developing is in regulation. You feel so much, so quickly, that managing the intensity of your own emotional experience can be genuinely hard. Goleman's self-management domain is your frontier. The goal isn't to feel less. It's to build the capacity to feel fully without being swept away by it.",
+    "l2": "Your real strength",
+    "t2": "You make people feel seen in a way that is rare and deeply valuable. Your emotional perception is a gift that, when paired with stronger regulation, becomes one of the most powerful forms of intelligence a person can have. People trust you with things they've never said out loud because something in you already knew."
+   },
+   "R": {
+    "badge": "Your EQ type",
+    "title": "The Relationship Navigator",
+    "body": "Your emotional intelligence shows up most powerfully in how you manage connections. Goleman identified relationship management as one of the highest expressions of EQ, and it's where you shine. You know how to read a dynamic, adjust your approach, and create the conditions for honest communication. People feel genuinely met by you.",
+    "l1": "Your growth edge",
+    "t1": "What you're still developing is the inward turn. You're skilled at managing the emotional landscape between yourself and others, but your own inner world sometimes gets less attention than it deserves. Bar-On's model emphasizes self-regard as a core component of emotional intelligence, and deepening your relationship with your own emotional experience will make your outward strengths even more grounded.",
+    "l2": "Your real strength",
+    "t2": "You are the person who makes hard conversations feel survivable. You instinctively create safety for others to be honest, which is one of the rarest and most needed relational skills there is. When you bring that same generosity inward, your EQ becomes genuinely whole."
+   },
+   "S": {
+    "badge": "Your EQ type",
+    "title": "The Self-Aware One",
+    "body": "You have done real work on understanding yourself. Goleman placed self-awareness at the foundation of all emotional intelligence, and yours is genuinely developed. You know your patterns, your triggers, your tendencies. You've spent time in the kind of honest self-reflection that most people avoid.",
+    "l1": "Your growth edge",
+    "t1": "Where you're still growing is in translating that self-knowledge into your relationships with others. Mayer and Salovey's model distinguishes between understanding your own emotions and using that understanding to navigate social and emotional situations. The gap between your inner clarity and your outer expression is your next frontier.",
+    "l2": "Your real strength",
+    "t2": "Your self-awareness is the foundation everything else gets built on. People with your level of honest inner knowing are capable of the deepest kind of personal growth because they can actually see what needs to change. You're not guessing. You're working with real information about yourself."
+   },
+   "U": {
+    "badge": "Your EQ type",
+    "title": "The Emotional Understander",
+    "body": "You have a rare ability to make sense of emotions, yours and other people's, in a way that goes beyond just feeling them. Mayer and Salovey called this emotional understanding: the ability to recognize complex emotional states, how they shift over time, and what they mean. You think about feelings with real sophistication.",
+    "l1": "Your growth edge",
+    "t1": "What you're still developing is the experiential side. Understanding emotions and actually moving through them are two different skills, and you can sometimes stay in the analysis longer than is useful. Goleman's model emphasizes that emotional intelligence has to live in the body and in relationships, not just in the mind. The growth is in letting yourself feel what you already understand.",
+    "l2": "Your real strength",
+    "t2": "You bring an emotional clarity to relationships that most people deeply need and rarely find. You can name what's happening in a dynamic when others are still confused by it. When you pair that understanding with a willingness to be in the feeling, not just observing it, your EQ becomes genuinely transformative."
+   },
+   "C": {
+    "badge": "Your EQ type",
+    "title": "The Grower",
+    "body": "You are paying attention in a way that matters. Emotional intelligence isn't fixed, and the research is clear that it develops across a lifetime. What you have right now is something Goleman identified as foundational to the whole framework: awareness. You know there's more to understand about yourself and you're willing to look.",
+    "l1": "Your growth edge",
+    "t1": "The area most worth investing in right now is emotional self-awareness. Before the other domains can fully develop, you need a strong inner foundation of knowing what you feel, why you feel it, and how it shapes your behavior. This is the work that makes everything else possible.",
+    "l2": "Your real strength",
+    "t2": "The fact that you're here, taking this quiz, being honest with yourself, is not nothing. Most people spend their whole lives defending against exactly this kind of self-examination. Your willingness to look is the beginning of real emotional intelligence, and it's further than most people ever get."
+   }
+  }
+ }
+]

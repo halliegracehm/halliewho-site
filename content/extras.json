@@ -1,0 +1,161 @@
+{
+  "quizzes": {
+    "0": {
+      "slug": "connection-style",
+      "seoTitle": "Connection Style Quiz: How Do You Show Up in Relationships?",
+      "intro": "Some of us give until we're empty. Some of us fix. Some of us keep the peace, and some of us quietly keep everyone at arm's length. Ten honest questions to help you see which one you learned, and what it might be costing you."
+    },
+    "1": {
+      "slug": "conflict-style",
+      "seoTitle": "Conflict Style Quiz: Do You Freeze, Analyze, Accommodate, or Speak Up?",
+      "intro": "How you handle tension says a lot about what felt safe when you were younger. This quiz looks at what happens inside you when things get hard between you and someone you love, and how you find your way back."
+    },
+    "2": {
+      "slug": "love-growing-up",
+      "seoTitle": "What Did You Learn About Love Growing Up? A Childhood Patterns Quiz",
+      "intro": "Before you had words for it, you were already learning what love looks like. Safe, conditional, unpredictable, or something you had to shrink for. This quiz helps you name the pattern that started before you knew it was one."
+    },
+    "3": {
+      "slug": "emotional-availability",
+      "seoTitle": "Am I Emotionally Available? An Honest Quiz",
+      "intro": "Emotional availability isn't about how much you talk. It's about whether you can stay in the feeling with someone without leaving, guarding, or pouring out everything at once. Take an honest look at how present you really are."
+    },
+    "4": {
+      "slug": "friendship-pattern",
+      "seoTitle": "Friendship Pattern Quiz: What Kind of Friend Are You?",
+      "intro": "The way you love your friends is its own pattern. Maybe you're the one who always checks in, the one who holds space, the one who keeps the secrets, or the one still looking for her people. Find out how you show up for the women you call sisters."
+    },
+    "5": {
+      "slug": "emotional-intelligence-type",
+      "seoTitle": "Emotional Intelligence Quiz: What's Your EQ Type?",
+      "intro": "Emotional intelligence isn't one skill. Drawing on the work of Goleman, Salovey and Mayer, and Bar-On, this quiz shows where your EQ is already strong and where it's still growing."
+    }
+  },
+  "prompts": {
+    "0:O": [
+      "When was the last time you let someone take care of you without trying to pay them back?",
+      "What do you believe would happen if you gave a little less this week?",
+      "Write about one thing you need right now that you haven't asked anyone for."
+    ],
+    "0:C": [
+      "Think of a time you jumped to solving when someone only wanted to be heard. What were you feeling underneath?",
+      "What would it feel like to sit with a problem you can't fix?",
+      "Who fixed things for you growing up, or who didn't?"
+    ],
+    "0:P": [
+      "Whose disappointment are you most afraid of right now, and why?",
+      "Write down one yes you gave this month that was really a no.",
+      "If nobody could be upset with you, what would you do differently tomorrow?"
+    ],
+    "0:I": [
+      "When did you first learn that needing people wasn't safe?",
+      "Name one person you could let a little closer. What makes it hard?",
+      "What would asking for help look like in the smallest possible way?"
+    ],
+    "1:F": [
+      "What did you want to say the last time you went quiet?",
+      "Where in your body do you feel it when conflict starts?",
+      "Write the words you need to hear before you can speak up."
+    ],
+    "1:C": [
+      "When you analyze a conflict, what feeling are you trying not to feel?",
+      "Write about a disagreement as if you only had your heart to explain it, not your logic.",
+      "What would change if you let someone see you mid-feeling instead of after you've figured it out?"
+    ],
+    "1:A": [
+      "What have you agreed to recently just to keep the peace?",
+      "When you give in, what are you protecting?",
+      "Write one sentence that starts with \"What I actually wanted was...\""
+    ],
+    "1:D": [
+      "When has your honesty landed harder than you meant it to?",
+      "What does repair look like for you after a hard conversation?",
+      "Write about someone whose softness you admire. What could you borrow from them?"
+    ],
+    "2:S": [
+      "Who showed up for you consistently when you were young? What did that teach you?",
+      "Is there a moment of rupture that never got fully repaired? Write about it gently.",
+      "How do you pass that sense of safety on to the people you love now?"
+    ],
+    "2:A": [
+      "What parts of you felt too much for the people who raised you?",
+      "When do you still try to be easy so you won't be left?",
+      "Write a letter to your younger self giving her permission to be a lot."
+    ],
+    "2:U": [
+      "What did you learn to watch for when love felt unpredictable?",
+      "How does that watchfulness show up in your relationships today?",
+      "Write about what steady love looks like to you now. What would it feel like in your body?"
+    ],
+    "2:P": [
+      "When did you first learn to make yourself smaller to be loved?",
+      "What part of yourself are you still keeping quiet?",
+      "Write about one space in your life where you could take up a little more room."
+    ],
+    "3:A": [
+      "Who do you show up for that rarely shows up for you?",
+      "Where does your presence come from, and how do you refill it?",
+      "Write about a relationship where the depth goes both ways. What makes it different?"
+    ],
+    "3:G": [
+      "Which parts of you do people get, and which parts do you keep back?",
+      "When does closeness start to feel like too much?",
+      "Write about a moment you almost let someone all the way in."
+    ],
+    "3:U": [
+      "What are you guarding against when you hold back?",
+      "Who earned your trust, and how did they do it?",
+      "Write about what it would take to lower the guard by just one inch."
+    ],
+    "3:O": [
+      "When have you shared more than felt safe afterward?",
+      "What's the difference between openness and oversharing for you?",
+      "Write about someone who has earned the deeper parts of your story. What did they do?"
+    ],
+    "4:L": [
+      "Which friendship are you holding together by yourself right now?",
+      "What would happen if you stopped reaching out first for a while?",
+      "Write about what you need from your friends that you haven't said out loud."
+    ],
+    "4:D": [
+      "Who holds space for you the way you hold it for others?",
+      "When did you last fall apart in front of a friend?",
+      "Write about what being held would look like for you."
+    ],
+    "4:H": [
+      "What secrets are you carrying that aren't yours?",
+      "Who knows the real you, all of it?",
+      "Write about a friendship where you were the one who got to be known."
+    ],
+    "4:S": [
+      "What does your person look like in friendship? Describe her.",
+      "What has held you back from letting new friends get close?",
+      "Write about the kind of sister you're looking for, and the kind you want to be."
+    ],
+    "5:E": [
+      "What did you feel today before you could name it?",
+      "When does feeling everything become too much? What helps you come back to yourself?",
+      "Write about a time your sensitivity protected you or someone you love."
+    ],
+    "5:R": [
+      "Which relationship in your life needs you to navigate it carefully right now?",
+      "When do you use your read on people to stay safe instead of to connect?",
+      "Write about a time you guided a hard conversation well. What did you do?"
+    ],
+    "5:S": [
+      "What pattern in yourself did you notice this week?",
+      "Where does your self-awareness stop and self-criticism start?",
+      "Write about something you understand about yourself now that you didn't a year ago."
+    ],
+    "5:U": [
+      "Whose feelings do you understand better than your own?",
+      "What emotion do you have the hardest time naming in yourself?",
+      "Write about a time understanding someone changed how you treated them."
+    ],
+    "5:C": [
+      "What emotional skill are you working on right now?",
+      "Where have you already grown that you haven't given yourself credit for?",
+      "Write about the woman you're becoming. What does she do differently?"
+    ]
+  }
+}
