@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Shape &amp; Color Match | Flamie's Leafy Games</title>
+<meta name="description" content="A free shapes and colors game for little ones, in English and Spanish.">
+<meta name="theme-color" content="#FFE066">
+<link rel="icon" href="../flamie.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../kit.css">
+<style>
+  .grid { display: grid; gap: 12px; grid-template-columns: repeat(var(--cols, 3), 1fr); }
+  .tile {
+    aspect-ratio: 1; background: var(--cream); border-radius: var(--radius); box-shadow: var(--shadow);
+    display: flex; align-items: center; justify-content: center; padding: 14%;
+    transition: transform .15s ease, opacity .3s;
+  }
+  .tile svg { width: 100%; height: 100%; }
+  .tile:active { transform: scale(.95); }
+  .tile.right { background: #E3F4D2; box-shadow: 0 5px 0 var(--grass-deep); }
+  .tile.nope { opacity: .35; }
+  .say-again { flex: none; width: 48px; height: 48px; border-radius: 50%; background: var(--cream); box-shadow: var(--shadow); display: flex; align-items: center; justify-content: center; }
+  .say-again svg { width: 26px; height: 26px; }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="bar">
+    <a class="pill" href="../">&larr; Games</a>
+    <div class="title">Shape &amp; Color</div>
+    <button class="pill icon-btn" id="mute" type="button"></button>
+    <span class="pill stars" id="stars" aria-label="Stars collected"></span>
+  </div>
+
+  <div class="choices" role="group" aria-label="Pick a mode">
+    <button class="chip" data-mode="shapes" aria-pressed="true">Shapes</button>
+    <button class="chip" data-mode="colors" aria-pressed="false">Colors</button>
+    <button class="chip" data-mode="es" aria-pressed="false">Español</button>
+  </div>
+
+  <div class="progress" id="progress"></div>
+
+  <div class="flamie-say">
+    <div class="flamie" role="img" aria-label="Flamie the owl"></div>
+    <div class="bubble" id="prompt" aria-live="polite"></div>
+    <button class="say-again" id="again" type="button" aria-label="Hear it again"></button>
+  </div>
+
+  <div class="grid" id="grid"></div>
+  <p class="hint-text">Tap the one Flamie asks for.</p>
+</main>
+<script src="../kit.js"></script>
+<script>
+  const { shape, ART, play, say, shuffle, pick } = Kit;
+  const SHAPES = {
+    circle: ["circle", "el círculo"], square: ["square", "el cuadrado"], triangle: ["triangle", "el triángulo"],
+    star: ["star", "la estrella"], heart: ["heart", "el corazón"], rectangle: ["rectangle", "el rectángulo"],
+    oval: ["oval", "el óvalo"], diamond: ["diamond", "el rombo"], hexagon: ["hexagon", "el hexágono"],
+  };
+  const COLORS = {
+    red: ["#D7303F", "red", "rojo"], orange: ["#F08A24", "orange", "naranja"], yellow: ["#F7C531", "yellow", "amarillo"],
+    green: ["#4FA83D", "green", "verde"], blue: ["#3A8DDE", "blue", "azul"], purple: ["#8E6BC7", "purple", "morado"],
+    pink: ["#F28BB0", "pink", "rosado"], brown: ["#8A5A3F", "brown", "café"],
+  };
+  const GOAL = 8;
+  const grid = document.getElementById("grid");
+  const promptEl = document.getElementById("prompt");
+  document.getElementById("again").innerHTML = ART.speaker();
+  const setProgress = Kit.progress(document.getElementById("progress"), GOAL);
+
+  let mode = "shapes", score = 0, answer = null, locked = false, spoken = ["", "en-US"], lastKey = "";
+
+  function howMany() { return score < 3 ? 3 : score < 6 ? 4 : 6; }
+
+  function round() {
+    locked = false;
+    const n = howMany();
+    grid.style.setProperty("--cols", n === 4 ? 2 : 3);
+    const ask = mode === "es" ? pick(["shapes", "colors"]) : mode;
+    const shapeKeys = Object.keys(SHAPES), colorKeys = Object.keys(COLORS);
+    let items;
+    if (ask === "shapes") {
+      const keys = shuffle(shapeKeys.filter((k) => k !== lastKey)).slice(0, n);
+      answer = keys[0]; lastKey = answer;
+      items = shuffle(keys).map((k) => ({ key: k, svg: shape(k, COLORS[pick(colorKeys)][0]) }));
+      const [en, es] = SHAPES[answer];
+      if (mode === "es") { setPrompt(`¿Dónde está ${es}?`, `Find the ${en}`); spoken = [`¿Dónde está ${es}?`, "es-ES"]; }
+      else { setPrompt(`Find the ${en}!`); spoken = [`Find the ${en}!`, "en-US"]; }
+    } else {
+      const keys = shuffle(colorKeys.filter((k) => k !== lastKey)).slice(0, n);
+      answer = keys[0]; lastKey = answer;
+      items = shuffle(keys).map((k) => ({ key: k, svg: shape(pick(shapeKeys), COLORS[k][0]) }));
+      const [, en, es] = COLORS[answer];
+      if (mode === "es") { setPrompt(`Busca algo ${es}`, `Find something ${en}`); spoken = [`Busca algo ${es}`, "es-ES"]; }
+      else { setPrompt(`Find something ${en}!`); spoken = [`Find something ${en}!`, "en-US"]; }
+    }
+    grid.innerHTML = "";
+    items.forEach((it) => {
+      const b = document.createElement("button");
+      b.className = "tile"; b.type = "button"; b.innerHTML = it.svg;
+      b.setAttribute("aria-label", ask === "shapes" ? SHAPES[it.key][0] : COLORS[it.key][1]);
+      b.onclick = () => choose(b, it.key);
+      grid.appendChild(b);
+    });
+    say(...spoken);
+  }
+
+  function setPrompt(main, sub) {
+    promptEl.innerHTML = main + (sub ? `<span class="es">${sub}</span>` : "");
+  }
+
+  function choose(btn, key) {
+    if (locked || btn.classList.contains("nope")) return;
+    if (key === answer) {
+      locked = true; score++;
+      btn.classList.add("right", "bounce"); play("good"); setProgress(score);
+      if (score >= GOAL) {
+        setTimeout(() => Kit.win({ title: mode === "es" ? "¡Muy bien!" : "You did it!", text: `You found all ${GOAL}. Flamie is so proud of you!`, again: restart }), 600);
+      } else setTimeout(round, 900);
+    } else {
+      play("bad"); btn.classList.remove("wiggle"); void btn.offsetWidth; btn.classList.add("wiggle", "nope");
+    }
+  }
+
+  function restart() { score = 0; setProgress(0); round(); }
+
+  document.querySelectorAll(".chip").forEach((c) => c.onclick = () => {
+    document.querySelectorAll(".chip").forEach((x) => x.setAttribute("aria-pressed", x === c));
+    mode = c.dataset.mode; restart();
+  });
+  document.getElementById("again").onclick = () => say(...spoken);
+  restart();
+</script>
+</body>
+</html>

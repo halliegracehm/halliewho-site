@@ -53,7 +53,8 @@ export default {
       cover: "assets/leafy-tree-cover.jpg",
       blurb: "Meet Flamie the owl. A picture book for little ones about finding your place under a big, leafy tree, illustrated by Crystal.",
       status: "Coming soon",
-      buyUrl: ""
+      buyUrl: "",
+      gamesUrl: "games/"
     },
     {
       title: "What Are You",

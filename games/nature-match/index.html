@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nature Match | Flamie's Leafy Games</title>
+<meta name="description" content="A free memory card game for little ones with leaves, acorns, mushrooms and more.">
+<meta name="theme-color" content="#FFE066">
+<link rel="icon" href="../flamie.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../kit.css">
+<style>
+  .deck { display: grid; gap: 10px; grid-template-columns: repeat(var(--cols, 3), 1fr); max-width: var(--max, 420px); margin: 0 auto; }
+  .card { aspect-ratio: 3 / 4; perspective: 700px; }
+  .card .in { position: relative; width: 100%; height: 100%; transition: transform .45s; transform-style: preserve-3d; }
+  .card.up .in, .card.done .in { transform: rotateY(180deg); }
+  .face {
+    position: absolute; inset: 0; border-radius: 16px; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+    display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow);
+  }
+  .back {
+    background:
+      radial-gradient(circle at 30% 30%, rgba(255,255,255,.35) 0 18%, transparent 19%),
+      var(--berry);
+    border: 4px solid var(--cream);
+  }
+  .back svg { width: 46%; opacity: .95; }
+  .front { background: var(--cream); transform: rotateY(180deg); padding: 14%; }
+  .front svg { width: 100%; height: 100%; }
+  .card.done .front { background: #E3F4D2; }
+  .moves { text-align: center; font-family: var(--head); font-weight: 800; color: var(--bark-soft); font-size: 18px; margin-top: 12px; }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="bar">
+    <a class="pill" href="../">&larr; Games</a>
+    <div class="title">Nature Match</div>
+    <button class="pill icon-btn" id="mute" type="button"></button>
+    <span class="pill stars" id="stars" aria-label="Stars collected"></span>
+  </div>
+
+  <div class="choices" role="group" aria-label="Pick a level">
+    <button class="chip" data-pairs="3" aria-pressed="true">Easy</button>
+    <button class="chip" data-pairs="6" aria-pressed="false">Medium</button>
+    <button class="chip" data-pairs="8" aria-pressed="false">Hard</button>
+  </div>
+
+  <div class="flamie-say">
+    <div class="flamie" role="img" aria-label="Flamie the owl"></div>
+    <div class="bubble" id="prompt" aria-live="polite">Flip two cards. Can you find a match?</div>
+  </div>
+
+  <div class="deck" id="deck"></div>
+  <div class="moves" id="moves"></div>
+</main>
+<script src="../kit.js"></script>
+<script>
+  const { ART, play, say, shuffle } = Kit;
+  const ITEMS = {
+    maple: ["a red leaf", () => ART.maple("#C7364F")], leaf: ["an orange leaf", () => ART.leaf("#F08A24")],
+    acorn: ["an acorn", ART.acorn], mushroom: ["a mushroom", ART.mushroom], rock: ["a rock", ART.rock],
+    pinecone: ["a pinecone", ART.pinecone], flower: ["a flower", () => ART.flower()], apple: ["an apple", ART.apple],
+    feather: ["a feather", ART.feather], snail: ["a snail", ART.snail], ladybug: ["a ladybug", ART.ladybug],
+    sun: ["the sun", ART.sun],
+  };
+  const deck = document.getElementById("deck"), promptEl = document.getElementById("prompt"), movesEl = document.getElementById("moves");
+  let pairs = 3, open = [], matched = 0, moves = 0, busy = false;
+
+  function build() {
+    open = []; matched = 0; moves = 0; busy = false;
+    movesEl.textContent = "";
+    const keys = shuffle(Object.keys(ITEMS)).slice(0, pairs);
+    const cards = shuffle([...keys, ...keys]);
+    deck.style.setProperty("--cols", pairs === 3 ? 3 : 4);
+    deck.style.setProperty("--max", pairs === 3 ? "360px" : "460px");
+    deck.innerHTML = "";
+    cards.forEach((k) => {
+      const c = document.createElement("button");
+      c.type = "button"; c.className = "card"; c.dataset.key = k; c.setAttribute("aria-label", "Face-down card");
+      c.innerHTML = `<div class="in"><div class="face back">${ART.leaf("#FFF8EA")}</div><div class="face front">${ITEMS[k][1]()}</div></div>`;
+      c.onclick = () => flip(c);
+      deck.appendChild(c);
+    });
+    promptEl.textContent = "Flip two cards. Can you find a match?";
+  }
+
+  function flip(c) {
+    if (busy || c.classList.contains("up") || c.classList.contains("done")) return;
+    c.classList.add("up"); c.setAttribute("aria-label", ITEMS[c.dataset.key][0]);
+    play("pop"); say(ITEMS[c.dataset.key][0]);
+    open.push(c);
+    if (open.length < 2) return;
+    moves++; movesEl.textContent = `Tries: ${moves}`;
+    const [a, b] = open; open = [];
+    if (a.dataset.key === b.dataset.key) {
+      setTimeout(() => {
+        a.classList.add("done", "bounce"); b.classList.add("done", "bounce");
+        a.classList.remove("up"); b.classList.remove("up");
+        play("good"); matched++;
+        promptEl.textContent = matched === pairs ? "You matched them all!" : "A match! Keep going!";
+        if (matched === pairs) setTimeout(() => Kit.win({ title: "Super memory!", text: `You matched all ${pairs} pairs in ${moves} tries.`, again: build }), 700);
+      }, 450);
+    } else {
+      busy = true;
+      setTimeout(() => {
+        [a, b].forEach((x) => { x.classList.remove("up"); x.setAttribute("aria-label", "Face-down card"); });
+        busy = false; promptEl.textContent = "Not a match. Try again!";
+      }, 1100);
+    }
+  }
+
+  document.querySelectorAll(".chip").forEach((c) => c.onclick = () => {
+    document.querySelectorAll(".chip").forEach((x) => x.setAttribute("aria-pressed", x === c));
+    pairs = +c.dataset.pairs; build();
+  });
+  build();
+</script>
+</body>
+</html>

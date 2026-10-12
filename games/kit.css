@@ -1,0 +1,151 @@
+/* Flamie's Leafy Games: one shared look for every game.
+   Colors come from the book cover: sunny yellow sky, autumn leaves, grass, bark. */
+:root {
+  --sun: #FFE066;
+  --sun-deep: #F7C531;
+  --orange: #F08A24;
+  --berry: #C7364F;
+  --rose: #E9839A;
+  --grass: #7CC243;
+  --grass-deep: #4E8F2A;
+  --bark: #5B3523;
+  --bark-soft: #8A5A3F;
+  --cream: #FFF8EA;
+  --cream-deep: #F6E8CC;
+  --sky: #8FD3F4;
+  --purple: #8E6BC7;
+  --ink: #4A2A1B;
+  --shadow: 0 5px 0 rgba(91, 53, 35, .18);
+  --radius: 22px;
+  --head: "Baloo 2", "Nunito", system-ui, sans-serif;
+  --body: "Nunito", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--body);
+  color: var(--ink);
+  min-height: 100vh;
+  min-height: 100dvh;
+  background:
+    radial-gradient(120% 60% at 50% 100%, #9BD45F 0 38%, transparent 38.5%),
+    linear-gradient(180deg, #FFF3B0 0%, var(--sun) 55%, #F9D85A 100%);
+  background-attachment: fixed;
+  -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
+}
+button { font: inherit; color: inherit; cursor: pointer; border: 0; background: none; }
+img, svg { display: block; }
+a { color: var(--berry); }
+:focus-visible { outline: 3px solid var(--berry); outline-offset: 3px; border-radius: 12px; }
+
+/* Drifting leaves behind everything */
+.drift { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.drift svg { position: absolute; top: -60px; width: 34px; height: 34px; opacity: .55; animation: drift linear infinite; }
+@keyframes drift {
+  0% { transform: translate(0, -60px) rotate(0deg); }
+  50% { transform: translate(40px, 50vh) rotate(180deg); }
+  100% { transform: translate(-10px, 110vh) rotate(360deg); }
+}
+@media (prefers-reduced-motion: reduce) { .drift { display: none; } }
+
+.wrap { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; padding: 12px 16px 40px; }
+
+/* Top bar used by every game */
+.bar { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--cream); color: var(--bark);
+  font-family: var(--head); font-weight: 700; font-size: 17px; line-height: 1;
+  padding: 10px 14px 8px; border-radius: 999px; box-shadow: var(--shadow);
+  text-decoration: none; min-height: 44px;
+}
+.pill:active { transform: translateY(3px); box-shadow: 0 2px 0 rgba(91,53,35,.18); }
+.bar .title { flex: 1; text-align: center; font-family: var(--head); font-weight: 800; font-size: 22px; color: var(--bark); line-height: 1.1; }
+.stars { min-width: 66px; justify-content: center; }
+.stars svg { width: 20px; height: 20px; margin-top: -3px; }
+.icon-btn { width: 44px; height: 44px; justify-content: center; padding: 0; }
+.icon-btn svg { width: 22px; height: 22px; }
+
+/* Cream panel, like the title box on the cover */
+.panel {
+  background: rgba(255, 248, 234, .92);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px;
+}
+
+.flamie-say { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.flamie {
+  width: 64px; height: 64px; flex: none; border-radius: 50%;
+  background: url(flamie.jpg) center/cover; border: 4px solid var(--cream);
+  box-shadow: var(--shadow);
+}
+.bubble {
+  position: relative; flex: 1;
+  background: var(--cream); border-radius: 20px; padding: 10px 14px;
+  font-family: var(--head); font-weight: 700; font-size: 20px; line-height: 1.2; color: var(--bark);
+  box-shadow: var(--shadow);
+}
+.bubble::before {
+  content: ""; position: absolute; left: -9px; top: 50%; margin-top: -9px;
+  border: 9px solid transparent; border-left: 0; border-right-color: var(--cream);
+}
+.bubble .es { display: block; font-size: 15px; color: var(--bark-soft); font-family: var(--body); font-weight: 700; }
+
+/* Big friendly buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  font-family: var(--head); font-weight: 800; font-size: 20px; line-height: 1;
+  padding: 14px 22px 11px; border-radius: 999px; min-height: 52px;
+  background: var(--berry); color: #fff; text-decoration: none;
+  box-shadow: 0 5px 0 #8E1F33;
+}
+.btn:active { transform: translateY(4px); box-shadow: 0 1px 0 #8E1F33; }
+.btn.alt { background: var(--cream); color: var(--bark); box-shadow: var(--shadow); }
+.btn.green { background: var(--grass-deep); box-shadow: 0 5px 0 #2F5E15; }
+
+.choices { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 14px; }
+.chip {
+  font-family: var(--head); font-weight: 700; font-size: 17px; line-height: 1;
+  padding: 10px 16px 8px; border-radius: 999px; min-height: 44px;
+  background: var(--cream); color: var(--bark); box-shadow: var(--shadow);
+}
+.chip[aria-pressed="true"] { background: var(--bark); color: var(--cream); }
+
+/* Win screen shared by all games */
+.win {
+  position: fixed; inset: 0; z-index: 50; display: none;
+  align-items: center; justify-content: center; padding: 20px;
+  background: rgba(91, 53, 35, .45);
+}
+.win.show { display: flex; }
+.win .card {
+  background: var(--cream); border-radius: 28px; padding: 26px 22px 22px; max-width: 360px; width: 100%;
+  text-align: center; box-shadow: 0 8px 0 rgba(91,53,35,.25); animation: pop .45s cubic-bezier(.3,1.6,.5,1);
+}
+.win .flamie { width: 96px; height: 96px; margin: -70px auto 10px; }
+.win h2 { font-family: var(--head); font-size: 34px; line-height: 1; color: var(--berry); margin-bottom: 6px; }
+.win p { font-size: 18px; font-weight: 700; color: var(--bark-soft); margin-bottom: 18px; }
+.win .row { display: flex; flex-direction: column; gap: 12px; }
+
+.confetti { position: fixed; inset: 0; pointer-events: none; z-index: 60; overflow: hidden; }
+.confetti svg { position: absolute; top: -50px; width: 30px; height: 30px; animation: fall 2.2s ease-in forwards; }
+@keyframes fall { to { transform: translateY(115vh) rotate(540deg); } }
+
+@keyframes pop { 0% { transform: scale(.6); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+@keyframes wiggle { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-8px); } 75% { transform: translateX(8px); } }
+@keyframes bounce { 0%,100% { transform: scale(1); } 40% { transform: scale(1.18); } }
+.wiggle { animation: wiggle .35s ease 2; }
+.bounce { animation: bounce .45s ease; }
+
+.hint-text { text-align: center; font-weight: 700; color: var(--bark-soft); font-size: 15px; margin-top: 14px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+/* Leaf progress row shared by every game */
+.progress { display: flex; justify-content: center; gap: 4px; margin-bottom: 14px; flex-wrap: wrap; }
+.progress svg { width: 28px; height: 28px; filter: grayscale(1) opacity(.3); transition: filter .3s; }
+.progress svg.on { filter: none; animation: bounce .45s ease; }
+.progress.many svg { width: 21px; height: 21px; }
+.progress.many { gap: 2px; }

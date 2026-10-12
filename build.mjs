@@ -143,6 +143,8 @@ const pickCards = (list) => `<div class="picks">${list.map((x) => `
 // ---------- pages ----------
 fs.rmSync(OUT, { recursive: true, force: true });
 fs.cpSync("assets", path.join(OUT, "assets"), { recursive: true });
+// Flamie's Leafy Games: plain HTML pages, copied as they are.
+fs.cpSync("games", path.join(OUT, "games"), { recursive: true });
 
 // Home
 {
@@ -408,7 +410,7 @@ for (const p of PATTERNS) {
     <p style="margin-top:8px">${esc(bk.blurb)}</p>
     <div class="actions" style="margin-top:16px">${bk.buyUrl
       ? `<a class="btn" href="${bk.buyUrl}">Buy the book</a>`
-      : `<a class="btn ghost" href="${cfg.bookLaunchSignup}">Get notified when it's out</a>`}</div>
+      : `<a class="btn ghost" href="${cfg.bookLaunchSignup}">Get notified when it's out</a>`}${bk.gamesUrl ? `<a class="btn ghost" href="${rel(page, bk.gamesUrl)}">Play Flamie's games</a>` : ""}</div>
   </div>`).join("");
   write(page, layout({
     page,
@@ -525,7 +527,7 @@ write("404.html", layout({ canonicalPage: "404.html",
 }));
 
 // Sitemap and robots
-const pages = ["", "find-your-pattern/", "patterns/", "shop/", "journal/", "books/", "talk-with-hallie/", "work-with-me/", ...QUIZ.map((q) => q.page), ...PATTERNS.map((p) => p.page)];
+const pages = ["", "find-your-pattern/", "patterns/", "shop/", "journal/", "books/", "games/", "talk-with-hallie/", "work-with-me/", ...QUIZ.map((q) => q.page), ...PATTERNS.map((p) => p.page)];
 write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${pages.map((p) => `  <url><loc>${cfg.siteUrl}/${p}</loc><lastmod>${today}</lastmod></url>`).join("\n")}

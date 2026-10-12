@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Find Flamie's Friends | Flamie's Leafy Games</title>
+<meta name="description" content="A free hide-and-seek game for little ones: find the woodland friends hiding under the leafy tree.">
+<meta name="theme-color" content="#FFE066">
+<link rel="icon" href="../flamie.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../kit.css">
+<style>
+  .field { border-radius: 28px; overflow: hidden; box-shadow: var(--shadow); background: #FFE066; }
+  .field svg.scene { width: 100%; height: auto; display: block; user-select: none; -webkit-user-select: none; }
+  .friend { cursor: pointer; transition: transform .5s cubic-bezier(.3,1.6,.5,1); transform-box: fill-box; transform-origin: center bottom; }
+  .friend.found { transform: translateY(-34px) scale(1.15); }
+  .wiggle-scene { animation: wiggle .3s ease 2; transform-box: fill-box; }
+  .list { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 14px; }
+  .who { width: 62px; height: 62px; border-radius: 50%; background: var(--cream); box-shadow: var(--shadow); padding: 8px; position: relative; }
+  .who svg { width: 100%; height: 100%; filter: brightness(0) opacity(.25); transition: filter .3s; }
+  .who.got svg { filter: none; }
+  .who.got::after { content: ""; position: absolute; right: -4px; bottom: -4px; width: 24px; height: 24px; border-radius: 50%; background: var(--grass-deep) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12l4 4 8-9' fill='none' stroke='%23fff' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/18px no-repeat; border: 3px solid var(--cream); }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="bar">
+    <a class="pill" href="../">&larr; Games</a>
+    <div class="title">Find Friends</div>
+    <button class="pill icon-btn" id="mute" type="button"></button>
+    <span class="pill stars" id="stars" aria-label="Stars collected"></span>
+  </div>
+
+  <div class="choices" role="group" aria-label="Pick how many friends">
+    <button class="chip" data-n="4" aria-pressed="true">4 friends</button>
+    <button class="chip" data-n="6" aria-pressed="false">6 friends</button>
+  </div>
+
+  <div class="flamie-say">
+    <div class="flamie" role="img" aria-label="Flamie the owl"></div>
+    <div class="bubble" id="prompt" aria-live="polite">My friends are hiding! Can you find them?</div>
+  </div>
+
+  <div class="field" id="field"></div>
+  <div class="list" id="list" aria-label="Friends to find"></div>
+  <p class="hint-text">Look for ears, eyes and tails peeking out!</p>
+</main>
+<script src="../kit.js"></script>
+<script>
+  const { ART, play, say, shuffle } = Kit;
+  const INK = 'stroke="#4A2A1B" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"';
+  const FRIENDS = { bunny: "Bunny", hedgehog: "Hedgehog", squirrel: "Squirrel", frog: "Frog", ladybug: "Ladybug", snail: "Snail", butterfly: "Butterfly" };
+
+  // Each hiding spot: where the friend sits, and what covers them.
+  const SPOTS = [
+    { x: 38, y: 262, s: 72, cover: `<path d="M8 356c-6-40 30-60 52-46 10-26 52-30 66-6 26-10 52 10 46 40 4 10 0 18-6 18H14c-6 0-8-2-6-6Z" fill="#4E8F2A" ${INK}/><path d="M40 330c8-6 16-6 22 0M100 322c8-6 16-6 22 0" fill="none" ${INK} stroke-width="2.5" opacity=".5"/>` },
+    { x: 66, y: 396, s: 66, cover: `<path d="M36 486c-8-30 10-54 42-58 18-14 50-10 62 6 20 4 24 32 14 52Z" fill="#A9A3B5" ${INK}/><path d="M70 452c6-4 14-4 18 0M110 466c6-2 12 0 14 4" fill="none" ${INK} stroke-width="2.5" opacity=".6"/>` },
+    { x: 292, y: 404, s: 68, cover: `<path d="M244 492c4-32 32-50 64-52 32 0 58 20 64 52Z" fill="#F08A24" ${INK}/><g ${INK} stroke-width="2.5"><path d="M268 470l10-14 8 14Z" fill="#C7364F"/><path d="M314 458l12-12 6 16Z" fill="#F7C531"/><path d="M340 476l12-10 4 14Z" fill="#C7364F"/><path d="M292 484l8-12 10 10Z" fill="#F7C531"/></g>` },
+    { x: 152, y: 336, s: 62, cover: `<rect x="108" y="370" width="132" height="46" rx="23" fill="#9A5B33" ${INK}/><ellipse cx="226" cy="393" rx="14" ry="21" fill="#E8C99A" ${INK}/><path d="M226 384a7 9 0 1 0 0 18" fill="none" ${INK} stroke-width="2.5"/><path d="M130 386h40M150 400h44" fill="none" ${INK} stroke-width="2.5" opacity=".5"/>` },
+    { hole: true, cx: 262, cy: 214, r: 26, x: 234, y: 192, s: 56 },
+    { x: 322, y: 292, s: 60, cover: `<g ${INK}><path d="M300 380c-4-26 2-44 10-52 2 18 6 26 10 30 0-20 6-34 14-40 0 18 4 30 10 36 2-14 8-24 16-28-4 18-2 36 4 54Z" fill="#6AB236"/><circle cx="314" cy="330" r="9" fill="#E9839A"/><circle cx="352" cy="326" r="9" fill="#FFF8EA"/><circle cx="334" cy="342" r="8" fill="#F7C531"/></g>` },
+    { x: 180, y: 428, s: 60, cover: `<path d="M160 512c0-20 6-36 12-44 2 14 6 22 10 24 0-16 6-30 12-36 0 14 4 26 10 30 2-12 8-22 14-26-2 14 0 30 4 38 4-10 10-16 16-18-4 12-4 22-2 32Z" fill="#7CC243" ${INK}/>` },
+  ];
+
+  const field = document.getElementById("field");
+  const list = document.getElementById("list");
+  const promptEl = document.getElementById("prompt");
+  let n = 4, found = 0, hiding = [];
+
+  const place = (art, x, y, s) => art.replace("<svg ", `<svg x="${x}" y="${y}" width="${s}" height="${s}" `);
+
+  function build() {
+    found = 0;
+    const who = shuffle(Object.keys(FRIENDS)).slice(0, n);
+    const spots = shuffle(SPOTS).slice(0, n);
+    hiding = who.map((k, i) => ({ key: k, spot: spots[i] }));
+    const empty = SPOTS.filter((s) => !spots.includes(s));
+
+    let friendsSvg = "", covers = "", holes = "";
+    hiding.forEach(({ key, spot }, i) => {
+      const art = place(ART[key](), spot.x, spot.y, spot.s);
+      if (spot.hole) {
+        holes += `<circle cx="${spot.cx}" cy="${spot.cy}" r="${spot.r}" fill="#3A2016" ${INK}/>
+          <clipPath id="hole${i}"><circle cx="${spot.cx}" cy="${spot.cy}" r="${spot.r - 2}"/></clipPath>
+          <g clip-path="url(#hole${i})"><g class="friend" data-i="${i}">${art}</g></g>`;
+      } else {
+        friendsSvg += `<g class="friend" data-i="${i}">${art}</g>`;
+        covers += spot.cover;
+      }
+    });
+    empty.forEach((s) => { if (s.hole) holes += `<circle cx="${s.cx}" cy="${s.cy}" r="${s.r}" fill="#3A2016" ${INK}/>`; else covers += s.cover; });
+
+    // Generous invisible tap circles over each friend's peeking part
+    const taps = hiding.map(({ spot }, i) =>
+      `<circle class="tap" data-i="${i}" cx="${spot.x + spot.s / 2}" cy="${spot.y + spot.s * .32}" r="${Math.max(30, spot.s * .48)}" fill="transparent" style="cursor:pointer"/>`).join("");
+
+    field.innerHTML = `<svg class="scene" viewBox="0 0 400 520" role="img" aria-label="A sunny meadow under a big leafy tree">
+      <rect width="400" height="520" fill="#FFE066"/>
+      <circle cx="60" cy="70" r="30" fill="#FFF3B0" ${INK}/>
+      <path d="M0 300C90 270 170 280 240 292S350 300 400 280V520H0Z" fill="#7CC243" ${INK}/>
+      <path d="M0 340c80-16 160-10 240 2s120 8 160-4V520H0Z" fill="#6AB236"/>
+      <path d="M236 392c6-60 4-150 0-230h52c-4 80-6 170 0 230Z" fill="#7A4A2B" ${INK}/>
+      <path d="M248 200c4 40 2 90 -2 150M276 180c-4 50-2 110 4 170" fill="none" ${INK} stroke-width="2.5" opacity=".45"/>
+      <g ${INK}><circle cx="210" cy="120" r="58" fill="#F08A24"/><circle cx="290" cy="80" r="66" fill="#C7364F"/>
+      <circle cx="360" cy="140" r="52" fill="#F7C531"/><circle cx="250" cy="150" r="44" fill="#E9839A"/>
+      <circle cx="330" cy="40" r="44" fill="#F08A24"/></g>
+      ${holes}${friendsSvg}${covers}${taps}
+    </svg>`;
+
+    list.innerHTML = hiding.map(({ key }, i) => `<div class="who" data-i="${i}" role="img" aria-label="${FRIENDS[key]}, not found yet">${ART[key]()}</div>`).join("");
+    promptEl.textContent = `${n} friends are hiding! Can you find them?`;
+    say(`${n} friends are hiding! Can you find them?`);
+
+    field.querySelectorAll(".tap, .friend").forEach((el) => el.addEventListener("click", (e) => { e.stopPropagation(); foundOne(+el.dataset.i); }));
+    field.querySelector("svg").addEventListener("click", () => {
+      play("bad"); field.classList.remove("wiggle"); void field.offsetWidth; field.classList.add("wiggle");
+    });
+  }
+
+  function foundOne(i) {
+    const f = field.querySelector(`.friend[data-i="${i}"]`);
+    if (f.classList.contains("found")) return;
+    f.classList.add("found");
+    const tap = field.querySelector(`.tap[data-i="${i}"]`); if (tap) tap.remove();
+    const name = FRIENDS[hiding[i].key];
+    const card = list.querySelector(`.who[data-i="${i}"]`);
+    card.classList.add("got", "bounce"); card.setAttribute("aria-label", `${name}, found`);
+    found++; play("good");
+    const left = n - found;
+    const msg = left ? `You found ${name}! ${left} more to go.` : `You found ${name}!`;
+    promptEl.textContent = msg; say(msg);
+    if (!left) setTimeout(() => Kit.win({ title: "Found them all!", text: "Thank you for helping Flamie find her friends!", again: build }), 1100);
+  }
+
+  document.querySelectorAll(".chip").forEach((c) => c.onclick = () => {
+    document.querySelectorAll(".chip").forEach((x) => x.setAttribute("aria-pressed", x === c));
+    n = +c.dataset.n; build();
+  });
+  build();
+</script>
+</body>
+</html>

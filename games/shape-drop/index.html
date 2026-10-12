@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Shape Drop | Flamie's Leafy Games</title>
+<meta name="description" content="A free drag-and-drop shape puzzle for little ones.">
+<meta name="theme-color" content="#FFE066">
+<link rel="icon" href="../flamie.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../kit.css">
+<style>
+  .board { display: grid; gap: 12px; grid-template-columns: repeat(var(--cols, 3), 1fr); margin-bottom: 16px; }
+  .slot {
+    aspect-ratio: 1; border-radius: 18px; background: rgba(255,255,255,.55);
+    display: flex; align-items: center; justify-content: center; padding: 12%; position: relative;
+    transition: background .2s;
+  }
+  .slot > svg { width: 100%; height: 100%; }
+  .slot.hot { background: #E3F4D2; }
+  .slot .piece { position: absolute; inset: 12%; width: auto; height: auto; padding: 0; background: none; box-shadow: none; cursor: default; }
+  .tray {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 14px;
+    background: var(--cream-deep); border-radius: var(--radius); padding: 16px 10px; min-height: 120px;
+    box-shadow: inset 0 3px 0 rgba(91,53,35,.12);
+  }
+  .tray-label { font-family: var(--head); font-weight: 800; color: var(--bark-soft); text-align: center; font-size: 16px; margin-bottom: 6px; }
+  .piece {
+    width: 88px; height: 88px; padding: 8px; border-radius: 18px; background: var(--cream);
+    box-shadow: var(--shadow); touch-action: none; cursor: grab; position: relative; z-index: 1;
+  }
+  .piece svg { width: 100%; height: 100%; pointer-events: none; }
+  .piece.dragging { z-index: 20; cursor: grabbing; box-shadow: 0 12px 18px rgba(91,53,35,.25); }
+  .piece.selected { outline: 4px solid var(--berry); outline-offset: 2px; }
+  .piece.back { transition: transform .3s cubic-bezier(.3,1.4,.5,1); }
+  @media (max-width: 380px) { .piece { width: 76px; height: 76px; } }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="bar">
+    <a class="pill" href="../">&larr; Games</a>
+    <div class="title">Shape Drop</div>
+    <button class="pill icon-btn" id="mute" type="button"></button>
+    <span class="pill stars" id="stars" aria-label="Stars collected"></span>
+  </div>
+
+  <div class="choices" role="group" aria-label="Pick how many shapes">
+    <button class="chip" data-n="3" aria-pressed="true">3 shapes</button>
+    <button class="chip" data-n="4" aria-pressed="false">4 shapes</button>
+    <button class="chip" data-n="6" aria-pressed="false">6 shapes</button>
+  </div>
+
+  <div class="flamie-say">
+    <div class="flamie" role="img" aria-label="Flamie the owl"></div>
+    <div class="bubble" id="prompt">Drag each shape to its home!</div>
+  </div>
+
+  <div class="panel"><div class="board" id="board"></div>
+    <div class="tray-label">Shapes</div>
+    <div class="tray" id="tray"></div>
+  </div>
+  <p class="hint-text">Drag a shape onto its matching outline. You can also tap a shape, then tap its home.</p>
+</main>
+<script src="../kit.js"></script>
+<script>
+  const { shape, outline, play, say, shuffle } = Kit;
+  const NAMES = ["circle", "square", "triangle", "star", "heart", "oval", "diamond", "hexagon", "rectangle"];
+  const COLORS = ["#D7303F", "#F08A24", "#F7C531", "#4FA83D", "#3A8DDE", "#8E6BC7", "#F28BB0"];
+  const board = document.getElementById("board"), tray = document.getElementById("tray");
+  let n = 3, placed = 0, selected = null;
+
+  function build() {
+    placed = 0; selected = null;
+    const keys = shuffle(NAMES).slice(0, n);
+    const colors = shuffle(COLORS);
+    board.style.setProperty("--cols", n === 4 ? 2 : 3);
+    board.innerHTML = ""; tray.innerHTML = "";
+    keys.forEach((k) => {
+      const s = document.createElement("button");
+      s.type = "button"; s.className = "slot"; s.dataset.key = k; s.innerHTML = outline(k);
+      s.setAttribute("aria-label", `${k} home`);
+      s.onclick = () => { if (selected) tryPlace(selected, s); };
+      board.appendChild(s);
+    });
+    shuffle(keys).forEach((k, i) => {
+      const p = document.createElement("div");
+      p.className = "piece"; p.dataset.key = k; p.innerHTML = shape(k, colors[i % colors.length]);
+      p.setAttribute("role", "button"); p.setAttribute("aria-label", k); p.tabIndex = 0;
+      makeDraggable(p);
+      tray.appendChild(p);
+    });
+  }
+
+  function slotAt(x, y) {
+    return [...board.children].find((s) => {
+      const r = s.getBoundingClientRect();
+      return x >= r.left && x <= r.right && y >= r.top && y <= r.bottom;
+    });
+  }
+
+  function makeDraggable(p) {
+    let sx, sy, moved, startRect;
+    p.addEventListener("pointerdown", (e) => {
+      if (p.dataset.done) return;
+      e.preventDefault();
+      p.setPointerCapture(e.pointerId);
+      sx = e.clientX; sy = e.clientY; moved = false;
+      p.classList.remove("back"); p.classList.add("dragging");
+    });
+    p.addEventListener("pointermove", (e) => {
+      if (!p.classList.contains("dragging")) return;
+      const dx = e.clientX - sx, dy = e.clientY - sy;
+      if (Math.abs(dx) + Math.abs(dy) > 8) moved = true;
+      p.style.transform = `translate(${dx}px, ${dy}px) scale(1.08)`;
+      board.querySelectorAll(".slot").forEach((s) => s.classList.remove("hot"));
+      const r = p.getBoundingClientRect();
+      const s = slotAt(r.left + r.width / 2, r.top + r.height / 2);
+      if (s && !s.dataset.done) s.classList.add("hot");
+    });
+    const end = () => {
+      if (!p.classList.contains("dragging")) return;
+      p.classList.remove("dragging");
+      board.querySelectorAll(".slot").forEach((s) => s.classList.remove("hot"));
+      if (!moved) { p.style.transform = ""; select(p); return; }
+      const r = p.getBoundingClientRect();
+      const s = slotAt(r.left + r.width / 2, r.top + r.height / 2);
+      if (s) tryPlace(p, s); else goBack(p);
+    };
+    p.addEventListener("pointerup", end);
+    p.addEventListener("pointercancel", end);
+    p.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); select(p); } });
+  }
+
+  function select(p) {
+    if (selected) selected.classList.remove("selected");
+    selected = selected === p ? null : p;
+    if (selected) { selected.classList.add("selected"); play("pop"); say(p.dataset.key); }
+  }
+
+  function goBack(p) {
+    p.classList.add("back"); p.style.transform = "";
+  }
+
+  function tryPlace(p, s) {
+    if (s.dataset.done) { goBack(p); return; }
+    if (p.dataset.key === s.dataset.key) {
+      p.classList.remove("selected"); selected = null;
+      p.style.transform = ""; p.dataset.done = "1"; s.dataset.done = "1";
+      p.removeAttribute("tabindex");
+      s.appendChild(p); s.classList.add("bounce");
+      play("good"); say(`${p.dataset.key}!`);
+      placed++;
+      if (placed === n) setTimeout(() => Kit.win({ title: "All home!", text: "Every shape found its spot. Great job!", again: build }), 700);
+    } else {
+      play("bad"); s.classList.remove("wiggle"); void s.offsetWidth; s.classList.add("wiggle");
+      goBack(p);
+    }
+  }
+
+  document.querySelectorAll(".chip").forEach((c) => c.onclick = () => {
+    document.querySelectorAll(".chip").forEach((x) => x.setAttribute("aria-pressed", x === c));
+    n = +c.dataset.n; build();
+  });
+  build();
+</script>
+</body>
+</html>
