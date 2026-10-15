@@ -6,6 +6,7 @@ import cfg from "./site.config.mjs";
 
 const quizzes = JSON.parse(fs.readFileSync("content/quizzes.json", "utf8"));
 const extras = JSON.parse(fs.readFileSync("content/extras.json", "utf8"));
+const EPISODES = JSON.parse(fs.readFileSync("content/episodes.json", "utf8")).sort((a, b) => b.date.localeCompare(a.date));
 const OUT = "dist";
 const today = new Date().toISOString().slice(0, 10);
 
@@ -42,12 +43,13 @@ const NAV = [
   ["find-your-pattern/", "Quizzes"],
   ["patterns/", "Patterns"],
   ["shop/", "Shop"],
+  ["podcast/", "Podcast"],
   ["books/", "Books"],
   ["talk-with-hallie/", "Talk with me"],
   ["work-with-me/", "Work with me"],
 ];
 
-function layout({ page, title, description, body, jsonld = [], scripts = "" }) {
+function layout({ page, title, description, body, jsonld = [], scripts = "", ogType = "website" }) {
   const r = (to) => rel(page, to);
   const canonical = cfg.siteUrl + "/" + (page === "/" ? "404.html" : page);
   const nav = NAV.map(([href, label]) => `<a href="${r(href)}"${page === href ? ' aria-current="page"' : ""}>${label}</a>`).join("");
@@ -59,7 +61,7 @@ function layout({ page, title, description, body, jsonld = [], scripts = "" }) {
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
 <link rel="canonical" href="${canonical}">
-<meta property="og:type" content="website">
+<meta property="og:type" content="${ogType}">
 <meta property="og:site_name" content="${esc(cfg.siteName)}">
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(description)}">
@@ -518,6 +520,126 @@ for (const p of PATTERNS) {
   }));
 }
 
+// ---------- podcast ----------
+// Episode data lives in content/episodes.json. Add a new episode at the top and push.
+const SHOW = "My Inner Mind";
+const epPage = (e) => `podcast/${e.slug}/`;
+const longDate = (d) => new Date(d + "T12:00:00Z").toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" });
+const mins = (s) => `${Math.max(1, Math.round(s / 60))} min`;
+const stamp = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
+const isoDur = (s) => `PT${Math.floor(s / 60)}M${s % 60}S`;
+const seriesOf = (e) => (e.series && e.series !== SHOW ? e.series : "");
+
+// Archive
+{
+  const page = "podcast/";
+  const byYearMonth = {};
+  for (const e of EPISODES) {
+    const k = new Date(e.date + "T12:00:00Z").toLocaleDateString("en-US", { month: "long", year: "numeric", timeZone: "UTC" });
+    (byYearMonth[k] ||= []).push(e);
+  }
+  const groups = Object.entries(byYearMonth).map(([m, list]) => `
+  <h2 class="ep-month">${esc(m)}</h2>
+  <ol class="eps">${list.map((e) => `
+    <li><a href="${rel(page, epPage(e))}">
+      <span class="ep-title">${esc(e.title)}</span>
+      <span class="ep-desc">${esc(e.desc)}</span>
+      <span class="ep-meta">${longDate(e.date)} · ${mins(e.secs)}${seriesOf(e) ? ` · ${esc(seriesOf(e))}` : ""}</span>
+    </a></li>`).join("")}
+  </ol>`).join("");
+  write(page, layout({
+    page,
+    title: `${SHOW} Podcast: Every Episode, Summarized | Hallie Who`,
+    description: `Summaries of every ${SHOW} podcast episode (formerly My Sister's Closet) with Hallie: friendship, emotional intelligence, adoption, boundaries, healing, and growth.`,
+    jsonld: [crumbs([["Home", ""], ["Podcast", page]]),
+      { "@context": "https://schema.org", "@type": "PodcastSeries", name: SHOW, url: cfg.siteUrl + "/" + page, webFeed: "https://feed.podbean.com/halliegracehm/feed.xml",
+        description: "Honest conversations about life, growth, relationships, healing, and community.", author: { "@type": "Person", name: "Hallie Who" } }],
+    body: `
+<section class="first">
+  <div class="measure">
+    <h1>The podcast</h1>
+    <p class="lede">${SHOW} is a space for honest conversations about life, growth, relationships, healing, and everything we carry along the way. It started as My Sister's Closet. Every episode is here, with a short summary so you can find the one you need.</p>
+    <div class="actions"><a class="btn" href="${or(cfg.podcastUrl)}">Watch on YouTube</a><a class="btn ghost" href="https://halliegracehm.podbean.com">Listen on Podbean</a></div>
+    <p class="small" style="margin-top:14px">${EPISODES.length} episodes and counting.</p>
+  </div>
+</section>
+<section>
+  <div class="measure">${groups}</div>
+</section>`,
+  }));
+}
+
+// Each episode
+EPISODES.forEach((e, i) => {
+  const page = epPage(e);
+  const series = seriesOf(e);
+  const siblings = series ? EPISODES.filter((x) => x.series === e.series && x.slug !== e.slug).sort((a, b) => (a.part || 0) - (b.part || 0)) : [];
+  const nearby = [EPISODES[i - 1], EPISODES[i + 1]].filter(Boolean).filter((x) => !siblings.includes(x));
+  const more = [...siblings, ...nearby].slice(0, 6);
+  const titleTag = `${e.title} | ${SHOW} Podcast`;
+  write(page, layout({
+    page,
+    ogType: "article",
+    title: titleTag.length > 70 ? e.title : titleTag,
+    description: clip(e.desc),
+    jsonld: [
+      crumbs([["Home", ""], ["Podcast", "podcast/"], [e.title, page]]),
+      { "@context": "https://schema.org", "@type": "PodcastEpisode", name: e.title, url: cfg.siteUrl + "/" + page, datePublished: e.date,
+        description: e.desc, timeRequired: isoDur(e.secs), keywords: e.topics.join(", "),
+        ...(e.audio ? { associatedMedia: { "@type": "MediaObject", contentUrl: e.audio } } : {}),
+        partOfSeries: { "@type": "PodcastSeries", name: SHOW, url: cfg.siteUrl + "/podcast/" },
+        author: { "@type": "Person", name: "Hallie Who" } },
+    ],
+    scripts: e.chapters ? `<script>
+document.querySelectorAll(".chapters a").forEach((a) => a.addEventListener("click", (ev) => {
+  const p = document.querySelector(".player");
+  if (!p) { a.href = ${JSON.stringify(e.listen)}; return; }
+  ev.preventDefault(); p.currentTime = +a.dataset.t; p.play();
+}));
+</script>` : "",
+    body: `
+<section class="first"><article>
+  <div class="measure">
+    <p class="kicker"><a href="${rel(page, "podcast/")}">${SHOW} podcast</a>${series ? ` · ${esc(series)}${e.part ? `, part ${e.part}` : ""}` : ""}</p>
+    <h1 class="ep-h1">${esc(e.title)}</h1>
+    <p class="small"><time datetime="${e.date}">${longDate(e.date)}</time> · ${mins(e.secs)}</p>
+    ${e.audio ? `<audio class="player" controls preload="none" src="${e.audio}"></audio>` : ""}
+    <div class="actions" style="margin-top:${e.audio ? 14 : 22}px"><a class="btn${e.audio ? " ghost" : ""}" href="${e.listen}">Listen on Podbean</a><a class="btn ghost" href="${or(cfg.podcastUrl)}">Watch on YouTube</a></div>
+    <div class="depth">
+      <h2 class="ep-h2">What this episode is about</h2>
+      ${e.summary.map((p) => `<p class="body-serif">${esc(p)}</p>`).join("")}
+    </div>
+    ${e.chapters ? `<div class="depth">
+      <h2 class="ep-h2">Chapters</h2>
+      <ol class="chapters">${e.chapters.map((c) => `<li><a href="#t=${c.t}" data-t="${c.t}"><span class="ch-time">${stamp(c.t)}</span>${esc(c.title)}</a></li>`).join("")}</ol>
+    </div>` : ""}
+    <div class="depth">
+      <h2 class="ep-h2">Takeaways</h2>
+      <ul class="takeaways">${e.takeaways.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>
+    </div>
+    <div class="depth">
+      <h2 class="ep-h2">A question to sit with</h2>
+      <ul class="prompts"><li>${esc(e.reflect)}</li></ul>
+    </div>
+    ${e.care ? `<p class="small" style="margin-top:28px">If you're struggling, you don't have to carry it alone. In the US, call or text 988 to reach the Suicide and Crisis Lifeline any time.</p>` : ""}
+    <p class="tags">${e.topics.map((t) => `<span>${esc(t)}</span>`).join("")}</p>
+    <div class="offer">
+      <h3>Keep thinking about it</h3>
+      <p>Journal through what came up in the My Inner Mind app, or take a free quiz to name the pattern behind it.</p>
+      <div class="actions"><a class="btn" href="${or(cfg.appStoreUrl)}">Get the app</a><a class="btn ghost" href="${rel(page, "find-your-pattern/")}">Find your pattern</a></div>
+    </div>
+  </div>
+</article></section>
+<section>
+  <div class="measure">
+    <h2>${siblings.length ? `More from ${esc(series)}` : "More episodes"}</h2>
+    <ul class="related">${more.map((x) => `<li><a href="${rel(page, epPage(x))}">${esc(x.title)}</a><span>${mins(x.secs)}</span></li>`).join("")}</ul>
+    <p style="margin-top:18px"><a href="${rel(page, "podcast/")}">See every episode</a></p>
+  </div>
+</section>`,
+  }));
+});
+
 // 404
 write("404.html", layout({ canonicalPage: "404.html",
   page: "/",
@@ -527,7 +649,7 @@ write("404.html", layout({ canonicalPage: "404.html",
 }));
 
 // Sitemap and robots
-const pages = ["", "find-your-pattern/", "patterns/", "shop/", "journal/", "books/", "games/", "talk-with-hallie/", "work-with-me/", ...QUIZ.map((q) => q.page), ...PATTERNS.map((p) => p.page)];
+const pages = ["", "find-your-pattern/", "patterns/", "shop/", "journal/", "podcast/", ...EPISODES.map(epPage), "books/", "games/", "talk-with-hallie/", "work-with-me/", ...QUIZ.map((q) => q.page), ...PATTERNS.map((p) => p.page)];
 write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${pages.map((p) => `  <url><loc>${cfg.siteUrl}/${p}</loc><lastmod>${today}</lastmod></url>`).join("\n")}

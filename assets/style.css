@@ -191,6 +191,32 @@ section.first { border-top: 0; padding-top: 40px; }
 .steps { margin: 16px 0 0 22px; }
 .steps li { padding: 4px 0; }
 
+
+/* Podcast */
+.ep-month { font-size: 26px; margin: 36px 0 6px; color: var(--violet); }
+.ep-month:first-child { margin-top: 0; }
+.eps { list-style: none; }
+.eps li { border-bottom: 1px solid var(--rule); }
+.eps a { display: flex; flex-direction: column; gap: 4px; padding: 16px 0; text-decoration: none; color: var(--ink); }
+.ep-title { font-family: var(--serif); font-size: 24px; line-height: 1.2; }
+.eps a:hover .ep-title { color: var(--violet); }
+.ep-desc { font-size: 15px; color: var(--ink-soft); }
+.ep-meta { font-size: 13px; color: var(--ink-soft); }
+.ep-h1 { font-size: clamp(36px, 5vw, 56px); margin: 8px 0 10px; }
+.ep-h2 { font-size: 28px; }
+.player { width: 100%; margin-top: 22px; }
+.takeaways { margin: 12px 0 0 20px; }
+.takeaways li { padding: 4px 0; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 30px; }
+.tags span { font-size: 13px; padding: 4px 12px; border-radius: 999px; background: var(--rose-soft); color: var(--ink-soft); }
+
+.chapters { list-style: none; margin-top: 12px; }
+.chapters li { border-bottom: 1px solid var(--rule); }
+.chapters li:first-child { border-top: 1px solid var(--rule); }
+.chapters a { display: flex; gap: 14px; padding: 9px 0; text-decoration: none; color: var(--ink); }
+.chapters a:hover { color: var(--violet); }
+.ch-time { flex: 0 0 3.2em; font-size: 14px; color: var(--violet); font-variant-numeric: tabular-nums; padding-top: 2px; }
+
 /* Footer */
 .site-foot { padding: 40px 0 56px; border-top: 1px solid var(--rule); font-size: 14px; color: var(--ink-soft); }
 .site-foot .nav { margin-top: 10px; }
