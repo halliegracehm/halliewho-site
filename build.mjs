@@ -92,6 +92,8 @@ ${body}
     ${nav}
     <a href="${or(cfg.appStoreUrl)}">My Inner Mind app</a>
     <a href="${or(cfg.podcastUrl)}">My Inner Mind podcast</a>
+    ${cfg.instagramUrl ? `<a href="${cfg.instagramUrl}">Instagram</a>` : ""}
+    ${cfg.podcastInstagramUrl ? `<a href="${cfg.podcastInstagramUrl}">Podcast Instagram</a>` : ""}
     <a href="${cfg.linksHub}">All links</a>
   </nav>
   <p style="margin-top:14px">Made in Alabama. These quizzes are for reflection, not diagnosis.</p>
@@ -559,7 +561,7 @@ const seriesOf = (e) => (e.series && e.series !== SHOW ? e.series : "");
   <div class="measure">
     <h1>The podcast</h1>
     <p class="lede">${SHOW} is a space for honest conversations about life, growth, relationships, healing, and everything we carry along the way. It started as My Sister's Closet. Every episode is here, with a short summary so you can find the one you need.</p>
-    <div class="actions"><a class="btn" href="${or(cfg.podcastUrl)}">Watch on YouTube</a><a class="btn ghost" href="https://halliegracehm.podbean.com">Listen on Podbean</a></div>
+    <div class="actions"><a class="btn" href="${or(cfg.podcastUrl)}">Watch on YouTube</a><a class="btn ghost" href="https://halliegracehm.podbean.com">Listen on Podbean</a>${cfg.podcastInstagramUrl ? `<a class="btn ghost" href="${cfg.podcastInstagramUrl}">Follow on Instagram</a>` : ""}</div>
     <p class="small" style="margin-top:14px">${EPISODES.length} episodes and counting.</p>
   </div>
 </section>

@@ -15,7 +15,8 @@ export default {
   // TODO: paste your real links here. Until you do, these buttons go to your links hub.
   appStoreUrl: "https://apps.apple.com/us/app/my-inner-mind/id6765990800",      // My Inner Mind app on the App Store
   podcastUrl: "https://www.youtube.com/@Myinnermindpod",       // My Inner Mind podcast (YouTube channel)
-  instagramUrl: "",
+  instagramUrl: "https://www.instagram.com/halliewho_",
+  podcastInstagramUrl: "https://www.instagram.com/myinnermindpod",
 
   // Where "Work with me" inquiries go.
   contactEmail: "halliegracehm@gmail.com",
