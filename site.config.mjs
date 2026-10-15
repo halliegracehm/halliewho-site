@@ -13,8 +13,8 @@ export default {
   innerGroveUrl: "https://myinnergrove.halliewho.com",
 
   // TODO: paste your real links here. Until you do, these buttons go to your links hub.
-  appStoreUrl: "",      // My Inner Mind app on the App Store
-  podcastUrl: "",       // My Inner Mind podcast (YouTube channel)
+  appStoreUrl: "https://apps.apple.com/us/app/my-inner-mind/id6765990800",      // My Inner Mind app on the App Store
+  podcastUrl: "https://www.youtube.com/@Myinnermindpod",       // My Inner Mind podcast (YouTube channel)
   instagramUrl: "",
 
   // Where "Work with me" inquiries go.
