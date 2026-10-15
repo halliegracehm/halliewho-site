@@ -217,6 +217,10 @@ section.first { border-top: 0; padding-top: 40px; }
 .chapters a:hover { color: var(--violet); }
 .ch-time { flex: 0 0 3.2em; font-size: 14px; color: var(--violet); font-variant-numeric: tabular-nums; padding-top: 2px; }
 
+.legal h2 { font-size: 26px; margin: 30px 0 8px; }
+.legal ul { margin: 10px 0 0 22px; }
+.legal li { padding: 3px 0; }
+
 /* Footer */
 .site-foot { padding: 40px 0 56px; border-top: 1px solid var(--rule); font-size: 14px; color: var(--ink-soft); }
 .site-foot .nav { margin-top: 10px; }

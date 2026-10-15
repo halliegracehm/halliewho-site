@@ -2,5 +2,257 @@
   "buildCommand": "node build.mjs",
   "outputDirectory": "dist",
   "cleanUrls": true,
-  "trailingSlash": true
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/2026/07/08/when-anger-is-actually-sadness-in-disguise",
+      "destination": "/podcast/from-anger-to-awareness/",
+      "permanent": true
+    },
+    {
+      "source": "/2026/07/08/when-anger-is-actually-sadness-in-disguise/",
+      "destination": "/podcast/from-anger-to-awareness/",
+      "permanent": true
+    },
+    {
+      "source": "/2026/07/15/what-your-numbness-is-actually-telling-you",
+      "destination": "/podcast/from-numbness-to-feeling/",
+      "permanent": true
+    },
+    {
+      "source": "/2026/07/15/what-your-numbness-is-actually-telling-you/",
+      "destination": "/podcast/from-numbness-to-feeling/",
+      "permanent": true
+    },
+    {
+      "source": "/2026/07/22/empathy-is-not-fixing-heres-what-it-actually-is",
+      "destination": "/podcast/empathy-in-action/",
+      "permanent": true
+    },
+    {
+      "source": "/2026/07/22/empathy-is-not-fixing-heres-what-it-actually-is/",
+      "destination": "/podcast/empathy-in-action/",
+      "permanent": true
+    },
+    {
+      "source": "/2026/08/05/the-truth-about-i-just-need-space",
+      "destination": "/podcast/saturday-reflection-procrastination/",
+      "permanent": true
+    },
+    {
+      "source": "/2026/08/05/the-truth-about-i-just-need-space/",
+      "destination": "/podcast/saturday-reflection-procrastination/",
+      "permanent": true
+    },
+    {
+      "source": "/2026/08/12/you-are-not-your-experiences-finding-yourself-beyond-the-story-youve-been-told",
+      "destination": "/podcast/testing-the-mic-finding-myself/",
+      "permanent": true
+    },
+    {
+      "source": "/2026/08/12/you-are-not-your-experiences-finding-yourself-beyond-the-story-youve-been-told/",
+      "destination": "/podcast/testing-the-mic-finding-myself/",
+      "permanent": true
+    },
+    {
+      "source": "/2026/08/19/five-questions-five-first-date-foods-to-avoid-and-way-too-many-laughs",
+      "destination": "/podcast/five-questions-five-foods/",
+      "permanent": true
+    },
+    {
+      "source": "/2026/08/19/five-questions-five-first-date-foods-to-avoid-and-way-too-many-laughs/",
+      "destination": "/podcast/five-questions-five-foods/",
+      "permanent": true
+    },
+    {
+      "source": "/2026/08/26/first-date-red-flags-safety-plans-and-the-man-who-ate-all-her-ramen",
+      "destination": "/podcast/first-dates-food-fails-empathy/",
+      "permanent": true
+    },
+    {
+      "source": "/2026/08/26/first-date-red-flags-safety-plans-and-the-man-who-ate-all-her-ramen/",
+      "destination": "/podcast/first-dates-food-fails-empathy/",
+      "permanent": true
+    },
+    {
+      "source": "/2026/07/01/how-to-stop-reacting-and-start-responding-a-walk-that-taught-me-more-than-i-expected",
+      "destination": "/podcast/walk-and-reflect-emotional-intelligence/",
+      "permanent": true
+    },
+    {
+      "source": "/2026/07/01/how-to-stop-reacting-and-start-responding-a-walk-that-taught-me-more-than-i-expected/",
+      "destination": "/podcast/walk-and-reflect-emotional-intelligence/",
+      "permanent": true
+    },
+    {
+      "source": "/2026/06/24/why-i-started-my-sisters-closet-and-what-i-hope-it-becomes",
+      "destination": "/podcast/real-talk-real-healing/",
+      "permanent": true
+    },
+    {
+      "source": "/2026/06/24/why-i-started-my-sisters-closet-and-what-i-hope-it-becomes/",
+      "destination": "/podcast/real-talk-real-healing/",
+      "permanent": true
+    },
+    {
+      "source": "/2026/04/06/learning-triggered-and-moving-forward",
+      "destination": "/podcast/feeling-triggered-how-to-repair/",
+      "permanent": true
+    },
+    {
+      "source": "/2026/04/06/learning-triggered-and-moving-forward/",
+      "destination": "/podcast/feeling-triggered-how-to-repair/",
+      "permanent": true
+    },
+    {
+      "source": "/my-sisters-closet-podcast",
+      "destination": "/podcast/",
+      "permanent": true
+    },
+    {
+      "source": "/my-sisters-closet-podcast/",
+      "destination": "/podcast/",
+      "permanent": true
+    },
+    {
+      "source": "/posts",
+      "destination": "/podcast/",
+      "permanent": true
+    },
+    {
+      "source": "/posts/",
+      "destination": "/podcast/",
+      "permanent": true
+    },
+    {
+      "source": "/hallies-conversations",
+      "destination": "/talk-with-hallie/",
+      "permanent": true
+    },
+    {
+      "source": "/hallies-conversations/",
+      "destination": "/talk-with-hallie/",
+      "permanent": true
+    },
+    {
+      "source": "/pages-for-you",
+      "destination": "/journal/",
+      "permanent": true
+    },
+    {
+      "source": "/pages-for-you/",
+      "destination": "/journal/",
+      "permanent": true
+    },
+    {
+      "source": "/products",
+      "destination": "/shop/",
+      "permanent": true
+    },
+    {
+      "source": "/products/",
+      "destination": "/shop/",
+      "permanent": true
+    },
+    {
+      "source": "/cart",
+      "destination": "/shop/",
+      "permanent": true
+    },
+    {
+      "source": "/cart/",
+      "destination": "/shop/",
+      "permanent": true
+    },
+    {
+      "source": "/checkout-2",
+      "destination": "/shop/",
+      "permanent": true
+    },
+    {
+      "source": "/checkout-2/",
+      "destination": "/shop/",
+      "permanent": true
+    },
+    {
+      "source": "/my-account",
+      "destination": "/shop/",
+      "permanent": true
+    },
+    {
+      "source": "/my-account/",
+      "destination": "/shop/",
+      "permanent": true
+    },
+    {
+      "source": "/the-inner-mind-2",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/the-inner-mind-2/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/visuals",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/visuals/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/more",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/more/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/product/:slug*",
+      "destination": "/shop/",
+      "permanent": true
+    },
+    {
+      "source": "/checkout/:path*",
+      "destination": "/shop/",
+      "permanent": true
+    },
+    {
+      "source": "/checkout",
+      "destination": "/shop/",
+      "permanent": true
+    },
+    {
+      "source": "/posts/:path*",
+      "destination": "/podcast/",
+      "permanent": true
+    },
+    {
+      "source": "/2025/:path*",
+      "destination": "/podcast/",
+      "permanent": true
+    },
+    {
+      "source": "/2026/:path*",
+      "destination": "/podcast/",
+      "permanent": true
+    },
+    {
+      "source": "/752-2/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/752-2",
+      "destination": "/",
+      "permanent": true
+    }
+  ]
 }

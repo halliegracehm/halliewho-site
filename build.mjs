@@ -96,7 +96,8 @@ ${body}
     ${cfg.podcastInstagramUrl ? `<a href="${cfg.podcastInstagramUrl}">Podcast Instagram</a>` : ""}
     <a href="${cfg.linksHub}">All links</a>
   </nav>
-  <p style="margin-top:14px">Made in Alabama. These quizzes are for reflection, not diagnosis.</p>
+  <p style="margin-top:14px"><a href="${r("support/")}">Support</a> · <a href="${r("terms-of-use/")}">Terms</a> · <a href="${r("privacy-policy/")}">Privacy</a></p>
+  <p style="margin-top:8px">Made in Alabama. These quizzes are for reflection, not diagnosis.</p>
 </footer>
 </div>
 </div>
@@ -642,6 +643,80 @@ document.querySelectorAll(".chapters a").forEach((a) => a.addEventListener("clic
   }));
 });
 
+// ---------- app pages: support, terms, privacy ----------
+// These addresses are linked from the My Inner Mind App Store listing. Keep the paths the same.
+const legalPage = (page, title, description, h1, updated, sections) => write(page, layout({
+  page, title, description,
+  jsonld: [crumbs([["Home", ""], [h1, page]])],
+  body: `
+<section class="first">
+  <div class="measure legal">
+    <h1>${esc(h1)}</h1>
+    ${updated ? `<p class="small" style="margin-top:12px">Last updated ${esc(updated)}</p>` : ""}
+    ${sections.map(([h, ps]) => `${h ? `<h2>${esc(h)}</h2>` : ""}${ps.map((p) => Array.isArray(p) ? `<ul>${p.map((li) => `<li>${li}</li>`).join("")}</ul>` : `<p>${p}</p>`).join("")}`).join("\n")}
+  </div>
+</section>`,
+}));
+const mail = `<a href="mailto:${cfg.supportEmail}">${cfg.supportEmail}</a>`;
+
+legalPage("support/", "My Inner Mind Support | Hallie Who",
+  "Get help with the My Inner Mind app: subscriptions, billing, account deletion, and how to reach Hallie.",
+  "My Inner Mind support", "", [
+    ["", [`Questions about the app, your account, or your subscription? Email ${mail} and I'll get back to you, usually within 24 to 48 hours.`]],
+    ["Common questions", []],
+    ["How do I cancel my subscription?", [`Subscriptions are billed through your Apple ID. On your iPhone, open Settings, tap your name, then Subscriptions, and choose My Inner Mind. Cancel at least 24 hours before your renewal date to avoid the next charge. If you need help, email ${mail}.`]],
+    ["How do I delete my account?", ["Open the app, go to Account Settings, and choose delete account. This removes your account and the content tied to it. Deleting the app alone does not cancel a subscription, so cancel that in Settings too."]],
+    ["I have a billing question.", [`Email ${mail} with the email address on your account and what you're seeing. Refunds for App Store purchases are handled by Apple through reportaproblem.apple.com.`]],
+    ["I want to report a post or a person.", [`Use the report or block option on the post or profile inside the app. You can also email ${mail}.`]],
+  ]);
+
+legalPage("terms-of-use/", "Terms of Use | My Inner Mind",
+  "Terms of use for the My Inner Mind app, including subscriptions, community guidelines, and your content.",
+  "Terms of use", cfg.legalUpdated, [
+    ["Agreeing to these terms", ["By using My Inner Mind, you agree to these terms. If you don't agree, please don't use the app."]],
+    ["Subscriptions", [
+      "My Inner Mind offers two auto-renewing subscriptions:",
+      ["<strong>Community</strong>, $6.99 a month", "<strong>Off the Record</strong>, $12.99 a month"],
+      "Payment is charged to your Apple ID when you confirm your purchase. Your subscription renews automatically unless you cancel at least 24 hours before the end of the current period. You can manage or cancel it any time in your iPhone's Settings under your Apple ID, then Subscriptions.",
+    ]],
+    ["Your content", ["Your journal entries are private by default. You decide what, if anything, to share with the community. You keep ownership of what you write. I will never sell your data."]],
+    ["Community guidelines", ["Be kind. Posts that are objectionable, abusive, hateful, harassing, sexually explicit, or harmful to yourself or others are not allowed. You can report or block any post or person in the app. Content that breaks these rules is removed, and accounts that break them can be terminated right away."]],
+    ["Not a substitute for care", ["My Inner Mind is a tool for reflection and connection. It isn't therapy, medical advice, or a crisis service. If you're in crisis in the US, call or text 988 any time."]],
+    ["Privacy", [`Our <a href="${rel("terms-of-use/", "privacy-policy/")}">privacy policy</a> explains what we collect and how we use it, and is part of these terms.`]],
+    ["Changes", ["These terms may be updated from time to time. If you keep using the app after a change, that means you accept the updated terms."]],
+    ["Contact", [`Questions? Email ${mail}.`]],
+  ]);
+
+legalPage("privacy-policy/", "Privacy Policy | My Inner Mind and Hallie Who",
+  "How the My Inner Mind app and halliewho.com collect, use, and protect your information.",
+  "Privacy policy", cfg.legalUpdated, [
+    ["", ["This policy covers the My Inner Mind app and halliewho.com, run by Hallie Who. The short version: your journal is yours, I collect only what the app needs to work, and I never sell your data."]],
+    ["What we collect", [[
+      "<strong>Account details</strong>, like your email address and display name, so you can sign in.",
+      "<strong>What you write and log in the app</strong>, like journal entries, mood check-ins, and anything you choose to post to the community.",
+      "<strong>Subscription status.</strong> Purchases go through Apple. We see whether your subscription is active, but never your card or payment details.",
+      "<strong>Basic usage and device information</strong>, like crash reports, needed to keep the app working.",
+      "<strong>Quiz answers and email</strong>, if you take a quiz on halliewho.com and choose to enter your email.",
+    ]]],
+    ["How we use it", [[
+      "To run the app: saving your entries, showing your history, and running the community",
+      "To manage your subscription",
+      "To send emails you signed up for, like a welcome email or your quiz result. You can unsubscribe any time.",
+      "To keep the community safe, including reviewing reported content",
+    ]]],
+    ["Who we share it with", [
+      "We never sell your information or use it for advertising. We only share it with the services that run the app and site:",
+      ["Supabase, which stores account data and app content", "Apple and RevenueCat, which handle subscriptions", "Mailchimp, which sends emails", "Vercel, which hosts the website"],
+      "We may also share information if the law requires it.",
+    ]],
+    ["Private by default", ["Journal entries and check-ins are private unless you choose to share them. Posts you share to the community can be seen by other members."]],
+    ["Keeping or deleting your data", [`We keep your information while your account is open. You can delete your account any time in the app under Account Settings, which deletes your data from our systems. You can also email ${mail} to ask for a copy of your data or to have it deleted.`]],
+    ["Children", ["My Inner Mind isn't meant for children under 13, and we don't knowingly collect their information."]],
+    ["Website", ["halliewho.com uses privacy-friendly visitor statistics from Vercel to count page views. It doesn't use advertising cookies."]],
+    ["Changes", ["If this policy changes, the date at the top will change too."]],
+    ["Contact", [`Questions about your privacy? Email ${mail}.`]],
+  ]);
+
 // 404
 write("404.html", layout({ canonicalPage: "404.html",
   page: "/",
@@ -651,7 +726,7 @@ write("404.html", layout({ canonicalPage: "404.html",
 }));
 
 // Sitemap and robots
-const pages = ["", "find-your-pattern/", "patterns/", "shop/", "journal/", "podcast/", ...EPISODES.map(epPage), "books/", "games/", "talk-with-hallie/", "work-with-me/", ...QUIZ.map((q) => q.page), ...PATTERNS.map((p) => p.page)];
+const pages = ["", "find-your-pattern/", "patterns/", "shop/", "journal/", "podcast/", ...EPISODES.map(epPage), "books/", "games/", "talk-with-hallie/", "work-with-me/", "support/", "terms-of-use/", "privacy-policy/", ...QUIZ.map((q) => q.page), ...PATTERNS.map((p) => p.page)];
 write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${pages.map((p) => `  <url><loc>${cfg.siteUrl}/${p}</loc><lastmod>${today}</lastmod></url>`).join("\n")}

@@ -21,6 +21,10 @@ export default {
   // Where "Work with me" inquiries go.
   contactEmail: "halliegracehm@gmail.com",
 
+  // App support email (shown on /support, /terms-of-use, /privacy-policy) and the date those pages last changed.
+  supportEmail: "hello@halliewho.com",
+  legalUpdated: "October 15, 2026",
+
   // Etsy printables (Innershelfstudio). Each quiz result recommends one of these.
   etsyShop: "https://www.etsy.com/shop/Innershelfstudio",
   products: {
