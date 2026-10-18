@@ -163,14 +163,14 @@ export default {
       price: "$150 a month",
       hours: "5 hours a month",
       what: "For the listings and posts that keep slipping to the bottom of your list.",
-      gets: ["Up to 4 new or refreshed Etsy listings", "Scheduling your posts", "Answering common buyer messages", "A quick monthly check-in"]
+      gets: ["Up to 4 new or refreshed Etsy listings", "Answering common buyer messages on Etsy and Instagram", "Scheduling your social posts", "Calendar and appointment scheduling, with reminders", "A quick monthly check-in"]
     },
     {
       name: "Steady",
       price: "$285 a month",
       hours: "10 hours a month",
       what: "Weekly help so your business keeps moving while you focus on the work you love.",
-      gets: ["Everything in Starter", "Up to 10 listings a month with titles, descriptions, and all 13 tags", "Canva graphics and listing mockups", "One email newsletter a month, written and sent"]
+      gets: ["Everything in Starter", "Up to 10 listings a month with titles, descriptions, and all 13 tags", "Product photos and listing mockups in Canva", "Pinterest pins for your products, so buyers find you", "One email newsletter a month, written and sent"]
     },
     {
       name: "Growth",
@@ -183,6 +183,12 @@ export default {
 
   // Starting prices for the done-for-you services (shown on /work-with-me)
   services: [
+    {
+      name: "Holiday and sale prep",
+      price: "Starting at $175",
+      what: "Get your shop ready for Black Friday, the holidays, Valentine's Day, or your own big sale.",
+      gets: ["Seasonal titles, tags, and photos on your top listings", "Sale graphics for your posts and stories", "An email announcing the sale", "A simple posting schedule for the sale week"]
+    },
     {
       name: "Instagram DM automation (a great first project)",
       price: "Starting at $125",

@@ -709,13 +709,13 @@ for (const p of PATTERNS) {
   write(page, layout({
     page,
     title: "Virtual Assistant for Etsy Sellers and Small Shops | Hallie Who",
-    description: "Monthly virtual assistant support for Etsy sellers and small shops: listings, tags, social posts, Canva graphics, and newsletters. Based near Birmingham, Alabama, working with you anywhere.",
+    description: "Monthly virtual assistant support for Etsy sellers and small shops: listings and tags, product mockups, buyer messages, social posts, Pinterest, scheduling, and newsletters. Based near Birmingham, Alabama, working with you anywhere.",
     jsonld: [crumbs([["Home", ""], ["Work with me", page]])],
     body: `
 <section class="first">
   <div class="measure">
     <h1>Hand it off. Keep growing.</h1>
-    <p class="lede">I'm a virtual assistant for Etsy sellers and small shops. I run my own Etsy shop, so I know the listings, tags, photos, and posts that pile up while you're busy making things. I can take them off your plate.</p>
+    <p class="lede">I'm a virtual assistant for Etsy sellers and small shops. I run my own Etsy shop, so I know the listings, photos, buyer messages, posts, and appointments that pile up while you're busy making things. I can take them off your plate.</p>
     <div class="actions"><a class="btn" href="${mailto}">Email me to get started</a><a class="btn ghost" href="${rel(page, "guides/")}">Read my free guides</a></div>
   </div>
 </section>
