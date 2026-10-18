@@ -162,32 +162,32 @@ export default {
       name: "Starter",
       price: "$150 a month",
       hours: "5 hours a month",
-      what: "For the stuff that keeps slipping to the bottom of your list.",
-      gets: ["Inbox and DM sorting", "Scheduling your posts", "Small Etsy or website updates", "A quick monthly check-in"]
+      what: "For the listings and posts that keep slipping to the bottom of your list.",
+      gets: ["Up to 4 new or refreshed Etsy listings", "Scheduling your posts", "Answering common buyer messages", "A quick monthly check-in"]
     },
     {
       name: "Steady",
       price: "$285 a month",
       hours: "10 hours a month",
       what: "Weekly help so your business keeps moving while you focus on the work you love.",
-      gets: ["Everything in Starter", "One email newsletter a month, written and sent", "Canva graphics for your posts", "New Etsy or shop listings"]
+      gets: ["Everything in Starter", "Up to 10 listings a month with titles, descriptions, and all 13 tags", "Canva graphics and listing mockups", "One email newsletter a month, written and sent"]
     },
     {
       name: "Growth",
       price: "$540 a month",
       hours: "20 hours a month",
-      what: "A right hand for creators and shops that are ready to grow.",
-      gets: ["Everything in Steady", "Two newsletters a month", "Simple website and landing page updates", "A monthly planning call and content calendar"]
+      what: "A right hand for shops that are ready to grow.",
+      gets: ["Everything in Steady", "A full shop refresh: older listings, photos, and tags", "Two newsletters a month", "A monthly planning call and content calendar"]
     }
   ],
 
   // Starting prices for the done-for-you services (shown on /work-with-me)
   services: [
     {
-      name: "Quiz funnel, done for you",
-      price: "Starting at $350",
-      what: "A branded personality-style quiz for your audience: questions, result types, result copy, and email capture wired to your Mailchimp so every quiz taker joins your list.",
-      gets: ["Up to 10 questions and 4 result types", "Result pages written in your voice", "Email capture connected to your list", "Ready to share in your bio and stories"]
+      name: "Instagram DM automation (a great first project)",
+      price: "Starting at $125",
+      what: "Someone comments a keyword, they get your link in their DMs automatically.",
+      gets: ["Up to 3 keyword flows", "Message copy written for you", "Connected to your freebie or offer"]
     },
     {
       name: "Lead magnet page",
@@ -196,10 +196,10 @@ export default {
       gets: ["Page design and copy", "Mailchimp signup connected", "QR code for events and tables"]
     },
     {
-      name: "Instagram DM automation",
-      price: "Starting at $125",
-      what: "Someone comments a keyword, they get your link in their DMs automatically.",
-      gets: ["Up to 3 keyword flows", "Message copy written for you", "Connected to your freebie or offer"]
+      name: "Quiz funnel, done for you",
+      price: "Starting at $350",
+      what: "A branded personality-style quiz for your audience: questions, result types, result copy, and email capture wired to your Mailchimp so every quiz taker joins your list.",
+      gets: ["Up to 10 questions and 4 result types", "Result pages written in your voice", "Email capture connected to your list", "Ready to share in your bio and stories"]
     }
   ],
 

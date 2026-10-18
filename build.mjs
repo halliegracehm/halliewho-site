@@ -48,7 +48,7 @@ card("journal/", "Pages for You", "A 30-day journal written only for you", "Arou
 card("podcast/", "My Inner Mind podcast", "Honest conversations about the patterns we carry", "New episodes from Hallie Who");
 card("walk-with-me/", "Free 21-day challenge", "Walk with me.", "20 minutes a day. One honest question to carry with you.");
 card("talk-with-hallie/", "Talk with Hallie", "Sometimes you just need someone to talk it through with", "Phone calls, walk and talks, and accountability");
-card("work-with-me/", "Virtual assistant", "Hand it off. Keep growing.", "VA support for creators and small shops");
+card("work-with-me/", "Virtual assistant", "Hand it off. Keep growing.", "VA support for Etsy sellers and small shops");
 card("guides/", "Free guides", "Free guides for creators and small shops", "Simple ways to save time and grow your list");
 card("books/", "Books", "Books by Hallie Who", "A picture book and a memoir on the way");
 for (const q of QUIZ) card(q.page, "Free quiz", q.title, q.sub);
@@ -259,8 +259,8 @@ fs.cpSync("games", path.join(OUT, "games"), { recursive: true });
 
 <section>
   <div class="measure">
-    <h2>Running a small business or creator brand?</h2>
-    <p>I'm a virtual assistant for creators and small shops: inbox, posts, listings, newsletters, and the quizzes and freebies that grow your list. The quizzes on this site are the demo.</p>
+    <h2>Running an Etsy shop or small business?</h2>
+    <p>I'm a virtual assistant for Etsy sellers and small shops: listings and tags, social posts, Canva graphics, and newsletters, so you can get back to making things.</p>
     <div class="actions"><a class="btn ghost" href="${r("work-with-me/")}">See how I can help</a><a class="btn ghost" href="${r("guides/")}">Free guides</a></div>
   </div>
 </section>`,
@@ -708,14 +708,14 @@ for (const p of PATTERNS) {
   const mailto = `mailto:${cfg.contactEmail}?subject=${encodeURIComponent("Working with Hallie")}&body=${encodeURIComponent("Hi Hallie,\n\nWhat I'd like help with:\n\nMy business or page:\n\nWhen I'd like it done:\n")}`;
   write(page, layout({
     page,
-    title: "Virtual Assistant for Creators and Small Shops | Hallie Who",
-    description: "Monthly virtual assistant support for creators, Etsy sellers, and small businesses, plus done-for-you quiz funnels and lead magnet pages. Based near Birmingham, Alabama, working with you anywhere.",
+    title: "Virtual Assistant for Etsy Sellers and Small Shops | Hallie Who",
+    description: "Monthly virtual assistant support for Etsy sellers and small shops: listings, tags, social posts, Canva graphics, and newsletters. Based near Birmingham, Alabama, working with you anywhere.",
     jsonld: [crumbs([["Home", ""], ["Work with me", page]])],
     body: `
 <section class="first">
   <div class="measure">
     <h1>Hand it off. Keep growing.</h1>
-    <p class="lede">I'm a virtual assistant for creators and small shops. I run my own Etsy shop, podcast, app, email list, and this website, so I know how much falls through the cracks. I can catch it for you.</p>
+    <p class="lede">I'm a virtual assistant for Etsy sellers and small shops. I run my own Etsy shop, so I know the listings, tags, photos, and posts that pile up while you're busy making things. I can take them off your plate.</p>
     <div class="actions"><a class="btn" href="${mailto}">Email me to get started</a><a class="btn ghost" href="${rel(page, "guides/")}">Read my free guides</a></div>
   </div>
 </section>
@@ -728,8 +728,8 @@ for (const p of PATTERNS) {
 </section>
 <section>
   <div class="measure">
-    <h2>Done-for-you projects</h2>
-    <p>One-time builds with a fixed price. <a href="${rel(page, "find-your-pattern/")}">Try a live quiz</a> to see the kind of thing I make.</p>
+    <h2>One-time projects</h2>
+    <p>Want to try working together first? Start with a small project at a fixed price.</p>
     ${services}
   </div>
 </section>
