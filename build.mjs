@@ -897,7 +897,7 @@ ${pages.map((p) => `  <url><loc>${cfg.siteUrl}/${p}</loc><lastmod>${today}</last
   <title>${esc(c.title)}</title>
   <link>${link}</link>
   <guid isPermaLink="true">${link}</guid>
-  <description>${esc(c.sub.replace(/[.?!]$/, "") + ". " + c.kicker + " from Hallie Who.")}</description>
+  <description>${esc(c.sub.replace(/[.?!]$/, "") + "." + (c.kicker === "Hallie Who" ? "" : " " + c.kicker + " from Hallie Who."))}</description>
   <pubDate>${rfc(ep ? ep.date : added)}</pubDate>
   <enclosure url="${img}" type="image/jpeg" length="0"/>
   <media:content url="${img}" medium="image" type="image/jpeg"/>
