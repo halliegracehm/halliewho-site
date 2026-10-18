@@ -141,6 +141,7 @@
       var grid = el("div", { class: "picks" });
       r.picks.forEach(function (x) {
         var a = el("a", { class: "pick", href: x.url });
+        if (x.img) a.appendChild(el("img", { class: "pick-img", src: x.img, alt: x.name, loading: "lazy" }));
         a.appendChild(el("span", { class: "pick-name" }, x.name));
         a.appendChild(el("span", { class: "pick-why" }, x.why));
         var foot = el("span", { class: "pick-foot" });
@@ -152,6 +153,7 @@
       pk.appendChild(grid);
       root.appendChild(pk);
     }
+    if (data.share) root.appendChild(shareBlock(r));
     var again = el("div", { class: "actions" });
     var retake = el("button", { type: "button", class: "linkbtn" }, "Retake this quiz");
     retake.addEventListener("click", function () { cur = 0; answers = []; renderQuestion(); });
@@ -160,6 +162,32 @@
     root.appendChild(again);
     name.focus();
     window.scrollTo({ top: root.offsetTop - 20 });
+  }
+
+  // Share your result: sends friends to the quiz itself.
+  function shareBlock(r) {
+    var url = data.share.url;
+    var text = "I got " + r.title + " on Hallie Who's \"" + data.share.quiz + "\" quiz. What's yours?";
+    var box = el("div", { class: "share" });
+    box.appendChild(el("h3", null, "Share your result"));
+    box.appendChild(el("p", null, "Send it to someone you'd love to compare with."));
+    var row = el("div", { class: "actions" });
+    var msg = el("p", { class: "small", role: "status" });
+    if (navigator.share) {
+      var b = el("button", { type: "button", class: "btn" }, "Share");
+      b.addEventListener("click", function () { navigator.share({ title: r.title, text: text, url: url }).catch(function () {}); });
+      row.appendChild(b);
+    }
+    var copy = el("button", { type: "button", class: "btn ghost" }, "Copy link");
+    copy.addEventListener("click", function () {
+      var t = text + " " + url;
+      (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(function () { msg.textContent = "Copied. Paste it anywhere."; }, function () { msg.textContent = t; });
+    });
+    row.appendChild(copy);
+    row.appendChild(el("a", { class: "btn ghost", target: "_blank", rel: "noopener", href: "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(url) }, "Facebook"));
+    if (r.pin) row.appendChild(el("a", { class: "btn ghost", target: "_blank", rel: "noopener", href: "https://www.pinterest.com/pin/create/button/?url=" + encodeURIComponent(url) + "&media=" + encodeURIComponent(r.pin) + "&description=" + encodeURIComponent(text) }, "Pinterest"));
+    box.appendChild(row); box.appendChild(msg);
+    return box;
   }
 
   var start = document.getElementById("start-quiz");

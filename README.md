@@ -30,3 +30,14 @@ The new Hallie Who site. Plain HTML built by one small script, so it's fast and 
 node build.mjs
 npx serve dist
 ```
+
+## Share images and Pinterest
+
+Every page has a share image (`assets/og/`) and a Pinterest pin (`assets/pins/`). Pinterest reads `https://halliewho.com/pins.xml` and pins new pages on its own.
+
+After adding pages (new episodes, quizzes, patterns), make their images:
+
+```
+node build.mjs
+python3 tools/make-images.py
+```

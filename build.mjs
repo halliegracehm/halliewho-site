@@ -32,6 +32,32 @@ const PATTERNS = QUIZ.flatMap((q) => Object.values(q.types).map((t) => ({ ...t, 
 }
 const quizKind = (q) => q.types[Object.keys(q.types)[0]].badge.replace(/^Your /, "").replace(/^What you learned$/, "childhood love pattern");
 
+// ---------- share images ----------
+// Each page gets a card: the text drawn on its share image and Pinterest pin.
+// Images live in assets/og/<key>.jpg (1200x630) and assets/pins/<key>.jpg (1000x1500).
+// Make new ones after adding pages: node build.mjs && python3 tools/make-images.py
+const cardKey = (page) => slugify(page) || "home";
+const CARDS = {};
+const card = (page, kicker, title, sub) => { CARDS[page] = { page, key: cardKey(page), kicker, title, sub }; };
+card("", "Hallie Who", "These aren't personality tests. They're mirrors.", "Free quizzes and journals for the patterns you carry");
+card("find-your-pattern/", "Free quizzes", "Find your pattern", "Six quizzes. One honest look at how you connect.");
+card("patterns/", "Hallie Who", "Every pattern, in one place", "The patterns we carry, and what to do with them");
+card("shop/", "Innershelf Studio", "Printable journals and art prints", "Small, honest tools for the patterns you carry");
+card("journal/", "Pages for You", "A 30-day journal written only for you", "Around what you're carrying right now");
+card("podcast/", "My Inner Mind podcast", "Honest conversations about the patterns we carry", "New episodes from Hallie Who");
+card("walk-with-me/", "Free 21-day challenge", "Walk with me.", "20 minutes a day. One honest question to carry with you.");
+card("talk-with-hallie/", "Talk with Hallie", "Sometimes you just need someone to talk it through with", "Phone calls, walk and talks, and accountability");
+card("work-with-me/", "Work with Hallie", "Quiz funnels and lead magnets for creators", "Done for you, built to grow your list");
+card("books/", "Books", "Books by Hallie Who", "A picture book and a memoir on the way");
+for (const q of QUIZ) card(q.page, "Free quiz", q.title, q.sub);
+for (const p of PATTERNS) card(p.page, p.badge, p.title, "Take the quiz: " + p.quiz.title);
+for (const e of EPISODES) card(`podcast/${e.slug}/`, "My Inner Mind podcast", e.title, "Listen on YouTube");
+const hasImg = (dir, key) => fs.existsSync(`assets/${dir}/${key}.jpg`);
+const ogFor = (page) => {
+  const key = cardKey(page === "/" ? "" : page);
+  return cfg.siteUrl + "/assets/og/" + (hasImg("og", key) ? key : "home") + ".jpg";
+};
+
 // ---------- layout ----------
 function rel(from, to) {
   if (from === "/") return "/" + to;
@@ -66,7 +92,12 @@ function layout({ page, title, description, body, jsonld = [], scripts = "", ogT
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:url" content="${canonical}">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="${ogFor(page)}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="${ogFor(page)}">
+<link rel="alternate" type="application/rss+xml" title="Hallie Who" href="${cfg.siteUrl}/pins.xml">
 <meta name="theme-color" content="#F3EEF8">
 <link rel="icon" href="${r("assets/favicon.svg")}" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -109,7 +140,7 @@ ${scripts}
 }
 
 function write(page, html) {
-  const file = path.join(OUT, page, page.endsWith(".html") || page.endsWith(".xml") || page.endsWith(".txt") ? "" : "index.html");
+  const file = path.join(OUT, page, page.endsWith(".html") || page.endsWith(".xml") || page.endsWith(".txt") || page.endsWith(".json") ? "" : "index.html");
   fs.mkdirSync(path.dirname(file), { recursive: true });
   fs.writeFileSync(file, html);
 }
@@ -256,11 +287,12 @@ for (const q of QUIZ) {
   const page = q.page;
   const types = {};
   for (const [k, t] of Object.entries(q.types)) {
-    types[k] = { badge: t.badge, title: t.title, body: t.body, l1: t.l1, t1: t.t1, l2: t.l2, t2: t.t2, slug: t.slug, url: rel(page, t.page), picks: picksFor(q.id, k) };
+    types[k] = { badge: t.badge, title: t.title, body: t.body, l1: t.l1, t1: t.t1, l2: t.l2, t2: t.t2, slug: t.slug, url: rel(page, t.page), picks: picksFor(q.id, k), pin: hasImg("pins", cardKey(t.page)) ? cfg.siteUrl + "/assets/pins/" + cardKey(t.page) + ".jpg" : "" };
   }
   const data = {
     qs: q.qs, types, mailchimp: cfg.mailchimp, journalUrl: cfg.journalUrl, journalPrice: cfg.journalPrice,
     hubUrl: rel(page, "find-your-pattern/"),
+    share: { url: cfg.siteUrl + "/" + page, quiz: q.title },
   };
   const results = Object.values(q.types).map((t) => `<li><a href="${rel(page, t.page)}">${esc(t.title)}</a></li>`).join("");
   write(page, layout({
@@ -853,6 +885,36 @@ write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>
 ${pages.map((p) => `  <url><loc>${cfg.siteUrl}/${p}</loc><lastmod>${today}</lastmod></url>`).join("\n")}
 </urlset>
 `);
+// Pinterest feed: Pinterest checks this and pins anything new, automatically.
+{
+  const rfc = (d) => new Date(d + "T12:00:00Z").toUTCString();
+  const added = "2026-10-18";
+  const items = Object.values(CARDS).filter((c) => hasImg("pins", c.key)).map((c) => {
+    const ep = EPISODES.find((e) => `podcast/${e.slug}/` === c.page);
+    const img = `${cfg.siteUrl}/assets/pins/${c.key}.jpg`;
+    const link = cfg.siteUrl + "/" + c.page;
+    return `<item>
+  <title>${esc(c.title)}</title>
+  <link>${link}</link>
+  <guid isPermaLink="true">${link}</guid>
+  <description>${esc(c.sub + ". " + c.kicker + " from Hallie Who.")}</description>
+  <pubDate>${rfc(ep ? ep.date : added)}</pubDate>
+  <enclosure url="${img}" type="image/jpeg" length="0"/>
+  <media:content url="${img}" medium="image" type="image/jpeg"/>
+</item>`;
+  });
+  write("pins.xml", `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+<channel>
+<title>Hallie Who</title>
+<link>${cfg.siteUrl}/</link>
+<description>${esc(cfg.tagline)}</description>
+${items.join("\n")}
+</channel>
+</rss>
+`);
+  write("cards.json", JSON.stringify(Object.values(CARDS), null, 1));
+}
 write("robots.txt", `User-agent: *\nAllow: /\n\nSitemap: ${cfg.siteUrl}/sitemap.xml\n`);
 
 console.log(`Built ${pages.length} pages into ${OUT}/`);

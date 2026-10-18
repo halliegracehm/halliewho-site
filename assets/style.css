@@ -277,3 +277,9 @@ section.first { border-top: 0; padding-top: 40px; }
 .walk-days li { display: grid; grid-template-columns: 70px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--rule); }
 .walk-days .day { font-size: 14px; color: var(--violet); font-weight: 500; }
 @media (max-width: 720px) { .walk-hero { grid-template-columns: 1fr; } .walk-photo { max-width: 320px; order: -1; } }
+
+/* Share your result */
+.share { margin-top: 34px; padding: 22px; border-radius: 16px; background: var(--rose-soft); }
+.share h3 { margin-bottom: 4px; }
+.share .actions { margin-top: 14px; }
+.share .small { margin-top: 10px; }
