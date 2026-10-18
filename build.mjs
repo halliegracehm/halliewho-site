@@ -7,6 +7,7 @@ import cfg from "./site.config.mjs";
 const quizzes = JSON.parse(fs.readFileSync("content/quizzes.json", "utf8"));
 const extras = JSON.parse(fs.readFileSync("content/extras.json", "utf8"));
 const EPISODES = JSON.parse(fs.readFileSync("content/episodes.json", "utf8")).sort((a, b) => b.date.localeCompare(a.date));
+const GUIDES = JSON.parse(fs.readFileSync("content/guides.json", "utf8"));
 const OUT = "dist";
 const today = new Date().toISOString().slice(0, 10);
 
@@ -47,10 +48,12 @@ card("journal/", "Pages for You", "A 30-day journal written only for you", "Arou
 card("podcast/", "My Inner Mind podcast", "Honest conversations about the patterns we carry", "New episodes from Hallie Who");
 card("walk-with-me/", "Free 21-day challenge", "Walk with me.", "20 minutes a day. One honest question to carry with you.");
 card("talk-with-hallie/", "Talk with Hallie", "Sometimes you just need someone to talk it through with", "Phone calls, walk and talks, and accountability");
-card("work-with-me/", "Work with Hallie", "Quiz funnels and lead magnets for creators", "Done for you, built to grow your list");
+card("work-with-me/", "Virtual assistant", "Hand it off. Keep growing.", "VA support for creators and small shops");
+card("guides/", "Free guides", "Free guides for creators and small shops", "Simple ways to save time and grow your list");
 card("books/", "Books", "Books by Hallie Who", "A picture book and a memoir on the way");
 for (const q of QUIZ) card(q.page, "Free quiz", q.title, q.sub);
 for (const p of PATTERNS) card(p.page, p.badge, p.title, "Take the quiz: " + p.quiz.title);
+for (const g of GUIDES) card(`guides/${g.slug}/`, g.kicker, g.title, "A free guide from a virtual assistant");
 for (const e of EPISODES) card(`podcast/${e.slug}/`, "My Inner Mind podcast", e.title, "Listen on YouTube");
 const hasImg = (dir, key) => fs.existsSync(`assets/${dir}/${key}.jpg`);
 const ogFor = (page) => {
@@ -256,9 +259,9 @@ fs.cpSync("games", path.join(OUT, "games"), { recursive: true });
 
 <section>
   <div class="measure">
-    <h2>Building something for your own audience?</h2>
-    <p>I build quiz funnels, lead magnet pages, and Instagram DM automations for creators and small businesses. The quizzes on this site are the demo.</p>
-    <div class="actions"><a class="btn ghost" href="${r("work-with-me/")}">See what I offer</a></div>
+    <h2>Running a small business or creator brand?</h2>
+    <p>I'm a virtual assistant for creators and small shops: inbox, posts, listings, newsletters, and the quizzes and freebies that grow your list. The quizzes on this site are the demo.</p>
+    <div class="actions"><a class="btn ghost" href="${r("work-with-me/")}">See how I can help</a><a class="btn ghost" href="${r("guides/")}">Free guides</a></div>
   </div>
 </section>`,
   }));
@@ -634,6 +637,58 @@ for (const p of PATTERNS) {
   }));
 }
 
+
+// Guides (content/guides.json): helpful articles that point to Work with me.
+{
+  const page = "guides/";
+  write(page, layout({
+    page,
+    title: "Free Guides for Creators and Small Shops | Hallie Who",
+    description: "Simple, honest guides for creators, Etsy sellers, and small business owners: what to hand off, how to grow your email list, and how to get your time back.",
+    jsonld: [crumbs([["Home", ""], ["Guides", page]])],
+    body: `
+<section class="first">
+  <div class="measure">
+    <h1>Free guides</h1>
+    <p class="lede">For creators, Etsy sellers, and small business owners who are doing it all themselves.</p>
+    <ul class="related" style="margin-top:24px">${GUIDES.map((g) => `<li><a href="${rel(page, `guides/${g.slug}/`)}">${esc(g.title)}</a></li>`).join("")}</ul>
+  </div>
+</section>`,
+  }));
+  for (const g of GUIDES) {
+    const gp = `guides/${g.slug}/`;
+    const others = GUIDES.filter((x) => x !== g);
+    write(gp, layout({
+      page: gp,
+      title: `${g.title} | Hallie Who`,
+      description: g.description,
+      ogType: "article",
+      jsonld: [crumbs([["Home", ""], ["Guides", page], [g.title, gp]]),
+        { "@context": "https://schema.org", "@type": "Article", headline: g.title, description: g.description, datePublished: g.date, author: { "@type": "Person", name: "Hallie Who" }, mainEntityOfPage: cfg.siteUrl + "/" + gp }],
+      body: `
+<section class="first"><article>
+  <div class="measure">
+    <p class="kicker">${esc(g.kicker)}</p>
+    <h1>${esc(g.title)}</h1>
+    <p class="lede">${esc(g.intro)}</p>
+    ${g.sections.map((x) => `<div class="depth"><h2 style="font-size:28px">${esc(x.h)}</h2>${x.p.map((t) => `<p>${esc(t)}</p>`).join("")}</div>`).join("")}
+    <div class="offer">
+      <h3>Want this off your plate?</h3>
+      <p>I'm a virtual assistant for creators and small shops. Monthly help starts at ${esc(cfg.vaPackages[0].price)}.</p>
+      <div class="actions"><a class="btn" href="${rel(gp, "work-with-me/")}">See how I can help</a></div>
+    </div>
+  </div>
+</article></section>
+<section>
+  <div class="measure">
+    <h2>More guides</h2>
+    <ul class="related">${others.map((x) => `<li><a href="${rel(gp, `guides/${x.slug}/`)}">${esc(x.title)}</a></li>`).join("")}</ul>
+  </div>
+</section>`,
+    }));
+  }
+}
+
 // Work with me
 {
   const page = "work-with-me/";
@@ -643,23 +698,38 @@ for (const p of PATTERNS) {
     <p>${esc(s.what)}</p>
     <ul>${s.gets.map((g) => `<li>${esc(g)}</li>`).join("")}</ul>
   </div>`).join("");
+  const va = cfg.vaPackages.map((s) => `
+  <div class="service">
+    <div class="service-head"><h3>${esc(s.name)}</h3><span class="price">${esc(s.price)}</span></div>
+    <p class="small">${esc(s.hours)}</p>
+    <p style="margin-top:8px">${esc(s.what)}</p>
+    <ul>${s.gets.map((g) => `<li>${esc(g)}</li>`).join("")}</ul>
+  </div>`).join("");
   const mailto = `mailto:${cfg.contactEmail}?subject=${encodeURIComponent("Working with Hallie")}&body=${encodeURIComponent("Hi Hallie,\n\nWhat I'd like help with:\n\nMy business or page:\n\nWhen I'd like it done:\n")}`;
   write(page, layout({
     page,
-    title: "Quiz Funnels and Email Capture, Done for You | Hallie Who",
-    description: "Done-for-you quiz funnels, lead magnet pages, and Instagram DM automations for creators, coaches, and small businesses. Grow your email list without the tech headache.",
+    title: "Virtual Assistant for Creators and Small Shops | Hallie Who",
+    description: "Monthly virtual assistant support for creators, Etsy sellers, and small businesses, plus done-for-you quiz funnels and lead magnet pages. Based near Birmingham, Alabama, working with you anywhere.",
     jsonld: [crumbs([["Home", ""], ["Work with me", page]])],
     body: `
 <section class="first">
   <div class="measure">
-    <h1>Let your audience find you</h1>
-    <p class="lede">I built the quizzes, email capture, and DM automations behind this site myself. I can build the same for you, so people join your list while you're busy doing everything else.</p>
-    <div class="actions"><a class="btn" href="${mailto}">Email me about a project</a><a class="btn ghost" href="${rel(page, "find-your-pattern/")}">Try a live quiz</a></div>
+    <h1>Hand it off. Keep growing.</h1>
+    <p class="lede">I'm a virtual assistant for creators and small shops. I run my own Etsy shop, podcast, app, email list, and this website, so I know how much falls through the cracks. I can catch it for you.</p>
+    <div class="actions"><a class="btn" href="${mailto}">Email me to get started</a><a class="btn ghost" href="${rel(page, "guides/")}">Read my free guides</a></div>
   </div>
 </section>
 <section>
   <div class="measure">
-    <h2>What I offer</h2>
+    <h2>Monthly VA support</h2>
+    <p>Pick the hours that fit. Change or cancel any month.</p>
+    ${va}
+  </div>
+</section>
+<section>
+  <div class="measure">
+    <h2>Done-for-you projects</h2>
+    <p>One-time builds with a fixed price. <a href="${rel(page, "find-your-pattern/")}">Try a live quiz</a> to see the kind of thing I make.</p>
     ${services}
   </div>
 </section>
@@ -667,9 +737,10 @@ for (const p of PATTERNS) {
   <div class="measure">
     <h2>How it works</h2>
     <ol class="steps">
-      <li>Email me what you want built and who it's for.</li>
-      <li>I send a short plan and a fixed price. No hourly surprises.</li>
-      <li>I build it, you review it, and we launch it together.</li>
+      <li>Email me what you need help with and a little about your business.</li>
+      <li>We hop on a free 15 minute call to see if we're a good fit.</li>
+      <li>I send a short plan and a fixed monthly or project price. No surprises.</li>
+      <li>We get to work, and you get your time back.</li>
     </ol>
     <div class="actions"><a class="btn" href="${mailto}">Email me about a project</a></div>
   </div>
@@ -880,7 +951,7 @@ write("404.html", layout({ canonicalPage: "404.html",
 }));
 
 // Sitemap and robots
-const pages = ["", "find-your-pattern/", "patterns/", "shop/", "journal/", "podcast/", ...EPISODES.map(epPage), "books/", "games/", "walk-with-me/", "talk-with-hallie/", "work-with-me/", "support/", "terms-of-use/", "privacy-policy/", ...QUIZ.map((q) => q.page), ...PATTERNS.map((p) => p.page)];
+const pages = ["", "find-your-pattern/", "patterns/", "shop/", "journal/", "podcast/", ...EPISODES.map(epPage), "books/", "games/", "walk-with-me/", "talk-with-hallie/", "work-with-me/", "guides/", ...GUIDES.map((g) => `guides/${g.slug}/`), "support/", "terms-of-use/", "privacy-policy/", ...QUIZ.map((q) => q.page), ...PATTERNS.map((p) => p.page)];
 write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${pages.map((p) => `  <url><loc>${cfg.siteUrl}/${p}</loc><lastmod>${today}</lastmod></url>`).join("\n")}

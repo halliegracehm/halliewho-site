@@ -156,6 +156,31 @@ export default {
     ]
   },
 
+  // Monthly VA support (shown first on /work-with-me). Hours roll into one monthly invoice.
+  vaPackages: [
+    {
+      name: "Starter",
+      price: "$150 a month",
+      hours: "5 hours a month",
+      what: "For the stuff that keeps slipping to the bottom of your list.",
+      gets: ["Inbox and DM sorting", "Scheduling your posts", "Small Etsy or website updates", "A quick monthly check-in"]
+    },
+    {
+      name: "Steady",
+      price: "$285 a month",
+      hours: "10 hours a month",
+      what: "Weekly help so your business keeps moving while you focus on the work you love.",
+      gets: ["Everything in Starter", "One email newsletter a month, written and sent", "Canva graphics for your posts", "New Etsy or shop listings"]
+    },
+    {
+      name: "Growth",
+      price: "$540 a month",
+      hours: "20 hours a month",
+      what: "A right hand for creators and shops that are ready to grow.",
+      gets: ["Everything in Steady", "Two newsletters a month", "Simple website and landing page updates", "A monthly planning call and content calendar"]
+    }
+  ],
+
   // Starting prices for the done-for-you services (shown on /work-with-me)
   services: [
     {
