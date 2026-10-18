@@ -110,6 +110,7 @@ export default {
       name: "Walk & Talk",
       price: "$45 by phone, $60 in person",
       length: "25 minutes",
+      photo: "assets/walk-trail.jpg",
       what: "A casual conversation while we walk. By phone, we each walk wherever we are. In person, we meet at a public park or trail near Birmingham. Good for feeling stuck, lonely, burned out, or ready to build a new routine.",
       bookings: [{ label: "Book by phone", url: "https://cal.com/halliewho/walkandtalk" }, { label: "Book in person", url: "https://cal.com/halliewho/walk-and-talk-in-person" }]
     },
@@ -117,10 +118,43 @@ export default {
       name: "Monthly Accountability",
       price: "$125 a month",
       length: "Two 25-minute calls a month",
+      photo: "assets/hallie-laptop.jpg",
       what: "We set goals together, track your habits, and check in on how you're really doing. Includes voice note support between calls.",
       bookings: [{ label: "Book your first call", url: "https://cal.com/halliewho/monthly-accountability" }]
     }
   ],
+
+  // Walk With Me: free 21-day walking challenge (shown on /walk-with-me).
+  // Signups join your Mailchimp list with "Walk With Me" in the QUIZRES field.
+  walkChallenge: {
+    name: "Walk With Me",
+    days: 21,
+    minutes: 20,
+    signupLabel: "Walk With Me challenge",
+    prompts: [
+      "What are you carrying today that isn't yours to carry?",
+      "Notice five things you can see. Which one surprised you?",
+      "Who do you wish you could walk with right now? Tell them.",
+      "What's one thing your body did for you today?",
+      "What would you set down if no one was watching?",
+      "Walk a little slower than usual. What changed?",
+      "What's a conversation you keep replaying?",
+      "Rest day. Walk if you want to. Notice how it feels to choose.",
+      "What are you proud of that nobody clapped for?",
+      "Name a pattern you noticed this week.",
+      "Walk somewhere new, even if it's the other end of your street.",
+      "What does 'enough' look like for you today?",
+      "Who made you feel safe growing up? What did they do?",
+      "What's one boundary you kept this week?",
+      "Halfway there. What do you want the second half to feel like?",
+      "What are you still waiting for permission to do?",
+      "Leave your phone in your pocket the whole walk. What came up?",
+      "What would you tell the version of you from a year ago?",
+      "What's growing in your life right now, even slowly?",
+      "Who could you invite on tomorrow's walk?",
+      "You did it. What are you taking with you, and what are you leaving here?"
+    ]
+  },
 
   // Starting prices for the done-for-you services (shown on /work-with-me)
   services: [

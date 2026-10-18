@@ -201,6 +201,18 @@ fs.cpSync("games", path.join(OUT, "games"), { recursive: true });
 </section>
 
 <section>
+  <div class="about">
+    <figure class="portrait"><img src="assets/walk-trail.jpg" alt="Hallie smiling on a wooded trail" loading="lazy"></figure>
+    <div class="measure">
+      <p class="kicker">Free ${cfg.walkChallenge.days}-day challenge</p>
+      <h2>Walk with me.</h2>
+      <p>${cfg.walkChallenge.minutes} minutes a day, one honest question to carry with you, wherever you are.</p>
+      <div class="actions"><a class="btn" href="${r("walk-with-me/")}">Join the challenge</a></div>
+    </div>
+  </div>
+</section>
+
+<section>
   <div class="measure">
     <h2>From the shop</h2>
     <p>Printable journals and art prints from Innershelfstudio, my Etsy shop.</p>
@@ -467,12 +479,92 @@ for (const p of PATTERNS) {
   }));
 }
 
+
+// Walk With Me challenge
+{
+  const page = "walk-with-me/";
+  const w = cfg.walkChallenge;
+  const days = w.prompts.map((t, i) => `<li><span class="day">Day ${i + 1}</span><span>${esc(t)}</span></li>`).join("");
+  write(page, layout({
+    page,
+    title: `Walk With Me: A Free ${w.days}-Day Walking Challenge | Hallie Who`,
+    description: `Join Hallie for a free ${w.days}-day walking challenge. ${w.minutes} minutes a day, one honest question to think about while you walk, wherever you are.`,
+    jsonld: [crumbs([["Home", ""], ["Walk With Me", page]])],
+    body: `
+<section class="first">
+  <div class="walk-hero">
+    <div class="measure">
+      <p class="kicker">Free challenge</p>
+      <h1>Walk with me.</h1>
+      <p class="lede">${w.days} days. ${w.minutes} minutes a day. One honest question to carry with you while you walk.</p>
+      <p style="margin-top:16px">No gym, no tracker, no pace to keep. Just you, your own two feet, and a little room to think. Walk your street, a trail, a parking lot on your lunch break. I'll be walking too.</p>
+      <form class="walk-form" id="walk-form">
+        <label class="field"><span>Your email</span><input type="email" name="email" required autocomplete="email" placeholder="you@example.com"></label>
+        <button class="btn" type="submit">Join the challenge</button>
+      </form>
+      <p class="small" id="walk-msg" role="status">Free. You can unsubscribe any time.</p>
+    </div>
+    <img class="walk-photo" src="${rel(page, "assets/walk-porch.jpg")}" alt="Hallie smiling on a wooden deck under a blue sky" width="800" height="1067">
+  </div>
+</section>
+<section>
+  <div class="measure">
+    <h2>How it works</h2>
+    <ol class="steps">
+      <li><strong>Sign up</strong> with your email so I know you're walking with me.</li>
+      <li><strong>Walk ${w.minutes} minutes</strong> a day, anywhere. Short on time? Ten counts.</li>
+      <li><strong>Take the day's question</strong> with you. Don't solve it. Just let it walk alongside you.</li>
+      <li><strong>Share if you want.</strong> Post a photo from your walk and tag <a href="${cfg.instagramUrl}">@halliewho_</a> so we can cheer each other on.</li>
+    </ol>
+  </div>
+</section>
+<section>
+  <div class="measure">
+    <h2>The ${w.days} questions</h2>
+    <p>Bookmark this page. Each day, take the next one with you.</p>
+    <ol class="walk-days">${days}</ol>
+  </div>
+</section>
+<section>
+  <div class="about">
+    <figure class="portrait"><img src="${rel(page, "assets/walk-bridge.jpg")}" alt="Hallie on a footbridge on a wooded trail" loading="lazy"></figure>
+    <div class="measure">
+      <h2>Want to walk together for real?</h2>
+      <p>Set It Down Saturdays are in-person community walks near Birmingham. And if you'd rather talk while you walk, book a <a href="${rel(page, "talk-with-hallie/")}">Walk &amp; Talk</a> with me, by phone or in person.</p>
+      <div class="actions"><a class="btn ghost" href="${rel(page, "talk-with-hallie/")}">Book a Walk &amp; Talk</a></div>
+    </div>
+  </div>
+</section>
+<script>
+(function () {
+  var f = document.getElementById("walk-form"), msg = document.getElementById("walk-msg");
+  f.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var addr = f.email.value.trim(); if (!addr) return;
+    try {
+      var name = "mc-" + Date.now(), frame = document.createElement("iframe");
+      frame.name = name; frame.style.display = "none"; document.body.appendChild(frame);
+      var form = document.createElement("form"); form.action = ${JSON.stringify(cfg.mailchimp.action)}; form.method = "POST"; form.target = name; form.style.display = "none";
+      var fields = { EMAIL: addr }; fields[${JSON.stringify(cfg.mailchimp.botField)}] = "";
+      ${cfg.mailchimp.resultField ? `fields[${JSON.stringify(cfg.mailchimp.resultField)}] = ${JSON.stringify(w.signupLabel)};` : ""}
+      for (var k in fields) { var i = document.createElement("input"); i.type = "hidden"; i.name = k; i.value = fields[k]; form.appendChild(i); }
+      document.body.appendChild(form); form.submit();
+    } catch (err) {}
+    f.style.display = "none";
+    msg.textContent = "You're in! Day 1 starts whenever you're ready. Scroll down for your first question.";
+  });
+})();
+</script>`,
+  }));
+}
+
 // Talk with Hallie
 {
   const page = "talk-with-hallie/";
   const ask = (name) => `mailto:${cfg.contactEmail}?subject=${encodeURIComponent("Booking a " + name)}&body=${encodeURIComponent("Hi Hallie,\n\nI'd like to book a " + name + ".\n\nTimes that work for me:\n\nWhat I'd like to talk about (optional):\n")}`;
   const talks = cfg.talks.map((t) => `
-  <div class="service">
+  <div class="service${t.photo ? " has-photo" : ""}">
+    ${t.photo ? `<img class="service-photo" src="${rel(page, t.photo)}" alt="Hallie" loading="lazy">` : ""}
     <div class="service-head"><h3>${esc(t.name)}</h3><span class="price">${esc(t.price)}</span></div>
     <p class="small">${esc(t.length)}</p>
     <p style="margin-top:8px">${esc(t.what)}</p>
@@ -503,7 +595,7 @@ for (const p of PATTERNS) {
   <div class="measure">
     <h2>Before you book</h2>
     <p>These are conversations, not therapy, counseling, or crisis services. I'm not a licensed mental health professional. If you're in crisis or thinking about hurting yourself, call or text 988 to reach the Suicide and Crisis Lifeline, any time.</p>
-    <p>Not ready to talk yet? <a href="${rel(page, "find-your-pattern/")}">Start with a quiz</a> and see what comes up.</p>
+    <p>Not ready to talk yet? <a href="${rel(page, "find-your-pattern/")}">Start with a quiz</a>, or join the free <a href="${rel(page, "walk-with-me/")}">Walk With Me challenge</a>.</p>
   </div>
 </section>`,
   }));
@@ -755,7 +847,7 @@ write("404.html", layout({ canonicalPage: "404.html",
 }));
 
 // Sitemap and robots
-const pages = ["", "find-your-pattern/", "patterns/", "shop/", "journal/", "podcast/", ...EPISODES.map(epPage), "books/", "games/", "talk-with-hallie/", "work-with-me/", "support/", "terms-of-use/", "privacy-policy/", ...QUIZ.map((q) => q.page), ...PATTERNS.map((p) => p.page)];
+const pages = ["", "find-your-pattern/", "patterns/", "shop/", "journal/", "podcast/", ...EPISODES.map(epPage), "books/", "games/", "walk-with-me/", "talk-with-hallie/", "work-with-me/", "support/", "terms-of-use/", "privacy-policy/", ...QUIZ.map((q) => q.page), ...PATTERNS.map((p) => p.page)];
 write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${pages.map((p) => `  <url><loc>${cfg.siteUrl}/${p}</loc><lastmod>${today}</lastmod></url>`).join("\n")}

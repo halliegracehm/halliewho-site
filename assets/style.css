@@ -260,3 +260,20 @@ section.first { border-top: 0; padding-top: 40px; }
 .portrait img { width: 100%; height: auto; display: block; border-radius: 16px; box-shadow: 0 0 0 1px var(--rule); }
 .portrait figcaption { font-size: 13px; color: var(--ink-soft); margin-top: 8px; }
 @media (max-width: 720px) { .about { grid-template-columns: 1fr; gap: 24px; } .portrait { max-width: 300px; } }
+
+/* Talk photos */
+.service.has-photo { display: grid; grid-template-columns: 120px 1fr; column-gap: 20px; }
+.service.has-photo > :not(.service-photo) { grid-column: 2; }
+.service-photo { grid-row: 1 / span 4; width: 120px; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 12px; }
+@media (max-width: 520px) { .service.has-photo { grid-template-columns: 80px 1fr; column-gap: 14px; } .service-photo { width: 80px; } }
+
+/* Walk With Me */
+.walk-hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 340px); gap: 40px; align-items: center; }
+.walk-photo { width: 100%; height: auto; border-radius: 18px; box-shadow: 0 0 0 1px var(--rule); }
+.walk-form { display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap; margin-top: 24px; }
+.walk-form .field { flex: 1 1 220px; margin: 0; }
+.steps { padding-left: 20px; display: grid; gap: 12px; margin-top: 14px; }
+.walk-days { list-style: none; padding: 0; margin-top: 18px; }
+.walk-days li { display: grid; grid-template-columns: 70px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--rule); }
+.walk-days .day { font-size: 14px; color: var(--violet); font-weight: 500; }
+@media (max-width: 720px) { .walk-hero { grid-template-columns: 1fr; } .walk-photo { max-width: 320px; order: -1; } }
