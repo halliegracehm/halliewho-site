@@ -171,11 +171,17 @@ fs.cpSync("games", path.join(OUT, "games"), { recursive: true });
 </section>
 
 <section>
+  <div class="about">
+  <figure class="portrait">
+    <img src="assets/hallie.jpg" alt="Hallie smiling with her arms crossed, wearing a lavender shirt" width="692" height="1000" loading="lazy">
+    <figcaption>Photo by Haley Cleckler</figcaption>
+  </figure>
   <div class="measure">
     <h2>Hi, I'm Hallie.</h2>
     <p class="body-serif">I built this space because I spent a long time looking for someone who understood, and I couldn't find her, so I decided to become her for someone else.</p>
     <p style="margin-top:16px">I'm an adopted kid from a big Alabama family, and I learned the hard way that understanding your patterns changes everything. No therapy-speak. No "cut everyone off" energy. Just honest questions and a place to sit with the answers.</p>
     <div class="actions"><a class="btn ghost" href="${r("talk-with-hallie/")}">Talk with me</a></div>
+  </div>
   </div>
 </section>
 

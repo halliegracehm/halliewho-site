@@ -253,3 +253,10 @@ section.first { border-top: 0; padding-top: 40px; }
 .art-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 14px; }
 .art-strip img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 10px; display: block; box-shadow: 0 0 0 1px var(--rule); }
 @media (max-width: 520px) { .art-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; } .art-name { font-size: 17px; } }
+
+/* About photo */
+.about { display: grid; grid-template-columns: minmax(0, 280px) minmax(0, 1fr); gap: 40px; align-items: center; }
+.portrait { margin: 0; }
+.portrait img { width: 100%; height: auto; display: block; border-radius: 16px; box-shadow: 0 0 0 1px var(--rule); }
+.portrait figcaption { font-size: 13px; color: var(--ink-soft); margin-top: 8px; }
+@media (max-width: 720px) { .about { grid-template-columns: 1fr; gap: 24px; } .portrait { max-width: 300px; } }
