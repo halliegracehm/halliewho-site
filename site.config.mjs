@@ -28,14 +28,32 @@ export default {
   // Etsy printables (Innershelfstudio). Each quiz result recommends one of these.
   etsyShop: "https://www.etsy.com/shop/Innershelfstudio",
   products: {
-    emotion: { name: "21 Day Emotion Journal", price: "$5.50", url: "https://www.etsy.com/listing/4481325241/21-day-emotion-journal-wellness-workbook", why: "21 days of prompts to name what you feel and where it comes from." },
-    braindump: { name: "Evening Brain Dump Journal Page", price: "$4.00", url: "https://www.etsy.com/listing/4484959233/evening-brain-dump-journal-page-mental", why: "A nightly page to get the swirl out of your head and onto paper." },
-    affirm: { name: "I Am Affirmations Print", price: "$4.00", url: "https://www.etsy.com/listing/4484968883/i-am-affirmations-print-positive-self", why: "Words to put where you'll see them every day, until you believe them." },
-    sunday: { name: "Sunday Setup Weekly Reflection", price: "$3.00", url: "https://www.etsy.com/listing/4488257562/sunday-setup-weekly-reflection-journal", why: "Plan your week around what you need, not just what's due." },
-    grat10: { name: "10-Day Gratitude Journal", price: "$3.75", url: "https://www.etsy.com/listing/4481340072/10-day-gratitude-journal-daily", why: "Ten days of noticing what's already good." },
-    gratitude: { name: "Gratitude Journal, Volume 1", price: "$6.00", url: "https://www.etsy.com/listing/4481090029/gratitude-journal-volume-1", why: "A gentle daily practice for a fuller heart." },
-    yearReview: { name: "2026 Year in Review + 2027 Intentions", price: "$7.00", url: "https://www.etsy.com/listing/4593392405/2026-reflection-journal-2027-intentions", why: "A 15-page workbook to look back honestly and walk into 2027 on purpose." }
+    emotion: { name: "21 Day Emotion Journal", price: "$5.50", url: "https://www.etsy.com/listing/4481325241/21-day-emotion-journal-wellness-workbook", why: "21 days of prompts to name what you feel and where it comes from.", img: "https://i.etsystatic.com/64597155/r/il/6103de/7914855411/il_794xN.7914855411_rzlw.jpg" },
+    braindump: { name: "Evening Brain Dump Journal Page", price: "$4.00", url: "https://www.etsy.com/listing/4484959233/evening-brain-dump-journal-page-mental", why: "A nightly page to get the swirl out of your head and onto paper.", img: "https://i.etsystatic.com/64597155/r/il/c30b0d/8716102477/il_794xN.8716102477_or2n.jpg" },
+    affirm: { name: "I Am Affirmations Print", price: "$4.00", url: "https://www.etsy.com/listing/4484968883/i-am-affirmations-print-positive-self", why: "Words to put where you'll see them every day, until you believe them.", img: "https://i.etsystatic.com/64597155/r/il/a79e16/8668270468/il_794xN.8668270468_epe1.jpg" },
+    sunday: { name: "Sunday Setup Weekly Reflection", price: "$3.00", url: "https://www.etsy.com/listing/4488257562/sunday-setup-weekly-reflection-journal", why: "Plan your week around what you need, not just what's due.", img: "https://i.etsystatic.com/64597155/r/il/a3d8f2/7971191690/il_794xN.7971191690_b24z.jpg" },
+    grat10: { name: "10-Day Gratitude Journal", price: "$3.75", url: "https://www.etsy.com/listing/4481340072/10-day-gratitude-journal-daily", why: "Ten days of noticing what's already good.", img: "https://i.etsystatic.com/64597155/r/il/df5597/8694595034/il_794xN.8694595034_oyyz.jpg" },
+    gratitude: { name: "Gratitude Journal, Volume 1", price: "$6.00", url: "https://www.etsy.com/listing/4481090029/gratitude-journal-volume-1", why: "A gentle daily practice for a fuller heart.", img: "https://i.etsystatic.com/64597155/r/il/76c3d8/7913189625/il_794xN.7913189625_djo3.jpg" },
+    yearReview: { name: "2026 Year in Review + 2027 Intentions", price: "$7.00", url: "https://www.etsy.com/listing/4593392405/2026-reflection-journal-2027-intentions", why: "A 15-page workbook to look back honestly and walk into 2027 on purpose.", img: "https://i.etsystatic.com/64597155/r/il/786d9a/8709442933/il_794xN.8709442933_alk7.jpg" }
   },
+  // Art prints (digital downloads) shown on /shop. Newest favorites first.
+  artPrints: [
+    { name: "The Center of It", why: "Reds and pinks with a column of gold and black dots.", url: "https://www.etsy.com/listing/4492014045", img: "https://i.etsystatic.com/64597155/r/il/d8ab0c/7986301517/il_794xN.7986301517_b35y.jpg" },
+    { name: "Still Standing", why: "A tree painting for the seasons you're getting through.", url: "https://www.etsy.com/listing/4492579583", img: "https://i.etsystatic.com/64597155/r/il/26b6d9/7986277603/il_794xN.7986277603_ljr0.jpg" },
+    { name: "Radiant", why: "Orange and red, like the first minute of a sunrise.", url: "https://www.etsy.com/listing/4492619173", img: "https://i.etsystatic.com/64597155/r/il/a9a162/7938408338/il_794xN.7938408338_2cq7.jpg" },
+    { name: "In Bloom", why: "A folk art floral, bright and a little wild.", url: "https://www.etsy.com/listing/4495862744", img: "https://i.etsystatic.com/64597155/r/il/6715da/8007705583/il_794xN.8007705583_2mm0.jpg" },
+    { name: "The Sun Stays", why: "Bold color blocks that hold their warmth.", url: "https://www.etsy.com/listing/4495858161", img: "https://i.etsystatic.com/64597155/r/il/8a42b0/7959760610/il_794xN.7959760610_oncq.jpg" },
+    { name: "Lavender and Orange", why: "An abstract landscape in purple and gold.", url: "https://www.etsy.com/listing/4492624785", img: "https://i.etsystatic.com/64597155/r/il/756468/7938436638/il_794xN.7938436638_222j.jpg" },
+    { name: "Gentle Swirls", why: "Soft pink and blue, painted loose.", url: "https://www.etsy.com/listing/4492618352", img: "https://i.etsystatic.com/64597155/r/il/ecf5b1/7938393606/il_794xN.7938393606_aktr.jpg" },
+    { name: "The Red Season", why: "A statement piece in bold red.", url: "https://www.etsy.com/listing/4492605881", img: "https://i.etsystatic.com/64597155/r/il/e8d683/7986335315/il_794xN.7986335315_njvq.jpg" },
+    { name: "Unraveling", why: "Colorful and expressive, letting it all come apart.", url: "https://www.etsy.com/listing/4495854797", img: "https://i.etsystatic.com/64597155/r/il/550e4c/8007699425/il_794xN.8007699425_16n0.jpg" },
+    { name: "Pastel Waves", why: "Soft pink waves for a calm wall.", url: "https://www.etsy.com/listing/4492605296", img: "https://i.etsystatic.com/64597155/r/il/86172a/7986314149/il_794xN.7986314149_r4ax.jpg" },
+    { name: "Yellow Dandelions", why: "A pastel spring floral.", url: "https://www.etsy.com/listing/4492010361", img: "https://i.etsystatic.com/64597155/r/il/cee80c/7982493499/il_794xN.7982493499_7qhk.jpg" },
+    { name: "Abstract Pattern", why: "Minimal meets maximal in one busy, happy print.", url: "https://www.etsy.com/listing/4495863604", img: "https://i.etsystatic.com/64597155/r/il/92c4cb/7959752480/il_794xN.7959752480_63vs.jpg" }
+  ],
+  // Shown in the "From the shop" row on the homepage (product keys above).
+  homeShop: ["yearReview", "emotion", "braindump"],
+
   // Which printable each result recommends: "quizNumber:resultKey": product
   picks: {
     "0:O": "affirm", "0:C": "braindump", "0:P": "affirm", "0:I": "emotion",

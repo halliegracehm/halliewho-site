@@ -140,6 +140,7 @@ function picksFor(qid, key) {
 }
 const pickCards = (list) => `<div class="picks">${list.map((x) => `
   <a class="pick" href="${x.url}">
+    ${x.img ? `<img class="pick-img" src="${x.img}" alt="${esc(x.name)}" loading="lazy" width="794" height="635">` : ""}
     <span class="pick-name">${esc(x.name)}</span>
     <span class="pick-why">${esc(x.why)}</span>
     <span class="pick-foot"><span class="pick-price">${esc(x.price)}</span><span class="pick-go">See it on Etsy</span></span>
@@ -190,6 +191,16 @@ fs.cpSync("games", path.join(OUT, "games"), { recursive: true });
       <p>A 30-day journal written only for you, around what you're carrying right now. ${cfg.journalPrice}, delivered to your inbox.</p>
       <div class="actions"><a class="btn" href="${r("journal/")}">See the journal</a></div>
     </div>
+  </div>
+</section>
+
+<section>
+  <div class="measure">
+    <h2>From the shop</h2>
+    <p>Printable journals and art prints from Innershelfstudio, my Etsy shop.</p>
+    ${pickCards(cfg.homeShop.map((k) => cfg.products[k]).filter(Boolean))}
+    <div class="art-strip">${cfg.artPrints.slice(0, 4).map((x) => `<a href="${r("shop/")}#art"><img src="${x.img}" alt="${esc(x.name)}, art print" loading="lazy"></a>`).join("")}</div>
+    <div class="actions"><a class="btn ghost" href="${r("shop/")}">Visit the shop</a></div>
   </div>
 </section>
 
@@ -336,13 +347,13 @@ for (const p of PATTERNS) {
   write(page, layout({
     page,
     title: "Shop: Printable Journals, Workbooks, and a Personalized Journal | Hallie Who",
-    description: "Printable journals, gratitude pages, affirmations, and a year in review workbook from Innershelfstudio, plus Pages for You, a 30-day journal written for you.",
+    description: "Printable journals, gratitude pages, affirmations, a year in review workbook, and original art prints from Innershelfstudio, plus Pages for You, a 30-day journal written for you.",
     jsonld: [crumbs([["Home", ""], ["Shop", page]])],
     body: `
 <section class="first">
   <div class="measure">
     <h1>Shop</h1>
-    <p class="lede">Small, honest tools for the patterns you're working on. Everything is a digital download you can print at home.</p>
+    <p class="lede">Small, honest tools for the patterns you're working on, and art for the walls you look at every day. Everything is a digital download you can print at home.</p>
     ${journalOffer(null, "Pages for You", `A 30-day journal written only for you, around what you're carrying right now. ${cfg.journalPrice}.`, "shop",
       `<a class="btn ghost" href="${rel(page, "journal/")}">How it works</a>`)}
   </div>
@@ -352,8 +363,20 @@ for (const p of PATTERNS) {
     <h2>Printables from Innershelfstudio</h2>
     <p>Sold through my Etsy shop. Instant download after checkout.</p>
     ${pickCards(all)}
-    <p style="margin-top:22px">Looking for art prints? <a href="${cfg.etsyShop}">See the whole shop on Etsy</a>.</p>
   </div>
+</section>
+<section id="art">
+  <div class="measure">
+    <h2>Art prints</h2>
+    <p>My paintings, as digital downloads you can print at any size. Sold through Etsy.</p>
+  </div>
+  <div class="art-grid">${cfg.artPrints.map((x) => `
+    <a class="art" href="${x.url}">
+      <img src="${x.img}" alt="${esc(x.name)}, art print by Hallie Who" loading="lazy">
+      <span class="art-name">${esc(x.name)}</span>
+      <span class="art-why">${esc(x.why)}</span>
+    </a>`).join("")}</div>
+  <div class="measure"><p style="margin-top:26px"><a href="${cfg.etsyShop}">See the whole shop on Etsy</a></p></div>
 </section>
 <section>
   <div class="measure">

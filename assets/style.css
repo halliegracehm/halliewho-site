@@ -238,3 +238,18 @@ section.first { border-top: 0; padding-top: 40px; }
   .body-serif, .prompts li { font-size: 20px; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* Product photos */
+.pick-img { display: block; width: calc(100% + 36px); height: auto; aspect-ratio: 5 / 4; object-fit: cover; margin: -18px -18px 6px; border-radius: 12px 12px 0 0; background: var(--rose-soft); }
+.pick { overflow: hidden; }
+
+/* Art prints */
+.art-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 18px; margin-top: 22px; max-width: 980px; }
+.art { display: flex; flex-direction: column; gap: 4px; text-decoration: none; color: var(--ink); }
+.art img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 12px; background: var(--rose-soft); box-shadow: 0 0 0 1px var(--rule); transition: transform .2s ease; }
+.art:hover img { transform: translateY(-3px); }
+.art-name { font-family: var(--serif); font-size: 20px; margin-top: 8px; }
+.art-why { font-size: 14px; color: var(--ink-soft); }
+.art-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 14px; }
+.art-strip img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 10px; display: block; box-shadow: 0 0 0 1px var(--rule); }
+@media (max-width: 520px) { .art-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; } .art-name { font-size: 17px; } }
