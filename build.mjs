@@ -99,6 +99,7 @@ function layout({ page, title, description, body, jsonld = [], scripts = "", ogT
 <meta name="twitter:image" content="${ogFor(page)}">
 <link rel="alternate" type="application/rss+xml" title="Hallie Who" href="${cfg.siteUrl}/pins.xml">
 <meta name="theme-color" content="#F3EEF8">
+<meta name="p:domain_verify" content="ff192c69ddb259acd904440a76f59772"/>
 <link rel="icon" href="${r("assets/favicon.svg")}" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
