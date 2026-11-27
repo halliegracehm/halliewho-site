@@ -48,7 +48,8 @@ card("journal/", "Pages for You", "A 30-day journal written only for you", "Arou
 card("podcast/", "My Inner Mind podcast", "Honest conversations about the patterns we carry", "New episodes from Hallie Who");
 card("walk-with-me/", "Free 21-day challenge", "Walk with me.", "20 minutes a day. One honest question to carry with you.");
 card("talk-with-hallie/", "Talk with Hallie", "Sometimes you just need someone to talk it through with", "Phone calls, walk and talks, and accountability");
-card("work-with-me/", "Virtual assistant", "Hand it off. Keep growing.", "VA support for Etsy sellers and small shops");
+card("work-with-me/", "Work with me", "Get out of your head and into your mind.", "Walks, check-ins, conversations, and a free habit program");
+card("set-it-up/", "Free 30-day program", "Set it up.", "One habit, started small, kept going.");
 card("guides/", "Free guides", "Free guides for creators and small shops", "Simple ways to save time and grow your list");
 card("books/", "Books", "Books by Hallie Who", "A picture book and a memoir on the way");
 for (const q of QUIZ) card(q.page, "Free quiz", q.title, q.sub);
@@ -259,9 +260,10 @@ fs.cpSync("games", path.join(OUT, "games"), { recursive: true });
 
 <section>
   <div class="measure">
-    <h2>Running an Etsy shop or small business?</h2>
-    <p>I'm a virtual assistant for Etsy sellers and small shops: listings and tags, social posts, Canva graphics, and newsletters, so you can get back to making things.</p>
-    <div class="actions"><a class="btn ghost" href="${r("work-with-me/")}">See how I can help</a><a class="btn ghost" href="${r("guides/")}">Free guides</a></div>
+    <p class="kicker">Free ${cfg.habitProgram.days}-day program</p>
+    <h2>Set it up.</h2>
+    <p>One habit, started small, kept going. A free workbook, a daily tracker, and a weekly email from me to keep you on track.</p>
+    <div class="actions"><a class="btn" href="${r("set-it-up/")}">Start for free</a><a class="btn ghost" href="${r("work-with-me/")}">Ways to work with me</a></div>
   </div>
 </section>`,
   }));
@@ -673,9 +675,9 @@ for (const p of PATTERNS) {
     <p class="lede">${esc(g.intro)}</p>
     ${g.sections.map((x) => `<div class="depth"><h2 style="font-size:28px">${esc(x.h)}</h2>${x.p.map((t) => `<p>${esc(t)}</p>`).join("")}</div>`).join("")}
     <div class="offer">
-      <h3>Want this off your plate?</h3>
-      <p>I'm a virtual assistant for creators and small shops. Monthly help starts at ${esc(cfg.vaPackages[0].price)}.</p>
-      <div class="actions"><a class="btn" href="${rel(gp, "work-with-me/")}">See how I can help</a></div>
+      <h3>Have a question about this?</h3>
+      <p>Email me. I'm happy to point you in the right direction.</p>
+      <div class="actions"><a class="btn" href="mailto:${cfg.contactEmail}?subject=${encodeURIComponent(g.title)}">Email Hallie</a></div>
     </div>
   </div>
 </article></section>
@@ -689,62 +691,153 @@ for (const p of PATTERNS) {
   }
 }
 
-// Work with me
+// Work with me (holistic offerings; VA work is paused)
 {
   const page = "work-with-me/";
-  const services = cfg.services.map((s) => `
-  <div class="service">
-    <div class="service-head"><h3>${esc(s.name)}</h3><span class="price">${esc(s.price)}</span></div>
-    <p>${esc(s.what)}</p>
-    <ul>${s.gets.map((g) => `<li>${esc(g)}</li>`).join("")}</ul>
-  </div>`).join("");
-  const va = cfg.vaPackages.map((s) => `
-  <div class="service">
-    <div class="service-head"><h3>${esc(s.name)}</h3><span class="price">${esc(s.price)}</span></div>
-    <p class="small">${esc(s.hours)}</p>
-    <p style="margin-top:8px">${esc(s.what)}</p>
-    <ul>${s.gets.map((g) => `<li>${esc(g)}</li>`).join("")}</ul>
-  </div>`).join("");
-  const mailto = `mailto:${cfg.contactEmail}?subject=${encodeURIComponent("Working with Hallie")}&body=${encodeURIComponent("Hi Hallie,\n\nWhat I'd like help with:\n\nMy business or page:\n\nWhen I'd like it done:\n")}`;
+  const h = cfg.habitProgram;
+  const ask = (subject, body) => `mailto:${cfg.contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const checkIn = cfg.checkInBooking || ask("Mental Health Check-In", "Hi Hallie,\n\nI'd like to book a Mental Health Check-In.\n\nTimes that work for me:\n");
+  const intro = cfg.introChatBooking || ask("Free intro chat", "Hi Hallie,\n\nI'm not sure where to start. Here's a little about what's going on:\n\nTimes that work for me:\n");
+  const offering = ({ kicker, name, price = "", photo = "", body, buttons }) => `
+  <div class="service${photo ? " has-photo" : ""}">
+    ${photo ? `<img class="service-photo" src="${rel(page, photo)}" alt="Hallie" loading="lazy">` : ""}
+    <p class="kicker">${esc(kicker)}</p>
+    <div class="service-head"><h3>${esc(name)}</h3>${price ? `<span class="price">${esc(price)}</span>` : ""}</div>
+    ${body}
+    <div class="actions" style="margin-top:16px">${buttons.map(([label, href], i) => `<a class="btn${i ? " ghost" : ""}" href="${href}">${esc(label)}</a>`).join("")}</div>
+  </div>`;
   write(page, layout({
     page,
-    title: "Virtual Assistant for Etsy Sellers and Small Shops | Hallie Who",
-    description: "Monthly virtual assistant support for Etsy sellers and small shops: listings and tags, product mockups, buyer messages, social posts, Pinterest, scheduling, and newsletters. Based near Birmingham, Alabama, working with you anywhere.",
+    title: "Work with Hallie: Walks, Check-Ins, Conversations, and a Free Habit Program | Hallie Who",
+    description: "Holistic, down-to-earth support from Hallie near Birmingham, Alabama, and anywhere by phone: Set It Down walks, a free 21-day walking challenge, mental health check-ins, conversations, and a free 30-day habit program.",
     jsonld: [crumbs([["Home", ""], ["Work with me", page]])],
     body: `
 <section class="first">
   <div class="measure">
-    <h1>Hand it off. Keep growing.</h1>
-    <p class="lede">I'm a virtual assistant for Etsy sellers and small shops. I run my own Etsy shop, so I know the listings, photos, buyer messages, posts, and appointments that pile up while you're busy making things. I can take them off your plate.</p>
-    <div class="actions"><a class="btn" href="${mailto}">Email me to get started</a><a class="btn ghost" href="${rel(page, "guides/")}">Read my free guides</a></div>
+    <h1>Get out of your head and into your mind.</h1>
+    <p class="lede">I'm Hallie. I help people slow down, check in with themselves, and build small habits that actually stick. No pressure and no perfect version of you required. Just real support, one step at a time.</p>
+    <div class="actions"><a class="btn" href="${intro}">Book a free intro chat</a><a class="btn ghost" href="${rel(page, "set-it-up/")}">Start the free habit program</a></div>
   </div>
 </section>
 <section>
   <div class="measure">
-    <h2>Monthly VA support</h2>
-    <p>Pick the hours that fit. Change or cancel any month.</p>
-    ${va}
+    <h2>Ways to work with me</h2>
+    ${offering({
+      kicker: "Free",
+      name: "Set It Down",
+      photo: "assets/walk-trail.jpg",
+      body: `<p>Sometimes the best thing you can do is put it down for a minute. Join a Set It Down hike near Birmingham, or start the free ${cfg.walkChallenge.days}-day Walk With Me challenge anytime, from wherever you are. Get out, get moving, and leave a little weight on the trail.</p>`,
+      buttons: [["Start the walking challenge", rel(page, "walk-with-me/")], ["Follow for hike dates", cfg.instagramUrl]],
+    })}
+    ${offering({
+      kicker: `Free ${h.days}-day program`,
+      name: "Set It Up: Habit Program",
+      body: `<p>Ready to build something that lasts? Pick one habit, start small, and stick with it. You'll get a weekly email from me, a printable workbook, and a ${h.days}-day tracker to keep you going. Start anytime.</p>`,
+      buttons: [["Start for free", rel(page, "set-it-up/")]],
+    })}
+    ${offering({
+      kicker: "One on one",
+      name: "Mental Health Check-In",
+      price: cfg.checkInPrice,
+      body: `<p>A guided conversation to pause and notice how you're really doing: your mood, your stress, your sleep, your people. You'll leave with a clearer picture and one or two small next steps.</p>
+    <p class="small" style="margin-top:8px">This is a supportive check-in, not therapy or a substitute for professional care.</p>`,
+      buttons: [[cfg.checkInBooking ? "Book a check-in" : "Email to book", checkIn]],
+    })}
+    ${offering({
+      kicker: "Conversations",
+      name: "Talk with Hallie",
+      photo: "assets/hallie-laptop.jpg",
+      body: `<p>A one-on-one conversation to process what's on your mind, sort through a season, or just be heard. Quick talks, deep conversations, walk and talks, and monthly accountability. Come as you are.</p>`,
+      buttons: [["See conversations", rel(page, "talk-with-hallie/")]],
+    })}
   </div>
 </section>
 <section>
   <div class="measure">
-    <h2>One-time projects</h2>
-    <p>Want to try working together first? Start with a small project at a fixed price.</p>
-    ${services}
+    <h2>Not sure where to start?</h2>
+    <p>Book a free intro chat and we'll figure it out together.</p>
+    <div class="actions"><a class="btn" href="${intro}">Book a free intro chat</a></div>
+    <p class="small" style="margin-top:24px">I'm not a licensed mental health professional, and these offerings aren't therapy, counseling, or crisis services. If you're in crisis or thinking about hurting yourself, call or text 988 to reach the Suicide and Crisis Lifeline, any time.</p>
+  </div>
+</section>`,
+  }));
+}
+
+// Set It Up: free 30-day habit program
+{
+  const page = "set-it-up/";
+  const h = cfg.habitProgram;
+  const weeks = h.weeks.map((w, i) => `<li><span class="day">Week ${i + 1}</span><span><strong>${esc(w.name)}</strong> · ${esc(w.days)}<br>${esc(w.what)}</span></li>`).join("");
+  write(page, layout({
+    page,
+    title: `Set It Up: A Free ${h.days}-Day Habit Program | Hallie Who`,
+    description: `Build one habit that lasts with Hallie's free ${h.days}-day program: a printable workbook, a daily tracker, and a weekly email to keep you going. Start anytime.`,
+    jsonld: [crumbs([["Home", ""], ["Set It Up", page]])],
+    body: `
+<section class="first">
+  <div class="walk-hero">
+    <div class="measure">
+      <p class="kicker">Free ${h.days}-day program</p>
+      <h1>Set it up.</h1>
+      <p class="lede">One habit. Started small. Kept going.</p>
+      <p style="margin-top:16px">You don't need a new you. You need one small thing you can do even on your worst day, and someone cheering you on while you do it. Sign up and I'll send you the workbook, then one email a week for four weeks.</p>
+      <form class="walk-form" id="habit-form">
+        <label class="field"><span>Your email</span><input type="email" name="email" required autocomplete="email" placeholder="you@example.com"></label>
+        <button class="btn" type="submit">Start for free</button>
+      </form>
+      <p class="small" id="habit-msg" role="status">Free. Start anytime. You can unsubscribe any time.</p>
+    </div>
+    <img class="walk-photo" src="${rel(page, "assets/hallie-laptop.jpg")}" alt="Hallie working at her laptop" loading="lazy">
+  </div>
+</section>
+<section>
+  <div class="measure">
+    <h2>The four weeks</h2>
+    <ol class="walk-days">${weeks}</ol>
   </div>
 </section>
 <section>
   <div class="measure">
     <h2>How it works</h2>
     <ol class="steps">
-      <li>Email me what you need help with and a little about your business.</li>
-      <li>We hop on a free 15 minute call to see if we're a good fit.</li>
-      <li>I send a short plan and a fixed monthly or project price. No surprises.</li>
-      <li>We get to work, and you get your time back.</li>
+      <li><strong>Sign up</strong> and download your free workbook. Print it or fill it in on your phone.</li>
+      <li><strong>Pick one habit</strong> and make it tiny. Walk to the mailbox. Write one sentence. Drink one glass of water.</li>
+      <li><strong>Mark your tracker</strong> every day. Done, bare minimum, or missed.</li>
+      <li><strong>Never miss twice.</strong> Missing one day is life. Just get back on the next day.</li>
     </ol>
-    <div class="actions"><a class="btn" href="${mailto}">Email me about a project</a></div>
+    <div class="actions"><a class="btn ghost" id="workbook-link" href="${rel(page, h.workbook)}">Download the workbook</a></div>
   </div>
-</section>`,
+</section>
+<section>
+  <div class="about">
+    <figure class="portrait"><img src="${rel(page, "assets/walk-bridge.jpg")}" alt="Hallie on a footbridge on a wooded trail" loading="lazy"></figure>
+    <div class="measure">
+      <h2>Want someone in your corner?</h2>
+      <p>Pair the program with the free <a href="${rel(page, "walk-with-me/")}">Walk With Me challenge</a>, or book <a href="${rel(page, "talk-with-hallie/")}">Monthly Accountability</a> and we'll check in on your habits together.</p>
+      <div class="actions"><a class="btn ghost" href="${rel(page, "work-with-me/")}">Ways to work with me</a></div>
+    </div>
+  </div>
+</section>
+<script>
+(function () {
+  var f = document.getElementById("habit-form"), msg = document.getElementById("habit-msg");
+  f.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var addr = f.email.value.trim(); if (!addr) return;
+    try {
+      var name = "mc-" + Date.now(), frame = document.createElement("iframe");
+      frame.name = name; frame.style.display = "none"; document.body.appendChild(frame);
+      var form = document.createElement("form"); form.action = ${JSON.stringify(cfg.mailchimp.action)}; form.method = "POST"; form.target = name; form.style.display = "none";
+      var fields = { EMAIL: addr }; fields[${JSON.stringify(cfg.mailchimp.botField)}] = "";
+      ${cfg.mailchimp.resultField ? `fields[${JSON.stringify(cfg.mailchimp.resultField)}] = ${JSON.stringify(h.signupLabel)};` : ""}
+      for (var k in fields) { var i = document.createElement("input"); i.type = "hidden"; i.name = k; i.value = fields[k]; form.appendChild(i); }
+      document.body.appendChild(form); form.submit();
+    } catch (err) {}
+    f.style.display = "none";
+    msg.innerHTML = 'You’re in! <a href="' + document.getElementById("workbook-link").getAttribute("href") + '">Download your workbook</a> and start Week 1 whenever you’re ready. Your first email is on its way.';
+  });
+})();
+</script>`,
   }));
 }
 
@@ -951,7 +1044,7 @@ write("404.html", layout({ canonicalPage: "404.html",
 }));
 
 // Sitemap and robots
-const pages = ["", "find-your-pattern/", "patterns/", "shop/", "journal/", "podcast/", ...EPISODES.map(epPage), "books/", "games/", "walk-with-me/", "talk-with-hallie/", "work-with-me/", "guides/", ...GUIDES.map((g) => `guides/${g.slug}/`), "support/", "terms-of-use/", "privacy-policy/", ...QUIZ.map((q) => q.page), ...PATTERNS.map((p) => p.page)];
+const pages = ["", "find-your-pattern/", "patterns/", "shop/", "journal/", "podcast/", ...EPISODES.map(epPage), "books/", "games/", "walk-with-me/", "set-it-up/", "talk-with-hallie/", "work-with-me/", "guides/", ...GUIDES.map((g) => `guides/${g.slug}/`), "support/", "terms-of-use/", "privacy-policy/", ...QUIZ.map((q) => q.page), ...PATTERNS.map((p) => p.page)];
 write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${pages.map((p) => `  <url><loc>${cfg.siteUrl}/${p}</loc><lastmod>${today}</lastmod></url>`).join("\n")}
