@@ -20,7 +20,8 @@ PHOTOS = {
     "home": "hallie.jpg",
     "walk-with-me": "walk-porch.jpg",
     "talk-with-hallie": "walk-trail.jpg",
-    "work-with-me": "hallie-laptop.jpg",
+    "work-with-me": "walk-trail.jpg",
+    "set-it-up": "hallie-laptop.jpg",
 }
 
 def wrap(draw, text, fnt, width):

@@ -156,7 +156,32 @@ export default {
     ]
   },
 
-  // Monthly VA support (shown first on /work-with-me). Hours roll into one monthly invoice.
+  // Set It Up: free 30-day habit program (shown on /set-it-up).
+  // Signups join your Mailchimp list with "Set It Up habit program" in the QUIZRES field.
+  // Your Mailchimp journey uses that value to send the weekly emails.
+  habitProgram: {
+    name: "Set It Up",
+    days: 30,
+    signupLabel: "Set It Up habit program",
+    workbook: "assets/set-it-up-workbook.pdf",
+    weeks: [
+      { name: "Pick It", days: "Days 1 to 7", what: "Choose one habit, find your real why, and make it so small you could do it on your worst day." },
+      { name: "Stack It", days: "Days 8 to 14", what: "Attach your habit to something you already do every day, and set things up so it's easy to start." },
+      { name: "Protect It", days: "Days 15 to 21", what: "Plan for the hard days and the missed ones with a bare minimum and a few if-then plans." },
+      { name: "Own It", days: "Days 22 to 30", what: "Look back at your tracker, level up a little if it feels right, and decide what comes next." }
+    ]
+  },
+
+  // Holistic offerings (shown on /work-with-me).
+  // Mental Health Check-In: paste a Cal.com link in checkInBooking and the button books it.
+  // Leave it "" and the button opens an email to you instead.
+  checkInPrice: "",
+  checkInBooking: "",
+  // "Book a free intro chat" button. Paste a free Cal.com link here, or leave "" to use email.
+  introChatBooking: "",
+
+  // VA work is paused, so these aren't shown on the site right now. Kept here for later.
+  // Monthly VA support. Hours roll into one monthly invoice.
   vaPackages: [
     {
       name: "Starter",
@@ -181,7 +206,7 @@ export default {
     }
   ],
 
-  // Starting prices for the done-for-you services (shown on /work-with-me)
+  // Starting prices for the done-for-you services (paused, not shown)
   services: [
     {
       name: "Holiday and sale prep",
